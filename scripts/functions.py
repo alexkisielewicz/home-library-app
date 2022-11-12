@@ -79,7 +79,44 @@ def change_sorting_method():
     print("To finish....")
 
 def show_book_details():
-    print("To finish...")
+    """
+    Prints to the terminal a single book entry selected by the user.
+    Takes user input and looks up the database for selected book,
+    extracts and assigns all the information to variables and print
+    detailed info as a table.
+    """
+    database_check()
+    show_all_books()  # shows user all the books
+    allowed_input = LIBRARY.col_values(1)[1:]
+
+    while True:
+        user_choice = input("Which book details would you like to see?: ")
+
+        if user_choice in allowed_input:
+            db_row = int(user_choice) + 1  # because of list's zero notation
+            book_id = LIBRARY.row_values(db_row)
+            book_to_display = book_id[:-1]  # find last row in the database
+            book_description = str(book_id[-1])  # extract selected book's description from all values
+
+            x = PrettyTable()
+            x.field_names = constants.HEADERS_NO_DESC
+            x.add_rows([book_to_display])
+            clear_terminal()
+            print(constants.SHOW_BOOK_DETAILS)
+            print(constants.LINE)
+            print(x)
+            print(f"\n{constants.DESCRIPTION}: ")
+            wrap_text(book_description)
+            print(constants.LINE)
+        else:
+            clear_terminal()
+            if how_many_books() is True:
+                print("Not much of a choice, you have only one book, please select it...\n")
+            elif how_many_books() is False:
+                print(f"No such record! Please select #ID from 1 to {utils.utils.last_book_id}.\n")
+            show_book_details()
+
+        break
 
 def quit_app():
     """

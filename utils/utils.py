@@ -23,6 +23,17 @@ def clear_terminal():
     print('\n' * 20)  # prints 20 line breaks to simulate CLS in PyCHarm IDE
 
 
+def wrap_text(text):
+    """
+    Wraps long strings over 79 characters to the new line.
+    Used to correctly display books descriptions.
+    :param text:
+    """
+    wrapper = textwrap.TextWrapper(width=79)
+    wrapped_text = wrapper.fill(text=text)
+    print(wrapped_text)
+
+
 def database_check():
     while True:
         is_empty = len(LIBRARY.row_values(2))  # checks if there is a record below DB headers
