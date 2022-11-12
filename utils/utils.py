@@ -109,6 +109,33 @@ def validate_yes_no(user_input):
         return False
 
 
+def validate_string(user_input):
+    if user_input.isalnum():
+        print("OK, it's a string")
+        return True
+    else:
+        print("Not alpha-numerical")
+        return False
+
+def validate_input_range(user_input, first_val, end):
+    print("Zakres to: ", first_val, end)
+    end += 1  # plus one because of list's zero notation
+    if user_input.isnumeric():
+        print("is numeric?: ", user_input.isnumeric())
+        print("is in the range?: ", user_input in range(first_val, end))
+        print(list(range(first_val, end)))
+        print(type(int(user_input)))
+        if int(user_input) in range(first_val, end):
+            print(list(range(first_val, end)))
+            print(len(list(range(first_val, end))))
+            print("Correct input!")
+            pass
+        else:
+            print("This is not allowed.")
+    else:
+        print("This is not a number, it must be a string")
+
+
 def print_all_database():
     """
     Gets all values from the database and prints to the terminal
@@ -128,17 +155,6 @@ def print_all_database():
             [i[:-1]]  # each iteration adds a row to the table, we skip the header
         )
     print(x)
-
-
-def wrap_text(text):
-    """
-    Wraps long strings over 79 characters to the new line.
-    Used to correctly display books descriptions.
-    :param text:
-    """
-    wrapper = textwrap.TextWrapper(width=79)
-    wrapped_text = wrapper.fill(text=text)
-    print(wrapped_text)
 
 
 def renumber_id_column():
