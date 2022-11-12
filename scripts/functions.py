@@ -7,6 +7,18 @@ print("default method is set to: ", default_sorting_method)  # will be removed
 optional_sorting_method = CONFIG.acell("B2").value  # always opposite value to default_sorting_method
 print("optional method is set to: ", optional_sorting_method)  # will be removed
 
+
+def show_all_books():
+    """
+     Prints to terminal a list of all books stored in the database.
+    """
+    database_check()
+    print(constants.VIEW_ALL_BOOKS)
+    print(constants.LINE)
+    print_all_database()
+    print(constants.LINE)
+
+
 def add_book():
     """
     Allows user to add new book to database using user input with following values:
@@ -80,6 +92,7 @@ def add_book():
             print("Wrong input, please select \"Y\" or \"N\"...")
             # menu.show_menu()
 
+
 def remove_book():
     """
     Function allows user to remove database entry for selected book.
@@ -138,18 +151,9 @@ def remove_book():
             remove_book()
 
 
-def show_all_books():
-    """
-     Prints to terminal a list of all books stored in the database.
-    """
-    database_check()
-    print(constants.VIEW_ALL_BOOKS)
-    print(constants.LINE)
-    print_all_database()
-    print(constants.LINE)
-
 def edit_book():
     print("To finish...")
+
 
 def change_sorting_method():
     """
