@@ -59,6 +59,27 @@ def how_many_books():
 
     return first_book_id, last_book_id
 
+
+def check_prefix():
+    """
+    Checks if title starts with "The" and converts it to format "Title, The"
+    :return: title
+    """
+    text = input("Please enter the title: ")
+    title_lower = text.lower()
+
+    if title_lower.startswith("the "):
+        prefix = ", The"
+        rewrite_title = title_lower[4:]  # slice of a string - remove first 4 char "the ".
+        new_title = rewrite_title + prefix
+        title = new_title.title()
+        print("Converted to: ", title)
+    else:
+        title = title_lower.title()
+
+    return title
+
+
 def validate_num_range(user_input, first_val, last_val):  # e. g main menu with options 1-7
     """
     Checks if user input is withing the range of possible options.

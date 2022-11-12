@@ -8,7 +8,77 @@ optional_sorting_method = CONFIG.acell("B2").value  # always opposite value to d
 print("optional method is set to: ", optional_sorting_method)  # will be removed
 
 def add_book():
-    print("To finish...")
+    """
+    Allows user to add new book to database using user input with following values:
+    author, title, category, read status and description.
+    The ID of the book is generated and added automatically for each new entry.
+    Function looks up the database for first empty row and inserts new entry there.
+    """
+    print(constants.ADD_BOOK)
+    print(constants.LINE)
+
+    book_to_be_added = []
+
+    title = check_prefix()  # checks if book title starts with "The" and returns "Title, The"
+    validate_string(title)
+    author = input("Please enter the author: ").title()
+    validate_string(author)
+    category = input("Please enter book category: ").capitalize()
+    validate_string(category)
+
+    while True:
+        status = input('Please select "1" if book is READ and "2" if NOT READ: ')
+        if validate_num_range(status, 1, 2):
+            if status == "1":
+                read_status = "Read"
+                break
+            elif status == "2":
+                read_status = "Not read"
+                break
+
+        else:
+            print(f"Wrong input, please try again...\n")
+
+    description = input("Please enter book description: ").capitalize()
+    validate_string(description)
+    book_to_be_added.extend([title, author, category, read_status, description])
+    clear_terminal()
+    print(constants.LINE)
+    first_empty_row = len(LIBRARY.get_all_values())  # look up database for first empty row
+
+    book_to_be_added.insert(0, first_empty_row)  # adds ID as a first item in book list
+    for header, item in zip(range(len(constants.HEADERS_NO_DESC)), range(len(book_to_be_added))):
+        print(f"{constants.HEADERS_NO_DESC[header]}: {book_to_be_added[item]}")
+
+    print(f"\n{constants.DESCRIPTION}: ")
+    wrap_text(book_to_be_added[-1].capitalize())
+
+    print(constants.LINE)
+
+    while True:
+        are_you_sure = input(" \nConfirm adding this book. Y/N: ")
+        if validate_yes_no(are_you_sure):
+
+            if "y" in are_you_sure or "Y" in are_you_sure:
+                clear_terminal()
+                LIBRARY.append_row(book_to_be_added)
+                print("Adding book to the database...")
+
+                if optional_method == default_sorting_method:  # sorting is required to keep order in database
+                    sort(default_method)
+                else:
+                    sort(optional_method)
+                print("Book added successfully.")
+                break
+
+            elif "n" in are_you_sure or "N" in are_you_sure:
+                clear_terminal()
+                print("Aborting...")
+                break
+        else:
+            clear_terminal()
+            print("Wrong input, please select \"Y\" or \"N\"...")
+            # menu.show_menu()
 
 def remove_book():
     """
@@ -152,38 +222,6 @@ def show_book_details():
             show_book_details()
 
         break
-
-
-def change_sorting_method():
-    """
-    Changes sorting method
-    """
-    database_check()
-    show_all_books()
-    while True:
-        print(f"Books are displayed in alphabetical order and sorted {default_sorting_method}.")
-        print("How would you like to sort them?")
-        if default_sorting_method == "by title":
-            print(f"""
-                    1. {optional_sorting_method.capitalize()}
-                    2. Return
-                    """)
-        elif default_sorting_method == "by author":
-            print(f"""
-                    1. {optional_sorting_method.capitalize()}
-                    2. Return
-                    """)
-        user_choice = input("Select 1 or 2: ")
-        clear_terminal()
-        validate_num_range(user_choice, 1, 2)
-        if user_choice == "1":
-            sort(optional_sorting_method)
-            show_all_books()
-            break
-        elif user_choice == "2":
-            clear_terminal()
-            show_all_books()
-            break
 
 
 def quit_app():
