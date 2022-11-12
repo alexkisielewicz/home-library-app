@@ -2,6 +2,7 @@ import utils.utils
 from utils.utils import *
 
 def add_book():
+    print("To finish...")
 
 def remove_book():
     """
@@ -72,9 +73,30 @@ def show_all_books():
     print(constants.LINE)
 
 def edit_book():
+    print("To finish...")
 
 def change_sorting_method():
+    print("To finish....")
 
 def show_book_details():
+    print("To finish...")
 
 def quit_app():
+    """
+     This function prints goodbye message to the user
+    """
+    while True:
+        print("Why not add another book...?:)")
+        are_you_sure = input("\nAre you sure you want to quit? Y/N: ")
+        validate_yes_no(are_you_sure)
+
+        if "y" in are_you_sure or "Y" in are_you_sure:
+            clear_terminal()
+            print(f"Thank you for using {constants.APP} app!")
+            print(constants.END_SCREEN)
+            random_not_read()
+            print("\nTerminating...")
+            break
+        else:
+            menu.show_menu()
+            break

@@ -1,10 +1,11 @@
-from prettytable import PrettyTable
-
 from api.google_sheets_api import LIBRARY, CONFIG
 import os
-from scripts import functions
+import textwrap
 import app_menu as menu
 import constants
+import random
+from prettytable import PrettyTable
+from scripts import functions
 
 def clear_terminal():
     """
