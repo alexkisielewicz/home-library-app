@@ -68,6 +68,14 @@ def validate_num_range(user_input, first_val, last_val):  # e. g main menu with 
         return False
 
 
+def validate_yes_no(user_input):
+    valid_options = ["y", "Y", "n", "N"]
+    if user_input in valid_options:
+        return True
+    else:
+        return False
+
+
 def database_check():
     while True:
         is_empty = len(LIBRARY.row_values(2))  # checks if there is a record below DB headers
@@ -115,6 +123,43 @@ def renumber_id_column():
         id_val += 1
         row_val += 1
     print("Updating database...")
+
+
+def sort_books(col, order):
+    """
+    Sorts database records alphabetically.
+    :param col - number of the column in Google Sheets
+    :param order - can be chosen "asc", or "des"
+    """
+    LIBRARY.sort((col, order))  # sorts values in worksheet LIBRARY
+
+
+def sort(sorting_order):
+    global default_method
+    global optional_method
+    if sorting_order == default_method:
+        print("sorting order is: ", sorting_order, "default_method is: ", default_method, "do nothing")
+    elif sorting_order == optional_method:
+        if default_method == "by author":
+            print("Sorting database by title. Please wait...")
+            CONFIG.update_acell("B1", "by title")  # write method to database
+            CONFIG.update_acell("B2", "by author")  # write method to database
+            functions.default_sorting_method = "by title"  # changing value so can be updated in functions.py
+            functions.optional_sorting_method = "by author"  # changing value so can be updated in functions.py
+            default_method = "by title"
+            optional_method = "by author"
+            sort_books(2, "asc")
+            renumber_id_column()
+        elif default_method == "by title":
+            print("Sorting database by author. Please wait...")
+            CONFIG.update_acell("B1", "by author")  # writing method to database
+            CONFIG.update_acell("B2", "by title")  # writing method to database
+            functions.default_sorting_method = "by author"  # changing value so can be updated in functions.py
+            functions.optional_sorting_method = "by title"  # changing value so can be updated in functions.py
+            default_method = "by author"
+            optional_method = "by title"
+            sort_books(3, "asc")
+            renumber_id_column()
 
 
 def random_not_read():
