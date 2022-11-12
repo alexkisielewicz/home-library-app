@@ -33,6 +33,20 @@ def wrap_text(text):
     wrapped_text = wrapper.fill(text=text)
     print(wrapped_text)
 
+def how_many_books():
+    all_books = LIBRARY.col_values(1)[1:]  # list of IDs of all books
+    global first_book_id
+    global last_book_id
+
+    if len(all_books) == 1:
+        return True
+    elif len(all_books) > 1:
+        first_book_id = all_books[0]
+        last_book_id = all_books[-1]
+        return False
+
+    return first_book_id, last_book_id
+
 
 def database_check():
     while True:
