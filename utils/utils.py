@@ -109,6 +109,17 @@ def print_all_database():
     print(x)
 
 
+def wrap_text(text):
+    """
+    Wraps long strings over 79 characters to the new line.
+    Used to correctly display books descriptions.
+    :param text:
+    """
+    wrapper = textwrap.TextWrapper(width=79)
+    wrapped_text = wrapper.fill(text=text)
+    print(wrapped_text)
+
+
 def renumber_id_column():
     """
     Renames values in column A in the worksheet to keep ID values in order when book is removed
