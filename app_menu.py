@@ -2,15 +2,18 @@
 Home screen consists of logo and main menu.
 """
 import constants
+from scripts import functions as fn
+from utils.utils import clear_terminal
+from colorama import Fore, Style
 
 def logo():
-    print("""
+    print(Fore.BLUE + """
     ██   ██  ██████  ███    ███ ███████     ██      ██ ██████  ██████   █████  ██████  ██    ██ 
     ██   ██ ██    ██ ████  ████ ██          ██      ██ ██   ██ ██   ██ ██   ██ ██   ██  ██  ██  
     ███████ ██    ██ ██ ████ ██ █████       ██      ██ ██████  ██████  ███████ ██████    ████   
     ██   ██ ██    ██ ██  ██  ██ ██          ██      ██ ██   ██ ██   ██ ██   ██ ██   ██    ██    
     ██   ██  ██████  ██      ██ ███████     ███████ ██ ██████  ██   ██ ██   ██ ██   ██    ██                                                                           
-    """)
+    """ + Style.RESET_ALL)
     print(f"Welcome to {constants.APP} app, you can manage all your books here. Please select option 1-7 to continue.")
 
 
@@ -35,23 +38,23 @@ def show_menu():
 
         if user_choice == "1":
             clear_terminal()
-            add_book()
+            fn.add_book()
         elif user_choice == "2":
             clear_terminal()
-            edit_book()
+            fn.edit_book()
         elif user_choice == "3":
             clear_terminal()
-            remove_book()
+            fn.remove_book()
         elif user_choice == "4":
             clear_terminal()
-            show_all_books()
+            fn.show_all_books()
         elif user_choice == "5":
             clear_terminal()
-            change_sorting_method()
+            fn.change_sorting_method()
         elif user_choice == "6":
             clear_terminal()
-            show_book_details()
+            fn.show_book_details()
         elif user_choice == "7":
             clear_terminal()
-            quit_app()
+            fn.quit_app()
             break
