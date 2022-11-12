@@ -47,6 +47,26 @@ def how_many_books():
 
     return first_book_id, last_book_id
 
+def validate_num_range(user_input, first_val, last_val):  # e. g main menu with options 1-7
+    """
+    Checks if user input is withing the range of possible options.
+    Any input out of desired range will show user a message containing a range of options.
+    :param user_input: this is user input
+    :param first_val: this is first option from the range of options
+    :param last_val:  this is the last option from the range of options
+    :returns True if user's input is valid
+    :returns False if user's input is invalid
+    """
+    options = list(range(first_val, last_val + 1))
+    allowed_options = [str(i) for i in options]
+
+    if user_input in allowed_options:
+        return True
+    else:
+        clear_terminal()
+        print(f"Wrong input, please select option from {first_val} to {last_val} to continue...\n")
+        return False
+
 
 def database_check():
     while True:

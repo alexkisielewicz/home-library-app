@@ -1,6 +1,12 @@
 import utils.utils
 from utils.utils import *
 
+
+default_sorting_method = CONFIG.acell("B1").value  # either "by title" or "by author"
+print("default method is set to: ", default_sorting_method)  # will be removed
+optional_sorting_method = CONFIG.acell("B2").value  # always opposite value to default_sorting_method
+print("optional method is set to: ", optional_sorting_method)  # will be removed
+
 def add_book():
     print("To finish...")
 
@@ -117,6 +123,39 @@ def show_book_details():
             show_book_details()
 
         break
+
+
+def change_sorting_method():
+    """
+    Changes sorting method
+    """
+    database_check()
+    show_all_books()
+    while True:
+        print(f"Books are displayed in alphabetical order and sorted {default_sorting_method}.")
+        print("How would you like to sort them?")
+        if default_sorting_method == "by title":
+            print(f"""
+                    1. {optional_sorting_method.capitalize()}
+                    2. Return
+                    """)
+        elif default_sorting_method == "by author":
+            print(f"""
+                    1. {optional_sorting_method.capitalize()}
+                    2. Return
+                    """)
+        user_choice = input("Select 1 or 2: ")
+        clear_terminal()
+        validate_num_range(user_choice, 1, 2)
+        if user_choice == "1":
+            sort(optional_sorting_method)
+            show_all_books()
+            break
+        elif user_choice == "2":
+            clear_terminal()
+            show_all_books()
+            break
+
 
 def quit_app():
     """
