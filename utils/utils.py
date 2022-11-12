@@ -7,6 +7,13 @@ import random
 from prettytable import PrettyTable
 from scripts import functions
 
+default_method = CONFIG.acell('B1').value  # either "by title" or "by author"
+optional_method = CONFIG.acell('B2').value  # is always opposite value to default_method
+
+first_book_id = ""
+last_book_id = ""
+
+
 def clear_terminal():
     """
     Clears terminal for better screen readability
@@ -63,3 +70,26 @@ def renumber_id_column():
         id_val += 1
         row_val += 1
     print("Updating database...")
+
+
+def random_not_read():
+    all_books = LIBRARY.get_all_values()[1:]  # without headers
+    not_read = []
+
+    for book in all_books:
+        if "Not read" in book[4]:
+            not_read.append(book)
+
+    if len(not_read) > 0:
+        random_book = random.choice(not_read)
+        suffix = ", The"
+        prefix = "The "
+        title = random_book[1]
+
+        if suffix in title:
+            short = title[:-5]  # a title without last 5 characters
+            new_title = prefix + short
+            title = new_title
+
+        print("Looking for your next read?")
+        print(f"Why don't you grab \"{title}\" by {random_book[2]}. It's still not read.")
