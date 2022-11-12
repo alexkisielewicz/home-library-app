@@ -23,6 +23,18 @@ def clear_terminal():
     print('\n' * 20)  # prints 20 line breaks to simulate CLS in PyCHarm IDE
 
 
+def database_check():
+    while True:
+        is_empty = len(LIBRARY.row_values(2))  # checks if there is a record below DB headers
+        if is_empty == 0:
+            clear_terminal()
+            print("Database is empty, add at least one book to continue.")
+            menu.show_menu()
+            break
+        else:
+            break
+
+
 def wrap_text(text):
     """
     Wraps long strings over 79 characters to the new line.
@@ -74,18 +86,6 @@ def validate_yes_no(user_input):
         return True
     else:
         return False
-
-
-def database_check():
-    while True:
-        is_empty = len(LIBRARY.row_values(2))  # checks if there is a record below DB headers
-        if is_empty == 0:
-            clear_terminal()
-            print("Database is empty, add at least one book to continue.")
-            menu.show_menu()
-            break
-        else:
-            break
 
 
 def print_all_database():

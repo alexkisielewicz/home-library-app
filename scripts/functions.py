@@ -82,7 +82,36 @@ def edit_book():
     print("To finish...")
 
 def change_sorting_method():
-    print("To finish....")
+    """
+    Changes sorting method
+    """
+    database_check()
+    show_all_books()
+    while True:
+        print(f"Books are displayed in alphabetical order and sorted {default_sorting_method}.")
+        print("How would you like to sort them?")
+        if default_sorting_method == "by title":
+            print(f"""
+                    1. {optional_sorting_method.capitalize()}
+                    2. Return
+                    """)
+        elif default_sorting_method == "by author":
+            print(f"""
+                    1. {optional_sorting_method.capitalize()}
+                    2. Return
+                    """)
+        user_choice = input("Select 1 or 2: ")
+        clear_terminal()
+        validate_num_range(user_choice, 1, 2)
+        if user_choice == "1":
+            sort(optional_sorting_method)
+            show_all_books()
+            break
+        elif user_choice == "2":
+            clear_terminal()
+            show_all_books()
+            break
+
 
 def show_book_details():
     """
