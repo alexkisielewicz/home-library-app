@@ -231,7 +231,7 @@ def edit_book():
                     print(Fore.YELLOW + "Keep editing this book or return to main menu." + Style.RESET_ALL)
 
                 elif user_choice == "3":
-                    edit_cell = (input(Fore.YELLOW + "Please enter new category: " + Style.RESET_ALL))
+                    edit_cell = (input(Fore.YELLOW + "Please enter new category: " + Style.RESET_ALL)).title()
                     validate_string(edit_cell)
                     book_no_desc[3] = edit_cell.capitalize()
                     LIBRARY.update_cell(db_row, 4, edit_cell)
