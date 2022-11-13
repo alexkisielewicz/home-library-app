@@ -12,7 +12,8 @@ DESCRIPTION = LIBRARY.row_values(1).pop()
 ALL_VALUES = LIBRARY.get_all_values()
 ALL_VALUES_NO_HEADER = ALL_VALUES[1:]
 APP = "Home Library"
-LINE = Fore.YELLOW + "###############################################################################" + Style.RESET_ALL  # 79 characters long
+LINE = Fore.YELLOW + "###############################################" \
+                     "################################" + Style.RESET_ALL  # 79 characters long
 
 # descriptions of the functionalities
 ADD_BOOK = Fore.YELLOW + """

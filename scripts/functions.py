@@ -145,23 +145,24 @@ def remove_book():
                         print(Fore.RED + "Aborting... Database hasn't been changed." + Style.RESET_ALL)
                         break
 
-
                 else:
                     clear_terminal()
                     print(Fore.RED + "Wrong input, please select \"Y\" or \"N\"..." + Style.RESET_ALL)
-
 
         else:
             clear_terminal()
             if how_many_books() is True:
                 print(
-                    Fore.RED + "Not much of a choice, you have only one book, please select it...\n" + Style.RESET_ALL)
+                    Fore.RED + "Not much of a choice, you have only one book, please select it...\n"
+                    + Style.RESET_ALL)
             elif how_many_books() is False:
                 print(
-                    Fore.RED + f"No such record! Please select #ID from 1 to {utils.utils.last_book_id}.\n" + Style.RESET_ALL)
+                    Fore.RED + f"No such record! Please select #ID from 1 to \
+                    {utils.utils.last_book_id}.\n" + Style.RESET_ALL)
             remove_book()
 
         break
+
 
 def edit_book():
     """
@@ -237,7 +238,8 @@ def edit_book():
                     LIBRARY.update_cell(db_row, 4, edit_cell)
                     clear_terminal()
                     print(
-                        Fore.GREEN + f'Book category updated successfully to "{edit_cell.capitalize()}".\n' + Style.RESET_ALL)
+                        Fore.GREEN + f'Book category updated successfully to "{edit_cell.capitalize()}".\n'
+                        + Style.RESET_ALL)
                     print(Fore.YELLOW + "Keep editing this book or return to main menu." + Style.RESET_ALL)
 
                 elif user_choice == "4":
@@ -251,7 +253,8 @@ def edit_book():
                                 LIBRARY.update_cell(db_row, 5, edit_cell)
                                 clear_terminal()
                                 print(
-                                    Fore.GREEN + f'Book status updated successfully to "{edit_cell.lower()}".\n' + Style.RESET_ALL)
+                                    Fore.GREEN + f'Book status updated successfully to "{edit_cell.lower()}".\n'
+                                    + Style.RESET_ALL)
                                 print(Fore.YELLOW + "Keep editing this book or return to main menu." + Style.RESET_ALL)
                                 break
                             elif edit_cell == "2":
@@ -260,7 +263,8 @@ def edit_book():
                                 LIBRARY.update_cell(db_row, 5, edit_cell)
                                 clear_terminal()
                                 print(
-                                    Fore.GREEN + f'Book status updated successfully to "{edit_cell.lower()}".\n' + Style.RESET_ALL)
+                                    Fore.GREEN + f'Book status updated successfully to "{edit_cell.lower()}".\n'
+                                    + Style.RESET_ALL)
                                 print(Fore.YELLOW + "Keep editing this book or return to main menu." + Style.RESET_ALL)
                                 break
                         else:
@@ -285,10 +289,12 @@ def edit_book():
             clear_terminal()
             if how_many_books() is True:
                 print(
-                    Fore.YELLOW + "Not much of a choice, you have only one book, please select it...\n" + Style.RESET_ALL)
+                    Fore.YELLOW + "Not much of a choice, you have only one book, please select it...\n"
+                    + Style.RESET_ALL)
             elif how_many_books() is False:
                 print(
-                    Fore.RED + f"No such record! Please select #ID from 1 to {utils.utils.last_book_id}.\n" + Style.RESET_ALL)
+                    Fore.RED + f"No such record! Please select #ID from 1 to {utils.utils.last_book_id}.\n"
+                    + Style.RESET_ALL)
 
             edit_book()
 
@@ -303,7 +309,8 @@ def change_sorting_method():
     show_all_books()
     while True:
         print(
-            Fore.YELLOW + f"Books are displayed in alphabetical order and sorted {default_sorting_method}." + Style.RESET_ALL)
+            Fore.YELLOW + f"Books are displayed in alphabetical order and sorted {default_sorting_method}."
+            + Style.RESET_ALL)
         print(Fore.YELLOW + "How would you like to sort them?" + Style.RESET_ALL)
         if default_sorting_method == "by title":
             print(Fore.GREEN + f"""
@@ -362,10 +369,12 @@ def show_book_details():
             clear_terminal()
             if how_many_books() is True:
                 print(
-                    Fore.YELLOW + "Not much of a choice, you have only one book, please select it...\n" + Style.RESET_ALL)
+                    Fore.YELLOW + "Not much of a choice, you have only one book, please select it...\n"
+                    + Style.RESET_ALL)
             elif how_many_books() is False:
                 print(
-                    Fore.RED + f"No such record! Please select #ID from 1 to {utils.utils.last_book_id}.\n" + Style.RESET_ALL)
+                    Fore.RED + f"No such record! Please select #ID from 1 to {utils.utils.last_book_id}.\n"
+                    + Style.RESET_ALL)
             show_book_details()
 
         break

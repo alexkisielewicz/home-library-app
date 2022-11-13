@@ -46,6 +46,7 @@ def wrap_text(text):
     wrapped_text = wrapper.fill(text=text)
     print(wrapped_text)
 
+
 def how_many_books():
     all_books = LIBRARY.col_values(1)[1:]  # list of IDs of all books
     global first_book_id
@@ -98,7 +99,8 @@ def validate_num_range(user_input, first_val, last_val):  # e. g main menu with 
         return True
     else:
         clear_terminal()
-        print(Fore.RED + f"Wrong input, please select option from {first_val} to {last_val} to continue...\n" + Style.RESET_ALL)
+        print(Fore.RED + f"Wrong input, please select option from {first_val} to {last_val} "
+                         f"to continue...\n" + Style.RESET_ALL)
         return False
 
 
@@ -115,8 +117,9 @@ def validate_string(user_input):
         print(Fore.GREEN + "OK, it's a string" + Style.RESET_ALL)  # this will be removed
         return True
     else:
-        print(Fore.RED + "Not alpha-numerical" + Style.RESET_ALL) # this will be removed
+        print(Fore.RED + "Not alpha-numerical" + Style.RESET_ALL)  # this will be removed
         return False
+
 
 def validate_input_range(user_input, first_val, end):
     end += 1  # plus one because of list's zero notation
@@ -230,7 +233,9 @@ def random_not_read():
             title = new_title
 
         print(Fore.GREEN + "Looking for your next read?" + Style.RESET_ALL)
-        print(Fore.GREEN + f"Why don't you grab \"{title}\" by {random_book[2]}. It's still not read." + Style.RESET_ALL)
+        print(Fore.GREEN + f"Why don't you grab \"{title}\" by {random_book[2]}. "
+                           f"It's still not read." + Style.RESET_ALL)
+
 
 def random_quit_msg():
 
