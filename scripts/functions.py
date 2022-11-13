@@ -155,7 +155,7 @@ def remove_book():
             clear_terminal()
             if how_many_books() is True:
                 print(
-                    Fore.YELLOW + "Not much of a choice, you have only one book, please select it...\n" + Style.RESET_ALL)
+                    Fore.RED + "Not much of a choice, you have only one book, please select it...\n" + Style.RESET_ALL)
             elif how_many_books() is False:
                 print(
                     Fore.RED + f"No such record! Please select #ID from 1 to {utils.utils.last_book_id}.\n" + Style.RESET_ALL)

@@ -247,4 +247,4 @@ def random_quit_msg():
     ]
 
     random_msg = random.choice(quit_messages)
-    print(Fore.GREEN + random_msg + Style.RESET_ALL)
+    wrap_text(Fore.GREEN + random_msg + Style.RESET_ALL)
