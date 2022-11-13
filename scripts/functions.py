@@ -190,6 +190,8 @@ def edit_book():
                 print(constants.LINE)
                 x = PrettyTable()
                 x.field_names = constants.HEADERS_NO_DESC  # assigns table's headers from first row in DB
+                x._max_table_width = 79
+                x._max_width = {"ID": 2, "Title": 24, "Author": 16, "Category": 12, "Status": 8}
                 x.align["Title"] = "l"  # align column to the left
                 x.add_rows([book_no_desc])
                 print(x)  # prints created table
@@ -357,6 +359,8 @@ def show_book_details():
 
             x = PrettyTable()
             x.field_names = constants.HEADERS_NO_DESC
+            x._max_table_width = 79
+            x._max_width = {"ID": 2, "Title": 24, "Author": 16, "Category": 12, "Status": 8}
             x.add_rows([book_to_display])
             clear_terminal()
             print(constants.SHOW_BOOK_DETAILS)

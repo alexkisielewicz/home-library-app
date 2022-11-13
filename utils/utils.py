@@ -146,6 +146,9 @@ def print_all_database():
     """
     x = PrettyTable()
     x.field_names = constants.HEADERS_NO_DESC
+    x._max_table_width = 79
+    x._max_width = {"ID": 2, "Title": 24, "Author": 16, "Category": 12, "Status": 8}
+    x.field_names = constants.HEADERS_NO_DESC
     x.align["ID"] = "r"  # aligns column to the right
     x.align["Title"] = "l"  # aligns column to the left
     x.align["Author"] = "l"
@@ -233,8 +236,8 @@ def random_not_read():
             title = new_title
 
         print(Fore.GREEN + "Looking for your next read?" + Style.RESET_ALL)
-        print(Fore.GREEN + f"Why don't you grab \"{title}\" by {random_book[2]}. "
-                           f"It's still not read." + Style.RESET_ALL)
+        wrap_text(Fore.GREEN + f"Why don't you grab \"{title}\" by {random_book[2]}. "
+                               f"It's still not read." + Style.RESET_ALL)
 
 
 def random_quit_msg():
@@ -253,3 +256,9 @@ def random_quit_msg():
 
     random_msg = random.choice(quit_messages)
     wrap_text(Fore.GREEN + random_msg + Style.RESET_ALL)
+
+
+def copy_demo_worksheet():
+    print()
+    # get all values from DEMO --> insert to LIBRARY
+    # find last row in library ---- > clear all up to last line ---> insert all from DEMO sheet.
