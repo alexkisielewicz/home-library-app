@@ -231,3 +231,20 @@ def random_not_read():
 
         print(Fore.GREEN + "Looking for your next read?" + Style.RESET_ALL)
         print(Fore.GREEN + f"Why don't you grab \"{title}\" by {random_book[2]}. It's still not read." + Style.RESET_ALL)
+
+def random_quit_msg():
+
+    # quotes found on www.goodreads.com
+    quit_messages = [
+        '"So many books, so little time..." - Frank Zappa',
+        '"A room without books is like a body without a soul" - Cicero',
+        '"There is no friend as loyal as a book" - Ernest Hemingway',
+        '"A reader lives a thousand lives before he dies, said Jojen.\n'
+        'The man who never reads lives only one" - George R.R. Martin, A Dance with Dragons',
+        '"The best books... are those that tell you what you know already" - George Orwell, 1984',
+        '"Life is too short to read books that I\'m not enjoying" - Melissa Marr',
+        '"Books are a uniquely portable magic" - Stephen King'
+    ]
+
+    random_msg = random.choice(quit_messages)
+    print(Fore.GREEN + random_msg + Style.RESET_ALL)

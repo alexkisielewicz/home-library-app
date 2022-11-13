@@ -352,17 +352,24 @@ def quit_app():
      This function prints goodbye message to the user
     """
     while True:
-        print(Fore.YELLOW + "Why not add another book...?:)" + Style.RESET_ALL)
+        random_quit_msg()
         are_you_sure = input(Fore.YELLOW + "\nAre you sure you want to quit? Y/N: " + Style.RESET_ALL)
-        validate_yes_no(are_you_sure)
+        if validate_yes_no(are_you_sure):
 
-        if "y" in are_you_sure or "Y" in are_you_sure:
-            clear_terminal()
-            print(Fore.YELLOW + f"Thank you for using {constants.APP} app!" + Style.RESET_ALL)
-            print(constants.END_SCREEN)
-            random_not_read()
-            print(Fore.YELLOW + "\nTerminating..." + Style.RESET_ALL)
-            break
+            if "y" in are_you_sure or "Y" in are_you_sure:
+                clear_terminal()
+                print(Fore.YELLOW + f"Thank you for using {constants.APP} app!" + Style.RESET_ALL)
+                print(constants.END_SCREEN)
+                random_not_read()
+                print(Fore.YELLOW + "\nTerminating..." + Style.RESET_ALL)
+                break
+            else:
+                clear_terminal()
+                menu.show_menu()
+
         else:
-            menu.show_menu()
-            break
+            clear_terminal()
+            print(Fore.RED + "Wrong input, please select \"Y\" or \"N\"...\n" + Style.RESET_ALL)
+            quit_app()
+
+        break

@@ -16,6 +16,6 @@ main()
 # TODO
 # * Validate User input in BOOK ADD and BOOK EDIT fn
 # * Exception handling
-# * Terminal colours
+# * PrettyTable colour? Where?
 # * Write type hinting
 # * Add docstrings and inline comments
