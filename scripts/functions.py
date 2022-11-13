@@ -208,7 +208,7 @@ def edit_book():
                     print(Fore.YELLOW + "Keep editing this book or return to main menu." + Style.RESET_ALL)
 
                 elif user_choice == "2":
-                    edit_cell = (input(Fore.YELLOW + "Please enter new author: " + Style.RESET_ALL))
+                    edit_cell = (input(Fore.YELLOW + "Please enter new author: " + Style.RESET_ALL)).title()
                     validate_string(edit_cell)
                     book_no_desc[2] = edit_cell.title()
                     LIBRARY.update_cell(db_row, 3, edit_cell)

@@ -20,7 +20,7 @@ def clear_terminal():
     Clears terminal for better screen readability
     """
     os.system("cls" if os.name == "nt" else "clear")
-    print("terminal cleared!")
+    print(Fore.GREEN + "terminal cleared!" + Style.RESET_ALL)
     print('\n' * 20)  # prints 20 line breaks to simulate CLS in PyCHarm IDE
 
 
@@ -29,7 +29,7 @@ def database_check():
         is_empty = len(LIBRARY.row_values(2))  # checks if there is a record below DB headers
         if is_empty == 0:
             clear_terminal()
-            print("Database is empty, add at least one book to continue.")
+            print(Fore.RED + "Database is empty, add at least one book to continue." + Style.RESET_ALL)
             menu.show_menu()
             break
         else:
@@ -66,7 +66,7 @@ def check_prefix():
     Checks if title starts with "The" and converts it to format "Title, The"
     :return: title
     """
-    text = input("Please enter the title: ")
+    text = input(Fore.YELLOW + "Please enter the title: " + Style.RESET_ALL)
     title_lower = text.lower()
 
     if title_lower.startswith("the "):
@@ -74,7 +74,7 @@ def check_prefix():
         rewrite_title = title_lower[4:]  # slice of a string - remove first 4 char "the ".
         new_title = rewrite_title + prefix
         title = new_title.title()
-        print("Converted to: ", title)
+        print(Fore.YELLOW + "Converted to: ", title + Style.RESET_ALL)
     else:
         title = title_lower.title()
 
@@ -98,7 +98,7 @@ def validate_num_range(user_input, first_val, last_val):  # e. g main menu with 
         return True
     else:
         clear_terminal()
-        print(f"Wrong input, please select option from {first_val} to {last_val} to continue...\n")
+        print(Fore.RED + f"Wrong input, please select option from {first_val} to {last_val} to continue...\n" + Style.RESET_ALL)
         return False
 
 
@@ -112,14 +112,13 @@ def validate_yes_no(user_input):
 
 def validate_string(user_input):
     if user_input.isalnum():
-        print("OK, it's a string")
+        print(Fore.GREEN + "OK, it's a string" + Style.RESET_ALL)  # this will be removed
         return True
     else:
-        print("Not alpha-numerical")
+        print(Fore.RED + "Not alpha-numerical" + Style.RESET_ALL) # this will be removed
         return False
 
 def validate_input_range(user_input, first_val, end):
-    print("Zakres to: ", first_val, end)
     end += 1  # plus one because of list's zero notation
     if user_input.isnumeric():
         print("is numeric?: ", user_input.isnumeric())
@@ -129,12 +128,12 @@ def validate_input_range(user_input, first_val, end):
         if int(user_input) in range(first_val, end):
             print(list(range(first_val, end)))
             print(len(list(range(first_val, end))))
-            print("Correct input!")
+            print(Fore.GREEN + "Correct input!" + Style.RESET_ALL)
             pass
         else:
-            print("This is not allowed.")
+            print(Fore.RED + "This is not allowed." + Style.RESET_ALL)
     else:
-        print("This is not a number, it must be a string")
+        print(Fore.RED + "This is not a number, it must be a text" + Style.RESET_ALL)
 
 
 def print_all_database():
@@ -171,7 +170,7 @@ def renumber_id_column():
         LIBRARY.update_acell("A" + str(row_val), id_val)  # renumbering ID value to keep order
         id_val += 1
         row_val += 1
-    print("Updating database...")
+    print(Fore.YELLOW + "Updating database..." + Style.RESET_ALL)
 
 
 def sort_books(col, order):
@@ -187,10 +186,10 @@ def sort(sorting_order):
     global default_method
     global optional_method
     if sorting_order == default_method:
-        print("sorting order is: ", sorting_order, "default_method is: ", default_method, "do nothing")
+        pass
     elif sorting_order == optional_method:
         if default_method == "by author":
-            print("Sorting database by title. Please wait...")
+            print(Fore.YELLOW + "Sorting database by title. Please wait..." + Style.RESET_ALL)
             CONFIG.update_acell("B1", "by title")  # write method to database
             CONFIG.update_acell("B2", "by author")  # write method to database
             functions.default_sorting_method = "by title"  # changing value so can be updated in functions.py
@@ -200,7 +199,7 @@ def sort(sorting_order):
             sort_books(2, "asc")
             renumber_id_column()
         elif default_method == "by title":
-            print("Sorting database by author. Please wait...")
+            print(Fore.YELLOW + "Sorting database by author. Please wait..." + Style.RESET_ALL)
             CONFIG.update_acell("B1", "by author")  # writing method to database
             CONFIG.update_acell("B2", "by title")  # writing method to database
             functions.default_sorting_method = "by author"  # changing value so can be updated in functions.py
