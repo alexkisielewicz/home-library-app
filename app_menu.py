@@ -8,12 +8,18 @@ from colorama import Fore, Style
 
 
 def logo():
+    """
+     http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
+    """
     print(Fore.BLUE + """
-    ██   ██  ██████  ███    ███ ███████     ██      ██ ██████  ██████   █████  ██████  ██    ██ 
-    ██   ██ ██    ██ ████  ████ ██          ██      ██ ██   ██ ██   ██ ██   ██ ██   ██  ██  ██  
-    ███████ ██    ██ ██ ████ ██ █████       ██      ██ ██████  ██████  ███████ ██████    ████   
-    ██   ██ ██    ██ ██  ██  ██ ██          ██      ██ ██   ██ ██   ██ ██   ██ ██   ██    ██    
-    ██   ██  ██████  ██      ██ ███████     ███████ ██ ██████  ██   ██ ██   ██ ██   ██    ██                                                                           
+   _   _                        _     _ _                          
+  | | | |                      | |   (_) |                         
+  | |_| | ___  _ __ ___   ___  | |    _| |__  _ __ __ _ _ __ _   _ 
+  |  _  |/ _ \| '_ ` _ \ / _ \ | |   | | '_ \| '__/ _` | '__| | | |
+  | | | | (_) | | | | | |  __/ | |___| | |_) | | | (_| | |  | |_| |
+  \_| |_/\___/|_| |_| |_|\___| \_____/_|_.__/|_|  \__,_|_|   \__, |
+                                                              __/ |
+                                                             |___/                                                                                                                      
     """ + Style.RESET_ALL)
     print(Fore.YELLOW + f"Welcome to {constants.APP} app, you can manage all your books here. Please use menu below to continue." + Style.RESET_ALL)
 
