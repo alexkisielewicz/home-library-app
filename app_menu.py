@@ -3,8 +3,9 @@ Home screen consists of logo and main menu.
 """
 import constants
 from scripts import functions as fn
-from utils.utils import clear_terminal
+from utils.utils import clear_terminal, validate_num_range
 from colorama import Fore, Style
+
 
 def logo():
     print(Fore.BLUE + """
@@ -14,13 +15,11 @@ def logo():
     ██   ██ ██    ██ ██  ██  ██ ██          ██      ██ ██   ██ ██   ██ ██   ██ ██   ██    ██    
     ██   ██  ██████  ██      ██ ███████     ███████ ██ ██████  ██   ██ ██   ██ ██   ██    ██                                                                           
     """ + Style.RESET_ALL)
-    print(f"Welcome to {constants.APP} app, you can manage all your books here. Please select option 1-7 to continue.")
+    print(Fore.YELLOW + f"Welcome to {constants.APP} app, you can manage all your books here. Please use menu below to continue." + Style.RESET_ALL)
 
-
-logo()
 
 def menu():
-    print("""
+    print(Fore.GREEN + """
     1. Add book
     2. Edit book
     3. Remove book
@@ -28,14 +27,15 @@ def menu():
     5. Change sorting method
     6. Show #book details
     7. Quit
-    """)
+    """ + Style.RESET_ALL)
+
 
 def show_menu():
     while True:
         menu()  # prints menu
-        user_choice = input("Please select a number from 1 to 7 to continue: ")
+        user_choice = input(Fore.YELLOW + "Please select a number from 1 to 7 to continue: " + Style.RESET_ALL)
         clear_terminal()
-
+        validate_num_range(user_choice, 1, 7)  # validates user input, only values from 1 to 7 are allowed
         if user_choice == "1":
             clear_terminal()
             fn.add_book()
