@@ -4,9 +4,7 @@ from colorama import Fore, Style
 
 
 default_sorting_method = CONFIG.acell("B1").value  # either "by title" or "by author"
-print("default method is set to: ", default_sorting_method)  # will be removed
 optional_sorting_method = CONFIG.acell("B2").value  # always opposite value to default_sorting_method
-print("optional method is set to: ", optional_sorting_method)  # will be removed
 
 
 def show_all_books():
