@@ -6,7 +6,7 @@ import constants
 import random
 from prettytable import PrettyTable
 from scripts import functions
-from colorama import Fore
+from colorama import Fore, Style
 
 default_method = CONFIG.acell('B1').value  # either "by title" or "by author"
 optional_method = CONFIG.acell('B2').value  # is always opposite value to default_method
@@ -230,5 +230,5 @@ def random_not_read():
             new_title = prefix + short
             title = new_title
 
-        print("Looking for your next read?")
-        print(f"Why don't you grab \"{title}\" by {random_book[2]}. It's still not read.")
+        print(Fore.GREEN + "Looking for your next read?" + Style.RESET_ALL)
+        print(Fore.GREEN + f"Why don't you grab \"{title}\" by {random_book[2]}. It's still not read." + Style.RESET_ALL)
