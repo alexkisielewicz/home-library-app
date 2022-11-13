@@ -48,7 +48,7 @@ def add_book():
                 break
 
         else:
-            print(Fore.RED + f"Wrong input, please try again...\n" + Style.RESET_ALL)
+            print(Fore.RED + f"Please try again...\n" + Style.RESET_ALL)
 
     description = input(Fore.YELLOW + "Please enter book description: " + Style.RESET_ALL).capitalize()
     validate_string(description)
@@ -59,10 +59,10 @@ def add_book():
 
     book_to_be_added.insert(0, first_empty_row)  # adds ID as a first item in book list
     for header, item in zip(range(len(constants.HEADERS_NO_DESC)), range(len(book_to_be_added))):
-        print(f"{constants.HEADERS_NO_DESC[header]}: {book_to_be_added[item]}")
+        print(f"{constants.HEADERS_NO_DESC[header]}: " + Fore.GREEN + f"{book_to_be_added[item]}" + Style.RESET_ALL)
 
     print(f"\n{constants.DESCRIPTION}: ")
-    wrap_text(book_to_be_added[-1].capitalize())
+    wrap_text(Fore.GREEN + book_to_be_added[-1].capitalize() + Style.RESET_ALL)
 
     print(constants.LINE)
 

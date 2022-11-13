@@ -16,11 +16,11 @@ APP = "Home Library"
 LINE = Fore.YELLOW + "###############################################################################" + Style.RESET_ALL  # 79 characters long
 
 # descriptions of the functionalities
-ADD_BOOK = """
+ADD_BOOK = Fore.YELLOW + """
 Now you can add a new book to your library. \n
 You will be asked to enter book title, author, category and short description.
 Choose if you have read the book or not. Book ID is generated automatically. 
-"""
+""" + Style.RESET_ALL
 
 EDIT_BOOK = Fore.YELLOW + "Here you can update all book details." + Style.RESET_ALL
 
