@@ -5,7 +5,6 @@ from api.google_sheets_api import *
 from colorama import Fore, Style
 
 # app constants
-
 HEADERS = LIBRARY.row_values(1)
 HEADERS_NO_DESC = HEADERS[:-1]
 HEADERS_NO_DESC_NO_ID = HEADERS[:-1]

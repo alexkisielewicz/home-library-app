@@ -117,14 +117,16 @@ def remove_book():
             clear_terminal()
 
             if delete_status == "Read":
-                confirm = f"The book \"{delete_title.title()}\" by {delete_author.title()} will be removed." \
-                          + Fore.GREEN + f"\nThe book is {delete_status.lower()}." + Style.RESET_ALL
+                confirm = f"The book \"{delete_title.title()}\" by {delete_author.title()} will be removed."
+                read_status = Fore.GREEN + f"The book is {delete_status.lower()}." + Style.RESET_ALL
                 wrap_text(Fore.YELLOW + confirm + Style.RESET_ALL)
+                print(read_status)
 
             elif delete_status == "Not read":
-                confirm = f"The book \"{delete_title.title()}\" by {delete_author.title()} will be removed." \
-                          + Fore.RED + f"\nThe book is {delete_status.lower()}." + Style.RESET_ALL
+                confirm = f"The book \"{delete_title.title()}\" by {delete_author.title()} will be removed."
+                read_status = Fore.RED + f"The book is {delete_status.lower()}." + Style.RESET_ALL
                 wrap_text(Fore.YELLOW + confirm + Style.RESET_ALL)
+                print(read_status)
 
             while True:
                 are_you_sure = input(Fore.RED + "\nAre you sure you want to delete this book? Y/N: " + Style.RESET_ALL)

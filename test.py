@@ -1,5 +1,5 @@
 from colorama import Fore
-
+from api.google_sheets_api import *
 print(Fore.BLUE + 'Hello')
 print(Fore.RED + 'Hello')
 print(Fore.YELLOW + 'Hello')
@@ -34,3 +34,5 @@ logo()
 # Fore: BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE, RESET.
 # Back: BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE, RESET.
 # Style: DIM, NORMAL, BRIGHT, RESET_ALL
+
+LIBRARY.clear
