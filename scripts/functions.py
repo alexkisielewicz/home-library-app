@@ -152,7 +152,127 @@ def remove_book():
 
 
 def edit_book():
-    print("To finish...")
+    """
+    Allows user to edit all database values for each book such as:
+    title, author, category, read status and description.
+    """
+    database_check()
+    allowed_input = LIBRARY.col_values(1)[1:]
+
+    while True:
+        print(constants.EDIT_BOOK)
+        show_all_books()
+        user_choice = input("Which book would you like to edit?: ")
+        clear_terminal()
+
+        if user_choice in allowed_input:
+
+            db_row = int(user_choice) + 1
+            book_id = LIBRARY.row_values(db_row)
+            book_description = str(book_id[-1])
+            book_no_desc = book_id[:-1]
+
+            def print_edited_book():
+                print(constants.EDIT_BOOK)
+                print(constants.LINE)
+                x = PrettyTable()
+                x.field_names = constants.HEADERS_NO_DESC  # assigns table's headers from first row in DB
+                x.align["Title"] = "l"  # align column to the left
+                x.add_rows([book_no_desc])
+                print(x)  # prints created table
+                print(f"\n{constants.DESCRIPTION}: ")
+                wrap_text(book_description)
+                print(constants.LINE)
+
+            while True:
+                print_edited_book()
+                print("""
+                1. Title 
+                2. Author
+                3. Category
+                4. Status
+                5. Description
+                6. Return
+                """)
+                user_choice = input("What do you want to edit? Select 1-6: ")
+                validate_num_range(user_choice, 1, 6)
+                # validate_input_range(user_choice, 1, 6)
+
+                if user_choice == "1":
+                    edit_cell = check_prefix()
+                    validate_string(edit_cell)
+                    book_no_desc[1] = edit_cell.title()
+                    LIBRARY.update_cell(db_row, 2, edit_cell.title())
+                    print("Updating database...")
+                    clear_terminal()
+                    print(f'Book title updated successfully to "{edit_cell.title()}".\n')
+                    print("Keep editing this book or return to main menu.")
+
+                elif user_choice == "2":
+                    edit_cell = (input("Please enter new author: "))
+                    validate_string(edit_cell)
+                    book_no_desc[2] = edit_cell.title()
+                    LIBRARY.update_cell(db_row, 3, edit_cell)
+                    clear_terminal()
+                    print(f'Book author updated successfully to "{edit_cell.title()}".\n')
+                    print("Keep editing this book or return to main menu.")
+
+                elif user_choice == "3":
+                    edit_cell = (input("Please enter new category: "))
+                    validate_string(edit_cell)
+                    book_no_desc[3] = edit_cell.capitalize()
+                    LIBRARY.update_cell(db_row, 4, edit_cell)
+                    clear_terminal()
+                    print(f'Book category updated successfully to "{edit_cell.capitalize()}".\n')
+                    print("Keep editing this book or return to main menu.")
+
+                elif user_choice == "4":
+                    while True:
+                        edit_cell = (input('Please select "1" if book is READ and "2" if NOT READ: '))
+                        if validate_num_range(edit_cell, 1, 2):
+                            if edit_cell == "1":
+                                edit_cell = "Read"
+                                book_no_desc[4] = edit_cell
+                                LIBRARY.update_cell(db_row, 5, edit_cell)
+                                clear_terminal()
+                                print(f'Book status updated successfully to "{edit_cell.lower()}".\n')
+                                print("Keep editing this book or return to main menu.")
+                                break
+                            elif edit_cell == "2":
+                                edit_cell = "Not read"
+                                book_no_desc[4] = edit_cell
+                                LIBRARY.update_cell(db_row, 5, edit_cell)
+                                clear_terminal()
+                                print(f'Book status updated successfully to "{edit_cell.lower()}".\n')
+                                print("Keep editing this book or return to main menu.")
+                                break
+                        else:
+                            clear_terminal()
+                            print(f"Wrong input, please try again...\n")
+
+                elif user_choice == "5":
+                    edit_cell = (input("Please enter new description: ")).capitalize()
+                    validate_string(edit_cell)
+                    LIBRARY.update_cell(db_row, 6, edit_cell)
+                    book_description = edit_cell
+                    clear_terminal()
+                    print(f"Book description updated successfully.\n")
+                    print("Keep editing this book or return.")
+
+                elif user_choice == "6":
+                    show_all_books()  # returns to previous menu
+                    break
+
+        else:
+            clear_terminal()
+            if how_many_books() is True:
+                print("Not much of a choice, you have only one book, please select it...\n")
+            elif how_many_books() is False:
+                print(f"No such record! Please select #ID from 1 to {utils.utils.last_book_id}.\n")
+
+            edit_book()
+
+        break
 
 
 def change_sorting_method():
