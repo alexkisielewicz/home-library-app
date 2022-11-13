@@ -105,7 +105,7 @@ def remove_book():
     how_many_books()
 
     while True:
-        user_choice = input(Fore.YELLOW + "Please select a book to remove (#ID): " + Style.RESET_ALL)
+        user_choice = input(Fore.YELLOW + "\nPlease select a book to remove (#ID): " + Style.RESET_ALL)
 
         if user_choice in allowed_input:
 
@@ -161,7 +161,7 @@ def edit_book():
     while True:
         print(constants.EDIT_BOOK)
         show_all_books()
-        user_choice = input(Fore.YELLOW + "Which book would you like to edit?: " + Style.RESET_ALL)
+        user_choice = input(Fore.YELLOW + "\nWhich book would you like to edit?: " + Style.RESET_ALL)
         clear_terminal()
 
         if user_choice in allowed_input:
@@ -259,6 +259,7 @@ def edit_book():
                     print(Fore.YELLOW + "Keep editing this book or return." + Style.RESET_ALL)
 
                 elif user_choice == "6":
+                    clear_terminal()
                     show_all_books()  # returns to previous menu
                     break
 
@@ -318,7 +319,7 @@ def show_book_details():
     allowed_input = LIBRARY.col_values(1)[1:]
 
     while True:
-        user_choice = input(Fore.YELLOW + "Which book details would you like to see?: " + Style.RESET_ALL)
+        user_choice = input(Fore.YELLOW + "\nWhich book details would you like to see?: " + Style.RESET_ALL)
 
         if user_choice in allowed_input:
             db_row = int(user_choice) + 1  # because of list's zero notation

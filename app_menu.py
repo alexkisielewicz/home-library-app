@@ -21,7 +21,8 @@ def logo():
                                                               __/ |
                                                              |___/                                                                                                                      
     """ + Style.RESET_ALL)
-    print(Fore.YELLOW + f"Welcome to {constants.APP} app, you can manage all your books here. Please use menu below to continue." + Style.RESET_ALL)
+    print(Fore.YELLOW + f"Welcome to {constants.APP} app, you can manage all your books here. "
+                        f"\nPlease use menu below to continue." + Style.RESET_ALL)
 
 
 def menu():
@@ -31,7 +32,7 @@ def menu():
     3. Remove book
     4. View all books
     5. Change sorting method
-    6. Show #book details
+    6. Show book details
     7. Quit
     """ + Style.RESET_ALL)
 

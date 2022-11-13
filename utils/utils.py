@@ -20,8 +20,8 @@ def clear_terminal():
     Clears terminal for better screen readability
     """
     os.system("cls" if os.name == "nt" else "clear")
-    print(Fore.GREEN + "terminal cleared!" + Style.RESET_ALL)
-    print('\n' * 20)  # prints 20 line breaks to simulate CLS in PyCHarm IDE
+    # print(Fore.GREEN + "terminal cleared!" + Style.RESET_ALL)
+    # print('\n' * 20)  # prints 20 line breaks to simulate CLS in PyCHarm IDE
 
 
 def database_check():
