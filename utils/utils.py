@@ -159,6 +159,8 @@ def validate_string(user_input):
     :return True if input is valid
     :return False if input is invalid
     """
+    # REPLACE WITH "TRY..."
+
     if user_input.isalnum():
         print(Fore.GREEN + "OK, it's a string" + Style.RESET_ALL)  # this will be removed
         return True
