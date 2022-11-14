@@ -177,8 +177,8 @@ def remove_book():
             # user is given specific range of options e.g. 1-10
             elif how_many_books() is False:
                 print(
-                    Fore.RED + f"No such record! Please select #ID from 1 to \
-                    {utils.utils.last_book_id}.\n" + Style.RESET_ALL)
+                    Fore.RED + f"No such record! Please select #ID from 1 to "
+                               f"{utils.utils.last_book_id}.\n" + Style.RESET_ALL)
             remove_book()
 
         break

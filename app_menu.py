@@ -1,6 +1,7 @@
 """
 Home screen consists of logo and main menu.
 """
+
 import constants
 from scripts import functions as fn
 from utils.utils import clear_terminal, validate_num_range
