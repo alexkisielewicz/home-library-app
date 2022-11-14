@@ -167,15 +167,13 @@ def remove_book():
             # checks if there is only one book in the database
             # in this specific situation user is asked to select the only possible option
             if how_many_books() is True:
-                print(
-                    Fore.RED + "Not much of a choice, you have only one book, please select it...\n"
-                    + Style.RESET_ALL)
+                print(Fore.RED + """Wrong input!\nNot much of a choice, you have only one book, please select it...\n"""
+                               + Style.RESET_ALL)
             # if there's more than one book in the database,
             # user is given specific range of options e.g. 1-10
             elif how_many_books() is False:
-                print(
-                    Fore.RED + f"No such record! Please select #ID from 1 to "
-                               f"{utils.utils.last_book_id}.\n" + Style.RESET_ALL)
+                print(Fore.RED + f"""Wrong input!\nPlease select #ID from 1 to {utils.utils.last_book_id}.\n"""
+                               + Style.RESET_ALL)
             remove_book()
 
         break
@@ -319,19 +317,16 @@ def edit_book():
                     break
 
         else:
-            clear_terminal()
             # The conditional is used to give user different message
             # depending on how many books there are in the database.
             # User is asked to select the only possible choice if there's only one book saved.
             # Otherwise, user is given exact number of possible options.
             if how_many_books() is True:
-                print(
-                    Fore.YELLOW + "Not much of a choice, you have only one book, please select it...\n"
-                    + Style.RESET_ALL)
+                print(Fore.RED + "Wrong input!\nNot much of a choice, you have only one book, please select it...\n"
+                               + Style.RESET_ALL)
             elif how_many_books() is False:
-                print(
-                    Fore.RED + f"No such record! Please select #ID from 1 to {utils.utils.last_book_id}.\n"
-                    + Style.RESET_ALL)
+                print(Fore.RED + f"Wrong input\nPlease select #ID from 1 to {utils.utils.last_book_id}.\n"
+                               + Style.RESET_ALL)
 
             edit_book()
 
@@ -423,13 +418,11 @@ def show_book_details():
             # If there's only one book in the database, user is asked to select it
             # If there's more than one book, user is given exact range of options e.g. 1-10
             if how_many_books() is True:
-                print(
-                    Fore.YELLOW + "Not much of a choice, you have only one book, please select it...\n"
-                    + Style.RESET_ALL)
+                print(Fore.RED + """Wrong input!\nNot much of a choice, you have only one book, please select it...\n"""
+                               + Style.RESET_ALL)
             elif how_many_books() is False:
-                print(
-                    Fore.RED + f"No such record! Please select #ID from 1 to {utils.utils.last_book_id}.\n"
-                    + Style.RESET_ALL)
+                print(Fore.RED + f"""Wrong input!\nPlease select #ID from 1 to {utils.utils.last_book_id}.\n"""
+                               + Style.RESET_ALL)
             show_book_details()
 
         break

@@ -117,24 +117,26 @@ def validate_num_range(user_input, first_val, last_val):  # e. g use in main men
     :returns True if user's input is valid
     :returns False if user's input is invalid
     """
-    options = list(range(first_val, last_val + 1))
-    allowed_options = [str(i) for i in options]
+    try:
+        options = list(range(first_val, last_val + 1))
+        allowed_options = [str(i) for i in options]
 
-    if user_input in allowed_options:
-        return True
-    else:
+        if user_input in allowed_options:
+            return True
+        else:
+            raise ValueError
+    except ValueError as e:
         clear_terminal()
         print(Fore.RED + f"Wrong input, please select option from {first_val} to {last_val} "
-                         f"to continue...\n" + Style.RESET_ALL)
-        return False
+                         f"to continue..." + Style.RESET_ALL)
 
 
 def validate_yes_no(user_input):
     """
     Validates Y/N inputs.
+    Prints user feedback if input is invalid.
     :param user_input - contains user choice
     :return True if valid input is given
-    :return False if invalid input is given
     """
     try:
         valid_options = ["y", "Y", "n", "N"]
