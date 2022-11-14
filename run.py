@@ -23,3 +23,6 @@ main()
 # * Criteria: Implement exception/error handling to optimise the user experience
 # * PrettyTable colour? Where?
 # * Write type hinting
+
+
+# * Flow chart LUCID

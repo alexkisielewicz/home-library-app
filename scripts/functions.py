@@ -94,11 +94,8 @@ def add_book():
             # negative answer breaks the loop and takes user back to previous screen
             elif "n" in are_you_sure or "N" in are_you_sure:
                 clear_terminal()
-                print(Fore.RED + "Aborting..." + Style.RESET_ALL)
+                print(Fore.RED + "Aborting... Book has not been added" + Style.RESET_ALL)
                 break
-        else:
-            clear_terminal()
-            print(Fore.RED + "Wrong input, please select \"Y\" or \"N\"..." + Style.RESET_ALL)
 
 
 def remove_book():
@@ -463,8 +460,6 @@ def quit_app():
                 menu.show_menu()
 
         else:
-            clear_terminal()
-            print(Fore.RED + "Wrong input, please select \"Y\" or \"N\"...\n" + Style.RESET_ALL)
             quit_app()
 
         break

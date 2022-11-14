@@ -136,11 +136,15 @@ def validate_yes_no(user_input):
     :return True if valid input is given
     :return False if invalid input is given
     """
-    valid_options = ["y", "Y", "n", "N"]
-    if user_input in valid_options:
-        return True
-    else:
-        return False
+    try:
+        valid_options = ["y", "Y", "n", "N"]
+        if user_input in valid_options:
+            return True
+        else:
+            raise ValueError
+    except ValueError as e:
+        clear_terminal()
+        print(Fore.RED + "\nWong input, please select \"Y\" or \"N\".\n" + Style.RESET_ALL)
 
 
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
