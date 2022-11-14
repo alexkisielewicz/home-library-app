@@ -408,6 +408,11 @@ def show_book_details():
             x._max_table_width = 79
             x._max_width = {"ID": 2, "Title": 24, "Author": 16, "Category": 12, "Status": 8}
             x.add_rows([book_to_display])
+            x.align["ID"] = "r"  # aligns column to the right
+            x.align["Title"] = "l"  # aligns column to the left
+            x.align["Author"] = "l"
+            x.align["Category"] = "l"
+            x.align["Status"] = "l"
             clear_terminal()
             print(constants.SHOW_BOOK_DETAILS)
             print(constants.LINE)
