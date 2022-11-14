@@ -161,24 +161,6 @@ def validate_string(user_input):
         return False
 
 
-# def validate_input_range(user_input, first_val, end):
-#     end += 1  # plus one because of list's zero notation
-#     if user_input.isnumeric():
-#         print("is numeric?: ", user_input.isnumeric())
-#         print("is in the range?: ", user_input in range(first_val, end))
-#         print(list(range(first_val, end)))
-#         print(type(int(user_input)))
-#         if int(user_input) in range(first_val, end):
-#             print(list(range(first_val, end)))
-#             print(len(list(range(first_val, end))))
-#             print(Fore.GREEN + "Correct input!" + Style.RESET_ALL)
-#             pass
-#         else:
-#             print(Fore.RED + "This is not allowed." + Style.RESET_ALL)
-#     else:
-#         print(Fore.RED + "This is not a number, it must be a text" + Style.RESET_ALL)
-
-
 def print_all_database():
     """
     Gets all values from the database and prints them
