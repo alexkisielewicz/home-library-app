@@ -3,8 +3,8 @@ import app_menu as menu
 
 def main():
     """
-    Shows app menu, from where user can start
-    and use all app functionalities.
+    Main function of the program. Shows app menu, from where user can start
+    and use all the app functionalities.
     """
     menu.logo()
     menu.show_menu()

@@ -2,13 +2,15 @@ import utils.utils
 from utils.utils import *
 from colorama import Fore, Style
 
+# reads database sorting methods from CONFIG worksheet
 default_sorting_method = CONFIG.acell("B1").value  # either "by title" or "by author"
 optional_sorting_method = CONFIG.acell("B2").value  # always opposite value to default_sorting_method
 
 
 def show_all_books():
     """
-     Prints to terminal a list of all books stored in the database.
+     Prints to the terminal a list of all books stored in the database.
+     If database is empty database_check() prompts user to add first book.
     """
     database_check()
     print(constants.VIEW_ALL_BOOKS)
@@ -19,15 +21,17 @@ def show_all_books():
 
 def add_book():
     """
-    Allows user to add new book to database using user input with following values:
+    Allows user to add new book to database using user input with following data:
     author, title, category, read status and description.
     The ID of the book is generated and added automatically for each new entry.
     Function looks up the database for first empty row and inserts new entry there.
+    After adding new book the database is re-sorted and all ID values are
+    renumbered to keep ascending order in the database.
     """
     print(constants.ADD_BOOK)
     print(constants.LINE)
 
-    book_to_be_added = []
+    book_to_be_added = []  # initialize variable to store all book details from user input
 
     title = check_prefix()  # checks if book title starts with "The" and returns "Title, The"
     validate_string(title)
@@ -38,7 +42,7 @@ def add_book():
 
     while True:
         status = input(Fore.YELLOW + 'Please select "1" if book is READ and "2" if NOT READ: ' + Style.RESET_ALL)
-        if validate_num_range(status, 1, 2):
+        if validate_num_range(status, 1, 2):  # checks if user input is digit in range 1-2
             if status == "1":
                 read_status = "Read"
                 break
@@ -51,12 +55,16 @@ def add_book():
 
     description = input(Fore.YELLOW + "Please enter book description: " + Style.RESET_ALL).capitalize()
     validate_string(description)
-    book_to_be_added.extend([title, author, category, read_status, description])
+    book_to_be_added.extend([title, author, category, read_status, description])  # adds all details to list variable
     clear_terminal()
     print(constants.LINE)
-    first_empty_row = len(LIBRARY.get_all_values())  # look up database for first empty row
+    first_empty_row = len(LIBRARY.get_all_values())  # look up the database for first empty row
 
-    book_to_be_added.insert(0, first_empty_row)  # adds ID as a first item in book list
+    book_to_be_added.insert(0, first_empty_row)  # adds ID as a first item in book list - with index 0
+
+    # Below code iterates through two lists using zip method
+    # 1st list with database headers and 2nd list with book details
+    # then it prints output for each pair e.g. TITLE: "Game of Thrones"
     for header, item in zip(range(len(constants.HEADERS_NO_DESC)), range(len(book_to_be_added))):
         print(f"{constants.HEADERS_NO_DESC[header]}: " + Fore.GREEN + f"{book_to_be_added[item]}" + Style.RESET_ALL)
 
@@ -65,6 +73,9 @@ def add_book():
 
     print(constants.LINE)
 
+    # Loop below is used to ask user for confirmation Y/N before adding the book,
+    # the input is then validated.
+    # After updating the worksheet, all records are re-sorted to keep ascending order in DB
     while True:
         are_you_sure = input(Fore.YELLOW + " \nConfirm adding this book. Y/N: " + Style.RESET_ALL)
         if validate_yes_no(are_you_sure):
@@ -74,13 +85,13 @@ def add_book():
                 LIBRARY.append_row(book_to_be_added)
                 print(Fore.YELLOW + "Adding book to the database..." + Style.RESET_ALL)
 
-                if optional_method == default_sorting_method:  # sorting is required to keep order in database
+                if optional_method == default_sorting_method:
                     sort(default_method)
                 else:
                     sort(optional_method)
                 print(Fore.GREEN + "Book added successfully." + Style.RESET_ALL)
                 break
-
+            # negative answer breaks the loop and takes user back to previous screen
             elif "n" in are_you_sure or "N" in are_you_sure:
                 clear_terminal()
                 print(Fore.RED + "Aborting..." + Style.RESET_ALL)
@@ -88,34 +99,39 @@ def add_book():
         else:
             clear_terminal()
             print(Fore.RED + "Wrong input, please select \"Y\" or \"N\"..." + Style.RESET_ALL)
-            # menu.show_menu()
 
 
 def remove_book():
     """
-    Function allows user to remove database entry for selected book.
-    Entry deletion is followed by renumbering book's ID values to keep numeration in order without the gaps.
+    Function allows user to remove whole database entry for selected book.
+    Entry deletion is followed by renumbering book's ID values to keep
+    numeration in ascending order.
     """
-    database_check()
+    database_check()  # checks if DB is not empty, if so, it prompts to add first book
 
     print(constants.REMOVE_BOOK)
-    show_all_books()
-    allowed_input = LIBRARY.col_values(1)[1:]
-    how_many_books()
+    show_all_books()  # prints a list of all books
+    allowed_input = LIBRARY.col_values(1)[1:]  # creates a list with all allowed input to check against
 
+    # Loop below is used to ask user to select book to be removed. The input is validated.
+    # In case of wrong input, user is ask to select book e.g. 1-10.
+    # In case there is only one book in the database, user is asked to select that book.
+    # User is asked to confirm the choice before deletion. The input is validated.
+    # Book is removed if positive answer is given. Database is re-sorted to keep ascending order.
+    # In case of negative answer, user is taken back to previous menu.
     while True:
         user_choice = input(Fore.YELLOW + "\nPlease select a book to remove (#ID): " + Style.RESET_ALL)
 
         if user_choice in allowed_input:
 
-            db_row = int(user_choice) + 1
+            db_row = int(user_choice) + 1  # finds DB row counting in list zero notation
             row_str = str(db_row)
-            # book_id = LIBRARY.row_values(db_row)
             delete_title = LIBRARY.acell("B" + row_str).value
             delete_author = LIBRARY.acell("C" + row_str).value
             delete_status = LIBRARY.acell("E" + row_str).value
             clear_terminal()
 
+            # below condition is used to print different message depends on book's read status
             if delete_status == "Read":
                 confirm = f"The book \"{delete_title.title()}\" by {delete_author.title()} will be removed."
                 read_status = Fore.GREEN + f"The book is {delete_status.lower()}." + Style.RESET_ALL
@@ -151,10 +167,14 @@ def remove_book():
 
         else:
             clear_terminal()
+            # checks if there is only one book in the database
+            # in this specific situation user is asked to select the only possible option
             if how_many_books() is True:
                 print(
                     Fore.RED + "Not much of a choice, you have only one book, please select it...\n"
                     + Style.RESET_ALL)
+            # if there's more than one book in the database,
+            # user is given specific range of options e.g. 1-10
             elif how_many_books() is False:
                 print(
                     Fore.RED + f"No such record! Please select #ID from 1 to \
@@ -166,8 +186,9 @@ def remove_book():
 
 def edit_book():
     """
-    Allows user to edit all database values for each book such as:
+    Allows user to edit all database entries for each book such as:
     title, author, category, read status and description.
+    All inputs are validated.
     """
     database_check()
     allowed_input = LIBRARY.col_values(1)[1:]
@@ -180,12 +201,19 @@ def edit_book():
 
         if user_choice in allowed_input:
 
-            db_row = int(user_choice) + 1
-            book_id = LIBRARY.row_values(db_row)
+            db_row = int(user_choice) + 1  # finds book in the database, counting in list's zero-notation
+            book_id = LIBRARY.row_values(db_row)  # assigns exact row to variable
             book_description = str(book_id[-1])
+            # slices out description data, description will be printed separately
             book_no_desc = book_id[:-1]
 
             def print_edited_book():
+                """
+                Takes a list with database headers and book details and prints
+                all in the form of the table using PrettyTable library.
+                Maximum width of the whole table is set to 79 characters.
+                Each table column has assigned maximum width individually.
+                """
                 print(constants.EDIT_BOOK)
                 print(constants.LINE)
                 x = PrettyTable()
@@ -193,12 +221,15 @@ def edit_book():
                 x._max_table_width = 79
                 x._max_width = {"ID": 2, "Title": 24, "Author": 16, "Category": 12, "Status": 8}
                 x.align["Title"] = "l"  # align column to the left
-                x.add_rows([book_no_desc])
-                print(x)  # prints created table
+                x.add_rows([book_no_desc])  # inserts a list with book details to the table
+                print(x)  # prints to the terminal created table
                 print(f"\n{constants.DESCRIPTION}: ")
+                # book description can be longer text that will be wrapped to the new line over 79 char.
                 wrap_text(book_description)
                 print(constants.LINE)
 
+            # Once book details are presented to the user, he can choose what data he wants to edit.
+            # Using this code in the loop allows user to edit details one after another in any selected order.
             while True:
                 print_edited_book()
                 print(Fore.GREEN + """
@@ -210,10 +241,11 @@ def edit_book():
                 6. Return
                 """ + Style.RESET_ALL)
                 user_choice = input(Fore.YELLOW + "What do you want to edit? Select 1-6: " + Style.RESET_ALL)
-                validate_num_range(user_choice, 1, 6)
-                # validate_input_range(user_choice, 1, 6)
+                validate_num_range(user_choice, 1, 6)  # validates the input, only 1-6 is valid
 
                 if user_choice == "1":
+                    # if user choose to edit the title, function check_prefix converts
+                    # the title given by the user if it contains "The ".
                     edit_cell = check_prefix()
                     validate_string(edit_cell)
                     book_no_desc[1] = edit_cell.title()
@@ -245,6 +277,8 @@ def edit_book():
                     print(Fore.YELLOW + "Keep editing this book or return to main menu." + Style.RESET_ALL)
 
                 elif user_choice == "4":
+                    # there is conditional used to give user an option to select 1 or 2 for book status
+                    # instead of writing "Read" or "Not read".
                     while True:
                         edit_cell = input(
                             Fore.YELLOW + 'Please select "1" if book is READ and "2" if NOT READ: ' + Style.RESET_ALL)
@@ -289,6 +323,10 @@ def edit_book():
 
         else:
             clear_terminal()
+            # The conditional is used to give user different message
+            # depending on how many books there are in the database.
+            # User is asked to select the only possible choice if there's only one book saved.
+            # Otherwise, user is given exact number of possible options.
             if how_many_books() is True:
                 print(
                     Fore.YELLOW + "Not much of a choice, you have only one book, please select it...\n"
@@ -305,15 +343,20 @@ def edit_book():
 
 def change_sorting_method():
     """
-    Changes sorting method
+    Changes sorting method to keep database entries in ascending order.
+    Books are sorted alphabetically in ascending order.
+    Possible sorting methods: by title, or by author.
+    User can choose how to sort and display books.
+    If database is empty user is asked to add first book to continue.
     """
-    database_check()
-    show_all_books()
+    database_check()  # checks if database is not empty
+    show_all_books()  # displays all the books
     while True:
         print(
             Fore.YELLOW + f"Books are displayed in alphabetical order and sorted {default_sorting_method}."
             + Style.RESET_ALL)
         print(Fore.YELLOW + "How would you like to sort them?" + Style.RESET_ALL)
+        # conditional is used to give user a choice, the input is validated.
         if default_sorting_method == "by title":
             print(Fore.GREEN + f"""
                     1. {optional_sorting_method.capitalize()}
@@ -326,7 +369,7 @@ def change_sorting_method():
                     """ + Style.RESET_ALL)
         user_choice = input(Fore.YELLOW + "Select 1 or 2: " + Style.RESET_ALL)
         clear_terminal()
-        validate_num_range(user_choice, 1, 2)
+        validate_num_range(user_choice, 1, 2)  # only digits 1-2 are valid
         if user_choice == "1":
             sort(optional_sorting_method)
             show_all_books()
@@ -342,11 +385,12 @@ def show_book_details():
     Prints to the terminal a single book entry selected by the user.
     Takes user input and looks up the database for selected book,
     extracts and assigns all the information to variables and print
-    detailed info as a table.
+    detailed info as a table using PrettyTable library.
+    If database is empty user is asked to add first book to continue.
     """
-    database_check()
+    database_check()  # checks if database is not empty
     show_all_books()  # shows user all the books
-    allowed_input = LIBRARY.col_values(1)[1:]
+    allowed_input = LIBRARY.col_values(1)[1:]  # creates list with all possible inputs to check against
 
     while True:
         user_choice = input(Fore.YELLOW + "\nWhich book details would you like to see?: " + Style.RESET_ALL)
@@ -359,6 +403,8 @@ def show_book_details():
 
             x = PrettyTable()
             x.field_names = constants.HEADERS_NO_DESC
+            # Maximum width of the whole table is set to 79 characters.
+            # Each column's maximum width is assigned individually.
             x._max_table_width = 79
             x._max_width = {"ID": 2, "Title": 24, "Author": 16, "Category": 12, "Status": 8}
             x.add_rows([book_to_display])
@@ -367,10 +413,13 @@ def show_book_details():
             print(constants.LINE)
             print(x)
             print(f"\n{constants.DESCRIPTION}: ")
-            wrap_text(book_description)
+            wrap_text(book_description)  # description can be a longer text, it's wrapped over 79 char.
             print(constants.LINE)
         else:
             clear_terminal()
+            # Conditional is used to give user a hint about possible input
+            # If there's only one book in the database, user is asked to select it
+            # If there's more than one book, user is given exact range of options e.g. 1-10
             if how_many_books() is True:
                 print(
                     Fore.YELLOW + "Not much of a choice, you have only one book, please select it...\n"
@@ -386,7 +435,11 @@ def show_book_details():
 
 def quit_app():
     """
-     This function prints goodbye message to the user
+     This function prints goodbye message to the user.
+     It displays app credits and developers social links.
+     User is asked to confirm exit and random quote is printed.
+     Next read suggestion is printed to the user if in database
+     is any book with status "Not read".
     """
     while True:
         random_quit_msg()
