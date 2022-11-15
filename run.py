@@ -19,9 +19,5 @@ main()
 
 # TODO
 # * Exception handling PROJECT CRITERIA: "Write code that handles empty or invalid input data"
-# * Criteria: Implement exception/error handling to optimise the user experience1
-# * PrettyTable color change? Where?
+# * Criteria: Implement exception/error handling to optimise the user experience
 # * Write type hinting
-
-
-# * Flow chart LUCID

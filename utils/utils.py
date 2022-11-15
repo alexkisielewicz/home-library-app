@@ -198,7 +198,7 @@ def print_all_database():
     x = PrettyTable()
     x.field_names = constants.HEADERS_NO_DESC
     x._max_table_width = 79  # max width of whole table
-    x._max_width = {"ID": 2, "Title": 24, "Author": 16, "Category": 12, "Status": 8}  # columns max width
+    x._max_width = {"ID": 2, "Title": 24, "Author": 18, "Category": 12, "Status": 8}  # columns max width
     x.field_names = constants.HEADERS_NO_DESC
     x.align["ID"] = "r"  # aligns column to the right
     x.align["Title"] = "l"  # aligns column to the left

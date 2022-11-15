@@ -43,7 +43,7 @@ def add_book():
         # checks if book title starts with "The" and returns "Title, The"
         title = check_title_prefix(title)
         # user inputs author then it's being validated, max 16 char allowed
-        author = validate_string(Fore.LIGHTCYAN_EX + "Please enter book's author: " + Style.RESET_ALL, 16, "author")
+        author = validate_string(Fore.LIGHTCYAN_EX + "Please enter book's author: " + Style.RESET_ALL, 18, "author")
         # user inputs category then it's being validated, max 12 char allowed
         category = validate_string(Fore.LIGHTCYAN_EX + "Please enter book's category: "
                                    + Style.RESET_ALL, 12, "category")
@@ -228,7 +228,7 @@ def edit_book():
                 x = PrettyTable()
                 x.field_names = constants.HEADERS_NO_DESC  # assigns table's headers from first row in DB
                 x._max_table_width = 79
-                x._max_width = {"ID": 2, "Title": 24, "Author": 16, "Category": 12, "Status": 8}
+                x._max_width = {"ID": 2, "Title": 24, "Author": 18, "Category": 12, "Status": 8}
                 x.align["Title"] = "l"  # align column to the left
                 x.add_rows([book_no_desc])  # inserts a list with book details to the table
                 print(x)  # prints to the terminal created table
@@ -268,7 +268,7 @@ def edit_book():
 
                 elif user_choice == "2":
                     author = validate_string(Fore.LIGHTCYAN_EX + "Please update book's author: "
-                                             + Style.RESET_ALL, 16, "author")
+                                             + Style.RESET_ALL, 18, "author")
                     book_no_desc[2] = author.title()  # allows to display updated author value in the table
                     LIBRARY.update_cell(db_row, 3, author.title())  # push change to database
                     clear_terminal()
@@ -279,7 +279,7 @@ def edit_book():
 
                 elif user_choice == "3":
                     category = validate_string(Fore.LIGHTCYAN_EX + "Please update book's category: "
-                                               + Style.RESET_ALL, 16, "category")
+                                               + Style.RESET_ALL, 12, "category")
                     book_no_desc[3] = category.capitalize()  # allows to display updated category value in the table
                     LIBRARY.update_cell(db_row, 4, category.capitalize())  # push change to database
                     clear_terminal()
@@ -416,7 +416,7 @@ def show_book_details():
             # Maximum width of the whole table is set to 79 characters.
             # Each column's maximum width is assigned individually.
             x._max_table_width = 79
-            x._max_width = {"ID": 2, "Title": 24, "Author": 16, "Category": 12, "Status": 8}
+            x._max_width = {"ID": 2, "Title": 24, "Author": 18, "Category": 12, "Status": 8}
             x.add_rows([book_to_display])
             x.align["ID"] = "r"  # aligns column to the right
             x.align["Title"] = "l"  # aligns column to the left
