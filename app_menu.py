@@ -12,7 +12,7 @@ def logo():
     """
      http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
     """
-    print(Fore.LIGHTBLUE_EX + """
+    print(Fore.LIGHTCYAN_EX + """
    _   _                        _     _ _                          
   | | | |                      | |   (_) |                         
   | |_| | ___  _ __ ___   ___  | |    _| |__  _ __ __ _ _ __ _   _ 
@@ -41,7 +41,7 @@ def menu():
 def show_menu():
     while True:
         menu()  # prints menu
-        user_choice = input(Fore.YELLOW + "Please select a number from 1 to 7 to continue: " + Style.RESET_ALL)
+        user_choice = input(Fore.LIGHTYELLOW_EX + "Please select a number from 1 to 7 to continue: " + Style.RESET_ALL)
         clear_terminal()
         validate_num_range(user_choice, 1, 7)  # validates user input, only values from 1 to 7 are allowed
         if user_choice == "1":
