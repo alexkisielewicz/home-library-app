@@ -1,3 +1,7 @@
+"""
+Main functionalities of the program.
+"""
+
 import utils.utils
 from utils.utils import *
 from colorama import Fore, Style
@@ -39,12 +43,14 @@ def add_book():
         # checks if book title starts with "The" and returns "Title, The"
         title = check_title_prefix(title)
         # user inputs author then it's being validated, max 16 char allowed
-        author = validate_string(Fore.CYAN + "Please enter book's author: " + Style.RESET_ALL, 16, "author")
+        author = validate_string(Fore.LIGHTCYAN_EX + "Please enter book's author: " + Style.RESET_ALL, 16, "author")
         # user inputs category then it's being validated, max 12 char allowed
-        category = validate_string(Fore.CYAN + "Please enter book's category: " + Style.RESET_ALL, 12, "category")
+        category = validate_string(Fore.LIGHTCYAN_EX + "Please enter book's category: "
+                                   + Style.RESET_ALL, 12, "category")
         # user choose book reading status, allowed input is 1 or 2
         while True:
-            status = input(Fore.CYAN + 'Please select "1" if book is READ and "2" if NOT READ: ' + Style.RESET_ALL)
+            status = input(Fore.LIGHTCYAN_EX + 'Please select "1" if book is READ and "2" if NOT READ: '
+                           + Style.RESET_ALL)
             if validate_num_range(status, 1, 2):  # checks if user input is digit in range 1-2
                 if status == "1":
                     read_status = "Read"
@@ -54,7 +60,7 @@ def add_book():
                     break
 
         description = validate_string(
-            Fore.CYAN + "Please enter book's description: " + Style.RESET_ALL, 200, "description")
+            Fore.LIGHTCYAN_EX + "Please enter book's description: " + Style.RESET_ALL, 200, "description")
 
         break
 
@@ -81,13 +87,13 @@ def add_book():
     # the input is then validated.
     # After updating the worksheet, all records are re-sorted to keep ascending order in DB
     while True:
-        are_you_sure = input(Fore.YELLOW + " \nConfirm adding this book. Y/N: " + Style.RESET_ALL)
+        are_you_sure = input(Fore.LIGHTYELLOW_EX + " \nConfirm adding this book. Y/N: " + Style.RESET_ALL)
         if validate_yes_no(are_you_sure):
 
             if "y" in are_you_sure or "Y" in are_you_sure:
                 clear_terminal()
                 LIBRARY.append_row(book_to_be_added)
-                print(Fore.YELLOW + "Adding book to the database..." + Style.RESET_ALL)
+                print(Fore.LIGHTYELLOW_EX + "Adding book to the database..." + Style.RESET_ALL)
 
                 if optional_method == default_sorting_method:
                     sort(default_method)
@@ -121,7 +127,7 @@ def remove_book():
     # Book is removed if positive answer is given. Database is re-sorted to keep ascending order.
     # In case of negative answer, user is taken back to previous menu.
     while True:
-        user_choice = input(Fore.YELLOW + "\nPlease select a book to remove (#ID): " + Style.RESET_ALL)
+        user_choice = input(Fore.LIGHTYELLOW_EX + "\nPlease select a book to remove (#ID): " + Style.RESET_ALL)
 
         if user_choice in allowed_input:
 
@@ -136,13 +142,13 @@ def remove_book():
             if delete_status == "Read":
                 confirm = f"The book \"{delete_title.title()}\" by {delete_author.title()} will be removed."
                 read_status = Fore.GREEN + f"The book is {delete_status.lower()}." + Style.RESET_ALL
-                wrap_text(Fore.YELLOW + confirm + Style.RESET_ALL)
+                wrap_text(Fore.LIGHTYELLOW_EX + confirm + Style.RESET_ALL)
                 print(read_status)
 
             elif delete_status == "Not read":
                 confirm = f"The book \"{delete_title.title()}\" by {delete_author.title()} will be removed."
                 read_status = Fore.RED + f"The book is {delete_status.lower()}." + Style.RESET_ALL
-                wrap_text(Fore.YELLOW + confirm + Style.RESET_ALL)
+                wrap_text(Fore.LIGHTYELLOW_EX + confirm + Style.RESET_ALL)
                 print(read_status)
 
             while True:
@@ -152,7 +158,7 @@ def remove_book():
                     if "y" in are_you_sure or "Y" in are_you_sure:
                         LIBRARY.delete_rows(db_row)
                         clear_terminal()
-                        print(Fore.YELLOW + "Removing book, please wait..." + Style.RESET_ALL)
+                        print(Fore.LIGHTYELLOW_EX + "Removing book, please wait..." + Style.RESET_ALL)
                         renumber_id_column()  # to keep numeration in order after entry deletion.
                         print(Fore.GREEN + "Book removed. Database updated successfully." + Style.RESET_ALL)
                         break
@@ -195,7 +201,7 @@ def edit_book():
     while True:
         print(constants.EDIT_BOOK)
         show_all_books()
-        user_choice = input(Fore.YELLOW + "\nWhich book would you like to edit?: " + Style.RESET_ALL)
+        user_choice = input(Fore.LIGHTYELLOW_EX + "\nWhich book would you like to edit?: " + Style.RESET_ALL)
         clear_terminal()
 
         if user_choice in allowed_input:
@@ -239,33 +245,34 @@ def edit_book():
                 5. Description
                 6. Return
                 """ + Style.RESET_ALL)
-                user_choice = input(Fore.YELLOW + "What do you want to edit? Select 1-6: " + Style.RESET_ALL)
+                user_choice = input(Fore.LIGHTYELLOW_EX + "What do you want to edit? Select 1-6: " + Style.RESET_ALL)
                 validate_num_range(user_choice, 1, 6)  # validates the input, only 1-6 is valid
 
                 if user_choice == "1":
                     # if user choose to edit the title, function check_prefix converts
                     # the title given by the user if it contains "The ".
-                    title = validate_string(Fore.CYAN + "Please update book's title: " + Style.RESET_ALL, 24, "title")
+                    title = validate_string(Fore.LIGHTCYAN_EX + "Please update book's title: "
+                                            + Style.RESET_ALL, 24, "title")
                     title = check_title_prefix(title)
                     book_no_desc[1] = title.title()  # allows to display updated title value in the table
                     LIBRARY.update_cell(db_row, 2, title.title())  # push change to database
-                    print(Fore.YELLOW + "Updating database..." + Style.RESET_ALL)
+                    print(Fore.LIGHTYELLOW_EX + "Updating database..." + Style.RESET_ALL)
                     clear_terminal()
                     print(Fore.GREEN + f'Book title updated successfully to "{title.title()}".\n' + Style.RESET_ALL)
-                    print(Fore.YELLOW + "Keep editing this book or return to main menu." + Style.RESET_ALL)
+                    print(Fore.LIGHTYELLOW_EX + "Keep editing this book or return to main menu." + Style.RESET_ALL)
 
                 elif user_choice == "2":
-                    author = validate_string(Fore.CYAN + "Please update book's author: "
+                    author = validate_string(Fore.LIGHTCYAN_EX + "Please update book's author: "
                                              + Style.RESET_ALL, 16, "author")
                     book_no_desc[2] = author.title()  # allows to display updated author value in the table
                     LIBRARY.update_cell(db_row, 3, author.title())  # push change to database
                     clear_terminal()
                     print(
                         Fore.GREEN + f'Book author updated successfully to "{author.title()}".\n' + Style.RESET_ALL)
-                    print(Fore.YELLOW + "Keep editing this book or return to main menu." + Style.RESET_ALL)
+                    print(Fore.LIGHTYELLOW_EX + "Keep editing this book or return to main menu." + Style.RESET_ALL)
 
                 elif user_choice == "3":
-                    category = validate_string(Fore.CYAN + "Please update book's category: "
+                    category = validate_string(Fore.LIGHTCYAN_EX + "Please update book's category: "
                                                + Style.RESET_ALL, 16, "category")
                     book_no_desc[3] = category.capitalize()  # allows to display updated category value in the table
                     LIBRARY.update_cell(db_row, 4, category.capitalize())  # push change to database
@@ -273,14 +280,15 @@ def edit_book():
                     print(
                         Fore.GREEN + f'Book category updated successfully to "{category.capitalize()}".\n'
                         + Style.RESET_ALL)
-                    print(Fore.YELLOW + "Keep editing this book or return to main menu." + Style.RESET_ALL)
+                    print(Fore.LIGHTYELLOW_EX + "Keep editing this book or return to main menu." + Style.RESET_ALL)
 
                 elif user_choice == "4":
                     # there is conditional used to give user an option to select 1 or 2 for book status
                     # instead of writing "Read" or "Not read".
                     while True:
                         select_status = input(
-                            Fore.CYAN + 'Please select "1" if book is READ and "2" if NOT READ: ' + Style.RESET_ALL)
+                            Fore.LIGHTCYAN_EX + 'Please select "1" if book is READ and "2" if NOT READ: '
+                            + Style.RESET_ALL)
                         if validate_num_range(select_status, 1, 2):
                             if select_status == "1":
                                 status = "Read"
@@ -290,7 +298,8 @@ def edit_book():
                                 print(
                                     Fore.GREEN + f'Book status updated successfully to "{status.lower()}".\n'
                                     + Style.RESET_ALL)
-                                print(Fore.YELLOW + "Keep editing this book or return to main menu." + Style.RESET_ALL)
+                                print(Fore.LIGHTYELLOW_EX + "Keep editing this book or return to main menu."
+                                      + Style.RESET_ALL)
                                 break
                             elif select_status == "2":
                                 status = "Not read"
@@ -300,17 +309,18 @@ def edit_book():
                                 print(
                                     Fore.GREEN + f'Book status updated successfully to "{status.lower()}".\n'
                                     + Style.RESET_ALL)
-                                print(Fore.YELLOW + "Keep editing this book or return to main menu." + Style.RESET_ALL)
+                                print(Fore.LIGHTYELLOW_EX + "Keep editing this book or return to main menu."
+                                      + Style.RESET_ALL)
                                 break
 
                 elif user_choice == "5":
-                    description = validate_string(Fore.CYAN + "Please update book's description: "
+                    description = validate_string(Fore.LIGHTCYAN_EX + "Please update book's description: "
                                                   + Style.RESET_ALL, 200, "description")
                     LIBRARY.update_cell(db_row, 6, description.capitalize())  # push change to database
                     book_description = description.capitalize()
                     clear_terminal()
                     print(Fore.GREEN + f"Book description updated successfully.\n" + Style.RESET_ALL)
-                    print(Fore.YELLOW + "Keep editing this book or return." + Style.RESET_ALL)
+                    print(Fore.LIGHTYELLOW_EX + "Keep editing this book or return." + Style.RESET_ALL)
 
                 elif user_choice == "6":
                     clear_terminal()
@@ -346,9 +356,9 @@ def change_sorting_method():
     show_all_books()  # displays all the books
     while True:
         print(
-            Fore.YELLOW + f"Books are displayed in alphabetical order and sorted {default_sorting_method}."
+            Fore.LIGHTYELLOW_EX + f"Books are displayed in alphabetical order and sorted {default_sorting_method}."
             + Style.RESET_ALL)
-        print(Fore.YELLOW + "How would you like to sort them?" + Style.RESET_ALL)
+        print(Fore.LIGHTYELLOW_EX + "How would you like to sort them?" + Style.RESET_ALL)
         # conditional is used to give user a choice, the input is validated.
         if default_sorting_method == "by title":
             print(Fore.GREEN + f"""
@@ -360,7 +370,7 @@ def change_sorting_method():
                     1. {optional_sorting_method.capitalize()}
                     2. Return
                     """ + Style.RESET_ALL)
-        user_choice = input(Fore.YELLOW + "Select 1 or 2: " + Style.RESET_ALL)
+        user_choice = input(Fore.LIGHTYELLOW_EX + "Select 1 or 2: " + Style.RESET_ALL)
         clear_terminal()
         validate_num_range(user_choice, 1, 2)  # only digits 1-2 are valid
         if user_choice == "1":
@@ -386,7 +396,7 @@ def show_book_details():
     allowed_input = LIBRARY.col_values(1)[1:]  # creates list with all possible inputs to check against
 
     while True:
-        user_choice = input(Fore.YELLOW + "\nWhich book details would you like to see?: " + Style.RESET_ALL)
+        user_choice = input(Fore.LIGHTYELLOW_EX + "\nWhich book details would you like to see?: " + Style.RESET_ALL)
 
         if user_choice in allowed_input:
             db_row = int(user_choice) + 1  # because of list's zero notation
@@ -439,15 +449,15 @@ def quit_app():
     """
     while True:
         random_quit_msg()
-        are_you_sure = input(Fore.YELLOW + "\nAre you sure you want to quit? Y/N: " + Style.RESET_ALL)
+        are_you_sure = input(Fore.LIGHTYELLOW_EX + "\nAre you sure you want to quit? Y/N: " + Style.RESET_ALL)
         if validate_yes_no(are_you_sure):
 
             if "y" in are_you_sure or "Y" in are_you_sure:
                 clear_terminal()
-                print(Fore.YELLOW + f"Thank you for using {constants.APP} app!" + Style.RESET_ALL)
+                print(Fore.LIGHTYELLOW_EX + f"Thank you for using {constants.APP} app!" + Style.RESET_ALL)
                 print(constants.END_SCREEN)
                 random_not_read()
-                print(Fore.YELLOW + "\nTerminating..." + Style.RESET_ALL)
+                print(Fore.LIGHTYELLOW_EX + "\nTerminating..." + Style.RESET_ALL)
                 break
             else:
                 clear_terminal()

@@ -12,7 +12,7 @@ def logo():
     """
      http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
     """
-    print(Fore.CYAN + """
+    print(Fore.LIGHTBLUE_EX + """
    _   _                        _     _ _                          
   | | | |                      | |   (_) |                         
   | |_| | ___  _ __ ___   ___  | |    _| |__  _ __ __ _ _ __ _   _ 
@@ -22,12 +22,12 @@ def logo():
                                                               __/ |
                                                              |___/                                                                                                                      
     """ + Style.RESET_ALL)
-    print(Fore.YELLOW + f"Welcome to {constants.APP} app, you can manage all your books here. "
+    print(Fore.LIGHTYELLOW_EX + f"Welcome to {constants.APP} app, you can manage all your books here. "
                         f"\nPlease use menu below to continue." + Style.RESET_ALL)
 
 
 def menu():
-    print(Fore.GREEN + """
+    print(Fore.LIGHTGREEN_EX + """
     1. Add book
     2. Edit book
     3. Remove book

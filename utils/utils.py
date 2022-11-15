@@ -98,7 +98,7 @@ def check_title_prefix(text):
         rewrite_title = text[4:]  # slice of a string - remove first 4 char "the ".
         new_title = rewrite_title + prefix
         title = new_title.title()
-        print(Fore.YELLOW + "Converted to: ", title + Style.RESET_ALL)
+        print(Fore.LIGHTYELLOW_EX + "Converted to: ", title + Style.RESET_ALL)
     else:
         title = text.title()
 
@@ -111,7 +111,7 @@ def check_title_prefix(text):
 #     Checks if title starts with prefix "the" and converts it to format "Title, The"
 #     :return: title
 #     """
-#     text = input(Fore.YELLOW + "Please enter the title: " + Style.RESET_ALL)
+#     text = input(Fore.LIGHTYELLOW_EX + "Please enter the title: " + Style.RESET_ALL)
 #     title_lower = text.lower()
 #
 #     if title_lower.startswith("the "):
@@ -119,7 +119,7 @@ def check_title_prefix(text):
 #         rewrite_title = title_lower[4:]  # slice of a string - remove first 4 char "the ".
 #         new_title = rewrite_title + prefix
 #         title = new_title.title()
-#         print(Fore.YELLOW + "Converted to: ", title + Style.RESET_ALL)
+#         print(Fore.LIGHTYELLOW_EX + "Converted to: ", title + Style.RESET_ALL)
 #     else:
 #         title = title_lower.title()
 #
@@ -247,7 +247,7 @@ def renumber_id_column():
         LIBRARY.update_acell("A" + str(row_val), id_val)  # renumbering ID value to keep order
         id_val += 1
         row_val += 1
-    print(Fore.YELLOW + "Updating database..." + Style.RESET_ALL)  # feedback to the user
+    print(Fore.LIGHTYELLOW_EX + "Updating database..." + Style.RESET_ALL)  # feedback to the user
 
 
 def sort_books(col, order):
@@ -277,7 +277,7 @@ def sort(sorting_order):
         pass
     elif sorting_order == optional_method:
         if default_method == "by author":
-            print(Fore.YELLOW + "Sorting database by title. Please wait..." + Style.RESET_ALL)
+            print(Fore.LIGHTYELLOW_EX + "Sorting database by title. Please wait..." + Style.RESET_ALL)
             CONFIG.update_acell("B1", "by title")  # write method to database
             CONFIG.update_acell("B2", "by author")  # write method to database
             functions.default_sorting_method = "by title"  # changing value so can be updated in functions.py
@@ -287,7 +287,7 @@ def sort(sorting_order):
             sort_books(2, "asc")  # sorts by column 2 in alphabetical order
             renumber_id_column()  # reassigns ID values to keep order after sorting
         elif default_method == "by title":
-            print(Fore.YELLOW + "Sorting database by author. Please wait..." + Style.RESET_ALL)
+            print(Fore.LIGHTYELLOW_EX + "Sorting database by author. Please wait..." + Style.RESET_ALL)
             CONFIG.update_acell("B1", "by author")  # writing method to database
             CONFIG.update_acell("B2", "by title")  # writing method to database
             functions.default_sorting_method = "by author"  # changing value so can be updated in functions.py
