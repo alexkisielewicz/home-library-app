@@ -35,7 +35,7 @@ def add_book():
 
     while True:
         # user inputs title, then it's being validated, max 24 char allowed
-        title = validate_string(Fore.CYAN + "Please enter book's title: " + Style.RESET_ALL, 24, "title")
+        title = validate_string(Fore.LIGHTCYAN_EX + "Please enter book's title: " + Style.RESET_ALL, 24, "title")
         # checks if book title starts with "The" and returns "Title, The"
         title = check_title_prefix(title)
         # user inputs author then it's being validated, max 16 char allowed
@@ -54,7 +54,7 @@ def add_book():
                     break
 
         description = validate_string(
-            Fore.BLUE + "Please enter book's description: " + Style.RESET_ALL, 200, "description")
+            Fore.CYAN + "Please enter book's description: " + Style.RESET_ALL, 200, "description")
 
         break
 
@@ -245,7 +245,7 @@ def edit_book():
                 if user_choice == "1":
                     # if user choose to edit the title, function check_prefix converts
                     # the title given by the user if it contains "The ".
-                    title = validate_string(Fore.BLUE + "Please update book's title: " + Style.RESET_ALL, 24, "title")
+                    title = validate_string(Fore.CYAN + "Please update book's title: " + Style.RESET_ALL, 24, "title")
                     title = check_title_prefix(title)
                     book_no_desc[1] = title.title()  # allows to display updated title value in the table
                     LIBRARY.update_cell(db_row, 2, title.title())  # push change to database
@@ -255,7 +255,7 @@ def edit_book():
                     print(Fore.YELLOW + "Keep editing this book or return to main menu." + Style.RESET_ALL)
 
                 elif user_choice == "2":
-                    author = validate_string(Fore.BLUE + "Please update book's author: "
+                    author = validate_string(Fore.CYAN + "Please update book's author: "
                                              + Style.RESET_ALL, 16, "author")
                     book_no_desc[2] = author.title()  # allows to display updated author value in the table
                     LIBRARY.update_cell(db_row, 3, author.title())  # push change to database
@@ -265,7 +265,7 @@ def edit_book():
                     print(Fore.YELLOW + "Keep editing this book or return to main menu." + Style.RESET_ALL)
 
                 elif user_choice == "3":
-                    category = validate_string(Fore.BLUE + "Please update book's category: "
+                    category = validate_string(Fore.CYAN + "Please update book's category: "
                                                + Style.RESET_ALL, 16, "category")
                     book_no_desc[3] = category.capitalize()  # allows to display updated category value in the table
                     LIBRARY.update_cell(db_row, 4, category.capitalize())  # push change to database
@@ -280,7 +280,7 @@ def edit_book():
                     # instead of writing "Read" or "Not read".
                     while True:
                         select_status = input(
-                            Fore.BLUE + 'Please select "1" if book is READ and "2" if NOT READ: ' + Style.RESET_ALL)
+                            Fore.CYAN + 'Please select "1" if book is READ and "2" if NOT READ: ' + Style.RESET_ALL)
                         if validate_num_range(select_status, 1, 2):
                             if select_status == "1":
                                 status = "Read"
@@ -304,7 +304,7 @@ def edit_book():
                                 break
 
                 elif user_choice == "5":
-                    description = validate_string(Fore.BLUE + "Please update book's description: "
+                    description = validate_string(Fore.CYAN + "Please update book's description: "
                                                   + Style.RESET_ALL, 200, "description")
                     LIBRARY.update_cell(db_row, 6, description.capitalize())  # push change to database
                     book_description = description.capitalize()

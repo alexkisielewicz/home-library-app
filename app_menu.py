@@ -12,7 +12,7 @@ def logo():
     """
      http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
     """
-    print(Fore.BLUE + """
+    print(Fore.CYAN + """
    _   _                        _     _ _                          
   | | | |                      | |   (_) |                         
   | |_| | ___  _ __ ___   ___  | |    _| |__  _ __ __ _ _ __ _   _ 
