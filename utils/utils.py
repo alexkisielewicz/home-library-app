@@ -104,27 +104,6 @@ def check_title_prefix(text):
 
     return title
 
-# This is backup of working function!
-#
-# def check_title_prefix():
-#     """
-#     Checks if title starts with prefix "the" and converts it to format "Title, The"
-#     :return: title
-#     """
-#     text = input(Fore.LIGHTYELLOW_EX + "Please enter the title: " + Style.RESET_ALL)
-#     title_lower = text.lower()
-#
-#     if title_lower.startswith("the "):
-#         prefix = ", The"
-#         rewrite_title = title_lower[4:]  # slice of a string - remove first 4 char "the ".
-#         new_title = rewrite_title + prefix
-#         title = new_title.title()
-#         print(Fore.LIGHTYELLOW_EX + "Converted to: ", title + Style.RESET_ALL)
-#     else:
-#         title = title_lower.title()
-#
-#     return title
-
 
 def validate_num_range(user_input, first_val, last_val):  # e. g use in main menu, allowed options 1-7
     """
@@ -147,8 +126,9 @@ def validate_num_range(user_input, first_val, last_val):  # e. g use in main men
             raise ValueError
     except ValueError as e:
         clear_terminal()
-        print(Fore.LIGHTRED_EX + f"\nWrong input, please select option from {first_val} to {last_val} "
-                         f"to continue..." + Style.RESET_ALL)
+        print(Fore.LIGHTRED_EX +
+              f"\nWrong input, please select option from {first_val} to {last_val} "
+              f"to continue..." + Style.RESET_ALL)
 
 
 def validate_yes_no(user_input):
@@ -187,19 +167,20 @@ def validate_string(user_text, max_length, element):
         # checks if input is empty
         if len(user_input) == 0:
             clear_terminal()
-            print(Fore.LIGHTRED_EX + f"{element.capitalize()} can't be empty!" + Style.RESET_ALL)  # WORKS OK!
+            print(Fore.LIGHTRED_EX + f"{element.capitalize()} can't be empty!" + Style.RESET_ALL)
         # checks if first character of the string is not special character
         elif not user_input[0].isalnum():
-            print(Fore.LIGHTRED_EX + f"{element.capitalize()} has to start with letter or digit!" + Style.RESET_ALL)
+            print(Fore.LIGHTRED_EX + f"{element.capitalize()} has to start with letter or digit!"
+                                   + Style.RESET_ALL)
         # checks if input is shorter than required 3 characters
         elif len(user_input) <= 2:
             clear_terminal()
-            print(Fore.LIGHTRED_EX + "Please enter at least 3 characters..." + Style.RESET_ALL)  # WORKS OK!
+            print(Fore.LIGHTRED_EX + "Please enter at least 3 characters..." + Style.RESET_ALL)
         # checks if input is longer than maximum allowed
         elif len(user_input) > int(max_length):
             clear_terminal()
             print(
-                Fore.LIGHTRED_EX + f"Entered {element} exceeds maximum allowed length of {max_length} characters!"  # WORKS OK!
+                Fore.LIGHTRED_EX + f"Entered {element} exceeds maximum allowed length of {max_length} characters!"
                 + Style.RESET_ALL)
         else:
             element = user_input.title()
@@ -332,7 +313,7 @@ def random_not_read():
 
         print(Fore.LIGHTGREEN_EX + "Looking for your next read?" + Style.RESET_ALL)
         wrap_text(Fore.LIGHTGREEN_EX + f"Why don't you grab \"{title}\" by {random_book[2]}. "
-                               f"It's still not read." + Style.RESET_ALL)
+                                       f"It's still not read." + Style.RESET_ALL)
 
 
 def random_quit_msg():

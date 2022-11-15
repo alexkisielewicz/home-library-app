@@ -76,7 +76,8 @@ def add_book():
     # 1st list with database headers and 2nd list with book details
     # then it prints output for each pair e.g. TITLE: "Game of Thrones"
     for header, item in zip(range(len(constants.HEADERS_NO_DESC)), range(len(book_to_be_added))):
-        print(f"{constants.HEADERS_NO_DESC[header]}: " + Fore.LIGHTGREEN_EX + f"{book_to_be_added[item]}" + Style.RESET_ALL)
+        print(f"{constants.HEADERS_NO_DESC[header]}: " + Fore.LIGHTGREEN_EX
+              + f"{book_to_be_added[item]}" + Style.RESET_ALL)
 
     print(f"\n{constants.DESCRIPTION}: ")
     wrap_text(Fore.LIGHTGREEN_EX + book_to_be_added[-1].capitalize() + Style.RESET_ALL)
@@ -152,7 +153,8 @@ def remove_book():
                 print(read_status)
 
             while True:
-                are_you_sure = input(Fore.LIGHTRED_EX + "\nAre you sure you want to delete this book? Y/N: " + Style.RESET_ALL)
+                are_you_sure = input(Fore.LIGHTRED_EX + "\nAre you sure you want to delete this book? Y/N: "
+                                     + Style.RESET_ALL)
                 if validate_yes_no(are_you_sure):
 
                     if "y" in are_you_sure or "Y" in are_you_sure:
@@ -177,13 +179,15 @@ def remove_book():
             # checks if there is only one book in the database
             # in this specific situation user is asked to select the only possible option
             if how_many_books() is True:
-                print(Fore.LIGHTRED_EX + """Wrong input!\nNot much of a choice, you have only one book, please select it...\n"""
-                               + Style.RESET_ALL)
+                print(Fore.LIGHTRED_EX +
+                      """Wrong input!\nNot much of a choice, you have only one book, please select it...\n"""
+                      + Style.RESET_ALL)
             # if there's more than one book in the database,
             # user is given specific range of options e.g. 1-10
             elif how_many_books() is False:
-                print(Fore.LIGHTRED_EX + f"""Wrong input!\nPlease select #ID from 1 to {utils.utils.last_book_id}.\n"""
-                               + Style.RESET_ALL)
+                print(Fore.LIGHTRED_EX +
+                      f"""Wrong input!\nPlease select #ID from 1 to {utils.utils.last_book_id}.\n"""
+                      + Style.RESET_ALL)
             remove_book()
 
         break
@@ -258,7 +262,8 @@ def edit_book():
                     LIBRARY.update_cell(db_row, 2, title.title())  # push change to database
                     print(Fore.LIGHTYELLOW_EX + "Updating database..." + Style.RESET_ALL)
                     clear_terminal()
-                    print(Fore.LIGHTGREEN_EX + f'Book title updated successfully to "{title.title()}".\n' + Style.RESET_ALL)
+                    print(Fore.LIGHTGREEN_EX + f'Book title updated successfully to "{title.title()}".\n'
+                                             + Style.RESET_ALL)
                     print(Fore.LIGHTYELLOW_EX + "Keep editing this book or return to main menu." + Style.RESET_ALL)
 
                 elif user_choice == "2":
@@ -268,7 +273,8 @@ def edit_book():
                     LIBRARY.update_cell(db_row, 3, author.title())  # push change to database
                     clear_terminal()
                     print(
-                        Fore.LIGHTGREEN_EX + f'Book author updated successfully to "{author.title()}".\n' + Style.RESET_ALL)
+                        Fore.LIGHTGREEN_EX + f'Book author updated successfully to "{author.title()}".\n'
+                                           + Style.RESET_ALL)
                     print(Fore.LIGHTYELLOW_EX + "Keep editing this book or return to main menu." + Style.RESET_ALL)
 
                 elif user_choice == "3":
@@ -333,11 +339,12 @@ def edit_book():
             # User is asked to select the only possible choice if there's only one book saved.
             # Otherwise, user is given exact number of possible options.
             if how_many_books() is True:
-                print(Fore.LIGHTRED_EX + "Wrong input!\nNot much of a choice, you have only one book, please select it...\n"
-                               + Style.RESET_ALL)
+                print(Fore.LIGHTRED_EX +
+                      "Wrong input!\nNot much of a choice, you have only one book, please select it...\n"
+                      + Style.RESET_ALL)
             elif how_many_books() is False:
                 print(Fore.LIGHTRED_EX + f"Wrong input\nPlease select #ID from 1 to {utils.utils.last_book_id}.\n"
-                               + Style.RESET_ALL)
+                                       + Style.RESET_ALL)
 
             edit_book()
 
@@ -429,11 +436,13 @@ def show_book_details():
             # If there's only one book in the database, user is asked to select it
             # If there's more than one book, user is given exact range of options e.g. 1-10
             if how_many_books() is True:
-                print(Fore.LIGHTRED_EX + """Wrong input!\nNot much of a choice, you have only one book, please select it...\n"""
-                               + Style.RESET_ALL)
+                print(Fore.LIGHTRED_EX +
+                      """Wrong input!\nNot much of a choice, you have only one book, please select it...\n"""
+                      + Style.RESET_ALL)
             elif how_many_books() is False:
-                print(Fore.LIGHTRED_EX + f"""Wrong input!\nPlease select #ID from 1 to {utils.utils.last_book_id}.\n"""
-                               + Style.RESET_ALL)
+                print(Fore.LIGHTRED_EX +
+                      f"""Wrong input!\nPlease select #ID from 1 to {utils.utils.last_book_id}.\n"""
+                      + Style.RESET_ALL)
             show_book_details()
 
         break
