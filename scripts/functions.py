@@ -33,33 +33,37 @@ def add_book():
 
     book_to_be_added = []  # initialize variable to store all book details from user input
 
-    title = check_prefix()  # checks if book title starts with "The" and returns "Title, The"
-    validate_string(title)
-    author = input(Fore.YELLOW + "Please enter the author: " + Style.RESET_ALL).title()
-    validate_string(author)
-    category = input(Fore.YELLOW + "Please enter book category: " + Style.RESET_ALL).capitalize()
-    validate_string(category)
-
     while True:
-        status = input(Fore.YELLOW + 'Please select "1" if book is READ and "2" if NOT READ: ' + Style.RESET_ALL)
-        if validate_num_range(status, 1, 2):  # checks if user input is digit in range 1-2
-            if status == "1":
-                read_status = "Read"
-                break
-            elif status == "2":
-                read_status = "Not read"
-                break
+        # user inputs title and it's being validated, max 24 char allowed
+        title = validate_string(Fore.BLUE + "Please enter book's title: " + Style.RESET_ALL, 24, "title")
+        # checks if book title starts with "The" and returns "Title, The"
+        title = check_title_prefix(title)
+        # user inputs author and it's being validated, max 16 char allowed
+        author = validate_string(Fore.BLUE + "Please enter book's author: " + Style.RESET_ALL, 16, "author")
+        # user inputs category and it's being validated, max 12 char allowed
+        category = validate_string(Fore.BLUE + "Please enter book's category: " + Style.RESET_ALL, 12, "category")
+        # user choose book reading status, allowed input is 1 or 2
+        while True:
+            status = input(Fore.BLUE + 'Please select "1" if book is READ and "2" if NOT READ: ' + Style.RESET_ALL)
+            if validate_num_range(status, 1, 2):  # checks if user input is digit in range 1-2
+                if status == "1":
+                    status = "Read"
+                    break
+                elif status == "2":
+                    status = "Not read"
+                    break
 
-        else:
-            print(Fore.RED + f"Please try again...\n" + Style.RESET_ALL)
+        description = validate_string(
+            Fore.BLUE + "Please enter book's description: " + Style.RESET_ALL, 200, "description")
 
-    description = input(Fore.YELLOW + "Please enter book description: " + Style.RESET_ALL).capitalize()
-    validate_string(description)
-    book_to_be_added.extend([title, author, category, read_status, description])  # adds all details to list variable
+        break
+
+    # insert all collected inputs into the list
+    book_to_be_added.extend([title, author, category, status, description])
+
     clear_terminal()
     print(constants.LINE)
     first_empty_row = len(LIBRARY.get_all_values())  # look up the database for first empty row
-
     book_to_be_added.insert(0, first_empty_row)  # adds ID as a first item in book list - with index 0
 
     # Below code iterates through two lists using zip method
@@ -241,7 +245,7 @@ def edit_book():
                 if user_choice == "1":
                     # if user choose to edit the title, function check_prefix converts
                     # the title given by the user if it contains "The ".
-                    edit_cell = check_prefix()
+                    edit_cell = check_title_prefix()
                     validate_string(edit_cell)
                     book_no_desc[1] = edit_cell.title()
                     LIBRARY.update_cell(db_row, 2, edit_cell.title())

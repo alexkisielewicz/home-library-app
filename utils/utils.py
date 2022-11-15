@@ -86,24 +86,44 @@ def how_many_books():
     return first_book_id, last_book_id
 
 
-def check_prefix():
+def check_title_prefix(text):
     """
     Checks if title starts with prefix "the" and converts it to format "Title, The"
     :return: title
     """
-    text = input(Fore.YELLOW + "Please enter the title: " + Style.RESET_ALL)
-    title_lower = text.lower()
+    text = text.lower()
 
-    if title_lower.startswith("the "):
+    if text.startswith("the "):
         prefix = ", The"
-        rewrite_title = title_lower[4:]  # slice of a string - remove first 4 char "the ".
+        rewrite_title = text[4:]  # slice of a string - remove first 4 char "the ".
         new_title = rewrite_title + prefix
         title = new_title.title()
         print(Fore.YELLOW + "Converted to: ", title + Style.RESET_ALL)
     else:
-        title = title_lower.title()
+        title = text.title()
 
     return title
+
+# This is backup of working function!
+#
+# def check_title_prefix():
+#     """
+#     Checks if title starts with prefix "the" and converts it to format "Title, The"
+#     :return: title
+#     """
+#     text = input(Fore.YELLOW + "Please enter the title: " + Style.RESET_ALL)
+#     title_lower = text.lower()
+#
+#     if title_lower.startswith("the "):
+#         prefix = ", The"
+#         rewrite_title = title_lower[4:]  # slice of a string - remove first 4 char "the ".
+#         new_title = rewrite_title + prefix
+#         title = new_title.title()
+#         print(Fore.YELLOW + "Converted to: ", title + Style.RESET_ALL)
+#     else:
+#         title = title_lower.title()
+#
+#     return title
 
 
 def validate_num_range(user_input, first_val, last_val):  # e. g use in main menu, allowed options 1-7
@@ -127,7 +147,7 @@ def validate_num_range(user_input, first_val, last_val):  # e. g use in main men
             raise ValueError
     except ValueError as e:
         clear_terminal()
-        print(Fore.RED + f"Wrong input, please select option from {first_val} to {last_val} "
+        print(Fore.RED + f"\nWrong input, please select option from {first_val} to {last_val} "
                          f"to continue..." + Style.RESET_ALL)
 
 
@@ -152,21 +172,38 @@ def validate_yes_no(user_input):
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # !This one is to be finished, not working as expected!
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-def validate_string(user_input):
+def validate_string(user_text, max_length, element):
     """
     TO BE CHANGED
-    :param user_input contains user choice
-    :return True if input is valid
-    :return False if input is invalid
+    :param element: is variable assigned to user input, e.g. title, author
+    :param user_text contains prompt to enter text
+    :param max_length - max characters in string
     """
-    # REPLACE WITH "TRY..."
-
-    if user_input.isalnum():
-        print(Fore.GREEN + "OK, it's a string" + Style.RESET_ALL)  # this will be removed
-        return True
-    else:
-        print(Fore.RED + "Not alpha-numerical" + Style.RESET_ALL)  # this will be removed
-        return False
+    #
+    # NEED TO FIX THIS VALIDATION - IT SHOULD ASK FOR INPUT AGAIN if invalid input given
+    #
+    while True:
+        user_input = input(user_text)
+        # checks if input is empty
+        if len(user_input) == 0:
+            clear_terminal()
+            print(Fore.RED + f"{element.capitalize()} can't be empty!" + Style.RESET_ALL)  # WORKS OK!
+        # checks if first character of the string is not special character
+        elif not user_input[0].isalnum():
+            print(Fore.RED + f"{element.capitalize()} has to start with letter or digit!" + Style.RESET_ALL)
+        # checks if input is shorter than required 3 characters
+        elif len(user_input) <= 2:
+            clear_terminal()
+            print(Fore.RED + "Please enter at least 3 characters..." + Style.RESET_ALL)  # WORKS OK!
+        # checks if input is longer than maximum allowed
+        elif len(user_input) > int(max_length):
+            clear_terminal()
+            print(
+                Fore.RED + f"Entered {element} exceeds maximum allowed length of {max_length} characters!"  # WORKS OK!
+                + Style.RESET_ALL)
+        else:
+            element = user_input.title()
+            return element
 
 
 def print_all_database():

@@ -20,7 +20,7 @@ main()
 # TODO
 # * Validate User input in BOOK ADD and BOOK EDIT fn
 # * Exception handling PROJECT CRITERIA: "Write code that handles empty or invalid input data"
-# * Criteria: Implement exception/error handling to optimise the user experience
+# * Criteria: Implement exception/error handling to optimise the user experience1
 # * PrettyTable colour? Where?
 # * Write type hinting
 
