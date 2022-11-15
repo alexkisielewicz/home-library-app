@@ -1,6 +1,10 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+<h1 align="center">Home Library App - Python Project</h1>
 
-Welcome USER_NAME,
+### Developer: Aleksander Kisielewicz
+
+![app_mockup](doc/img/app_mockup.png)
+
+
 
 This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
 
