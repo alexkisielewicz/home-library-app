@@ -34,13 +34,13 @@ def add_book():
     book_to_be_added = []  # initialize variable to store all book details from user input
 
     while True:
-        # user inputs title and it's being validated, max 24 char allowed
+        # user inputs title, then it's being validated, max 24 char allowed
         title = validate_string(Fore.BLUE + "Please enter book's title: " + Style.RESET_ALL, 24, "title")
         # checks if book title starts with "The" and returns "Title, The"
         title = check_title_prefix(title)
-        # user inputs author and it's being validated, max 16 char allowed
+        # user inputs author then it's being validated, max 16 char allowed
         author = validate_string(Fore.BLUE + "Please enter book's author: " + Style.RESET_ALL, 16, "author")
-        # user inputs category and it's being validated, max 12 char allowed
+        # user inputs category then it's being validated, max 12 char allowed
         category = validate_string(Fore.BLUE + "Please enter book's category: " + Style.RESET_ALL, 12, "category")
         # user choose book reading status, allowed input is 1 or 2
         while True:
@@ -255,7 +255,8 @@ def edit_book():
                     print(Fore.YELLOW + "Keep editing this book or return to main menu." + Style.RESET_ALL)
 
                 elif user_choice == "2":
-                    author = validate_string(Fore.BLUE + "Please update book's author: " + Style.RESET_ALL, 16, "author")
+                    author = validate_string(Fore.BLUE + "Please update book's author: "
+                                             + Style.RESET_ALL, 16, "author")
                     book_no_desc[2] = author.title()  # allows to display updated author value in the table
                     LIBRARY.update_cell(db_row, 3, author.title())  # push change to database
                     clear_terminal()
@@ -264,7 +265,8 @@ def edit_book():
                     print(Fore.YELLOW + "Keep editing this book or return to main menu." + Style.RESET_ALL)
 
                 elif user_choice == "3":
-                    category = validate_string(Fore.BLUE + "Please update book's category: " + Style.RESET_ALL, 16, "category")
+                    category = validate_string(Fore.BLUE + "Please update book's category: "
+                                               + Style.RESET_ALL, 16, "category")
                     book_no_desc[3] = category.capitalize()  # allows to display updated category value in the table
                     LIBRARY.update_cell(db_row, 4, category.capitalize())  # push change to database
                     clear_terminal()
