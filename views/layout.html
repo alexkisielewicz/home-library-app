@@ -13,15 +13,9 @@
         body {
             background: url("https://raw.githubusercontent.com/alexkisielewicz/home-library-app/main/views/img/library_background.jpg") no-repeat center / cover;
             font-family: Arial;
-	        font-weight: 300;
-	        color: #511C1C;
 	        margin: 0;
 	        width: 100vw;
 	        height: 100vh;
-	        display: flex;
-	        justify-content: center;
-	        align-items: center;
-	        background-color: inherit;
 	        overflow: hidden;
         }
 
@@ -30,13 +24,11 @@
 	        height: 100vh;
 	        display: flex;
 	        justify-content: center;
-	        align-items: center;
-	        margin: 0 auto;
+	        flex-direction: column;
         }
 
         #button {
             margin: 25px auto;
-            cursor: pointer;
         }
 
         footer {
@@ -208,8 +200,9 @@
             border: 1px solid grey;
             color: white;
             text-transform: uppercase;
-            margin: 10px;
+            margin: 25px auto;
             border-radius: 8px;
+            cursor: pointer;
         }
     </style>
 </head>
