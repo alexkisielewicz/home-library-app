@@ -47,10 +47,10 @@ def add_book():
             status = input(Fore.BLUE + 'Please select "1" if book is READ and "2" if NOT READ: ' + Style.RESET_ALL)
             if validate_num_range(status, 1, 2):  # checks if user input is digit in range 1-2
                 if status == "1":
-                    status = "Read"
+                    read_status = "Read"
                     break
                 elif status == "2":
-                    status = "Not read"
+                    read_status = "Not read"
                     break
 
         description = validate_string(
@@ -59,7 +59,7 @@ def add_book():
         break
 
     # insert all collected inputs into the list
-    book_to_be_added.extend([title, author, category, status, description])
+    book_to_be_added.extend([title, author, category, read_status, description])
 
     clear_terminal()
     print(constants.LINE)
@@ -98,7 +98,7 @@ def add_book():
             # negative answer breaks the loop and takes user back to previous screen
             elif "n" in are_you_sure or "N" in are_you_sure:
                 clear_terminal()
-                print(Fore.RED + "Aborting... Book has not been added" + Style.RESET_ALL)
+                print(Fore.RED + "Aborting... Book has not been added." + Style.RESET_ALL)
                 break
 
 
@@ -245,33 +245,31 @@ def edit_book():
                 if user_choice == "1":
                     # if user choose to edit the title, function check_prefix converts
                     # the title given by the user if it contains "The ".
-                    edit_cell = check_title_prefix()
-                    validate_string(edit_cell)
-                    book_no_desc[1] = edit_cell.title()
-                    LIBRARY.update_cell(db_row, 2, edit_cell.title())
+                    title = validate_string(Fore.BLUE + "Please update book's title: " + Style.RESET_ALL, 24, "title")
+                    title = check_title_prefix(title)
+                    book_no_desc[1] = title.title()  # allows to display updated title value in the table
+                    LIBRARY.update_cell(db_row, 2, title.title())  # push change to database
                     print(Fore.YELLOW + "Updating database..." + Style.RESET_ALL)
                     clear_terminal()
-                    print(Fore.GREEN + f'Book title updated successfully to "{edit_cell.title()}".\n' + Style.RESET_ALL)
+                    print(Fore.GREEN + f'Book title updated successfully to "{title.title()}".\n' + Style.RESET_ALL)
                     print(Fore.YELLOW + "Keep editing this book or return to main menu." + Style.RESET_ALL)
 
                 elif user_choice == "2":
-                    edit_cell = (input(Fore.YELLOW + "Please enter new author: " + Style.RESET_ALL)).title()
-                    validate_string(edit_cell)
-                    book_no_desc[2] = edit_cell.title()
-                    LIBRARY.update_cell(db_row, 3, edit_cell)
+                    author = validate_string(Fore.BLUE + "Please update book's author: " + Style.RESET_ALL, 16, "author")
+                    book_no_desc[2] = author.title()  # allows to display updated author value in the table
+                    LIBRARY.update_cell(db_row, 3, author.title())  # push change to database
                     clear_terminal()
                     print(
-                        Fore.GREEN + f'Book author updated successfully to "{edit_cell.title()}".\n' + Style.RESET_ALL)
+                        Fore.GREEN + f'Book author updated successfully to "{author.title()}".\n' + Style.RESET_ALL)
                     print(Fore.YELLOW + "Keep editing this book or return to main menu." + Style.RESET_ALL)
 
                 elif user_choice == "3":
-                    edit_cell = (input(Fore.YELLOW + "Please enter new category: " + Style.RESET_ALL)).title()
-                    validate_string(edit_cell)
-                    book_no_desc[3] = edit_cell.capitalize()
-                    LIBRARY.update_cell(db_row, 4, edit_cell)
+                    category = validate_string(Fore.BLUE + "Please update book's category: " + Style.RESET_ALL, 16, "category")
+                    book_no_desc[3] = category.capitalize()  # allows to display updated category value in the table
+                    LIBRARY.update_cell(db_row, 4, category.capitalize())  # push change to database
                     clear_terminal()
                     print(
-                        Fore.GREEN + f'Book category updated successfully to "{edit_cell.capitalize()}".\n'
+                        Fore.GREEN + f'Book category updated successfully to "{category.capitalize()}".\n'
                         + Style.RESET_ALL)
                     print(Fore.YELLOW + "Keep editing this book or return to main menu." + Style.RESET_ALL)
 
@@ -279,38 +277,35 @@ def edit_book():
                     # there is conditional used to give user an option to select 1 or 2 for book status
                     # instead of writing "Read" or "Not read".
                     while True:
-                        edit_cell = input(
-                            Fore.YELLOW + 'Please select "1" if book is READ and "2" if NOT READ: ' + Style.RESET_ALL)
-                        if validate_num_range(edit_cell, 1, 2):
-                            if edit_cell == "1":
-                                edit_cell = "Read"
-                                book_no_desc[4] = edit_cell
-                                LIBRARY.update_cell(db_row, 5, edit_cell)
+                        select_status = input(
+                            Fore.BLUE + 'Please select "1" if book is READ and "2" if NOT READ: ' + Style.RESET_ALL)
+                        if validate_num_range(select_status, 1, 2):
+                            if select_status == "1":
+                                status = "Read"
+                                book_no_desc[4] = status
+                                LIBRARY.update_cell(db_row, 5, status)  # push change to database
                                 clear_terminal()
                                 print(
-                                    Fore.GREEN + f'Book status updated successfully to "{edit_cell.lower()}".\n'
+                                    Fore.GREEN + f'Book status updated successfully to "{status.lower()}".\n'
                                     + Style.RESET_ALL)
                                 print(Fore.YELLOW + "Keep editing this book or return to main menu." + Style.RESET_ALL)
                                 break
-                            elif edit_cell == "2":
-                                edit_cell = "Not read"
-                                book_no_desc[4] = edit_cell
-                                LIBRARY.update_cell(db_row, 5, edit_cell)
+                            elif select_status == "2":
+                                status = "Not read"
+                                book_no_desc[4] = status
+                                LIBRARY.update_cell(db_row, 5, status)
                                 clear_terminal()
                                 print(
-                                    Fore.GREEN + f'Book status updated successfully to "{edit_cell.lower()}".\n'
+                                    Fore.GREEN + f'Book status updated successfully to "{status.lower()}".\n'
                                     + Style.RESET_ALL)
                                 print(Fore.YELLOW + "Keep editing this book or return to main menu." + Style.RESET_ALL)
                                 break
-                        else:
-                            clear_terminal()
-                            print(Fore.RED + f"Wrong input, please try again...\n" + Style.RESET_ALL)
 
                 elif user_choice == "5":
-                    edit_cell = (input(Fore.YELLOW + "Please enter new description: " + Style.RESET_ALL)).capitalize()
-                    validate_string(edit_cell)
-                    LIBRARY.update_cell(db_row, 6, edit_cell)
-                    book_description = edit_cell
+                    description = validate_string(Fore.BLUE + "Please update book's description: "
+                                                  + Style.RESET_ALL, 200, "description")
+                    LIBRARY.update_cell(db_row, 6, description.capitalize())  # push change to database
+                    book_description = description.capitalize()
                     clear_terminal()
                     print(Fore.GREEN + f"Book description updated successfully.\n" + Style.RESET_ALL)
                     print(Fore.YELLOW + "Keep editing this book or return." + Style.RESET_ALL)
