@@ -35,16 +35,16 @@ def add_book():
 
     while True:
         # user inputs title, then it's being validated, max 24 char allowed
-        title = validate_string(Fore.BLUE + "Please enter book's title: " + Style.RESET_ALL, 24, "title")
+        title = validate_string(Fore.CYAN + "Please enter book's title: " + Style.RESET_ALL, 24, "title")
         # checks if book title starts with "The" and returns "Title, The"
         title = check_title_prefix(title)
         # user inputs author then it's being validated, max 16 char allowed
-        author = validate_string(Fore.BLUE + "Please enter book's author: " + Style.RESET_ALL, 16, "author")
+        author = validate_string(Fore.CYAN + "Please enter book's author: " + Style.RESET_ALL, 16, "author")
         # user inputs category then it's being validated, max 12 char allowed
-        category = validate_string(Fore.BLUE + "Please enter book's category: " + Style.RESET_ALL, 12, "category")
+        category = validate_string(Fore.CYAN + "Please enter book's category: " + Style.RESET_ALL, 12, "category")
         # user choose book reading status, allowed input is 1 or 2
         while True:
-            status = input(Fore.BLUE + 'Please select "1" if book is READ and "2" if NOT READ: ' + Style.RESET_ALL)
+            status = input(Fore.CYAN + 'Please select "1" if book is READ and "2" if NOT READ: ' + Style.RESET_ALL)
             if validate_num_range(status, 1, 2):  # checks if user input is digit in range 1-2
                 if status == "1":
                     read_status = "Read"
