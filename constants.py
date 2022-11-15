@@ -23,7 +23,7 @@ You will be asked to enter book title, author, category and short description.
 Choose if you have read the book or not. Book ID is generated automatically. 
 """ + Style.RESET_ALL
 
-EDIT_BOOK = Fore.LIGHTYELLOW_EX + "Here you can update all book details." + Style.RESET_ALL
+EDIT_BOOK = Fore.LIGHTYELLOW_EX + "You can update all book details below." + Style.RESET_ALL
 
 REMOVE_BOOK = Fore.LIGHTYELLOW_EX + "Here you can remove selected book from the database." + Style.RESET_ALL
 

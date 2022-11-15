@@ -23,7 +23,7 @@ def logo():
                                                              |___/                                                                                                                      
     """ + Style.RESET_ALL)
     print(Fore.LIGHTYELLOW_EX + f"Welcome to {constants.APP} app, you can manage all your books here. "
-                        f"\nPlease use menu below to continue." + Style.RESET_ALL)
+                                f"\nPlease use menu below to continue." + Style.RESET_ALL)
 
 
 def menu():
