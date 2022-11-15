@@ -32,6 +32,43 @@
 	        overflow: hidden;
         }
 
+        #terminal {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        #button {
+            font-family: 'Merriweather', serif;
+            font-weight: 300;
+            display:flex
+            justify-content: center;
+            align-items: center;
+            background-color: brown;
+        }
+
+        footer {
+	        position: fixed;
+	        bottom: 0;
+	        width: 100%;
+	        text-align: center;
+	        background-color: #000;
+	        height: 50px;
+	        color: #FFF;
+        }
+
+        .social-icons {
+	    color: #FFF;
+	    font-size: 2rem;
+	    padding: 10px;
+	    margin-bottom: 10px;
+        }
+
+        .social-icons:hover {
+	    color: #FFD700;
+        }
+
         /**
         * Default styles for xterm.js
         */
@@ -185,6 +222,7 @@
             text-transform: uppercase;
             margin: 10px;
             border-radius: 8px;
+            cursor: pointer;
         }
     </style>
 </head>
