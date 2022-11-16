@@ -49,7 +49,7 @@ def add_book():
                                    + Style.RESET_ALL, 12, "category")
         # user choose book reading status, allowed input is 1 or 2
         while True:
-            status = input(Fore.LIGHTCYAN_EX + 'Please select "1" if book is READ and "2" if NOT READ: '
+            status = input(Fore.LIGHTCYAN_EX + "Please select \"1\" if you read that book and \"2\" if you didn't: "
                            + Style.RESET_ALL)
             if validate_num_range(status, 1, 2):  # checks if user input is digit in range 1-2
                 if status == "1":
@@ -293,7 +293,7 @@ def edit_book():
                     # instead of writing "Read" or "Not read".
                     while True:
                         select_status = input(
-                            Fore.LIGHTCYAN_EX + 'Please select "1" if book is READ and "2" if NOT READ: '
+                            Fore.LIGHTCYAN_EX + "Please select \"1\" if you read that book and \"2\" if you didn't: "
                             + Style.RESET_ALL)
                         if validate_num_range(select_status, 1, 2):
                             if select_status == "1":
