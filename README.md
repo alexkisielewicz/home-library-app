@@ -2,15 +2,14 @@
 
 ### Developer: Aleksander Kisielewicz
 
-![Am I Responsive](docs/img/app_mockup.png)
+<b>[View live program here](https://home-library-app-ci.herokuapp.com/)</b> :computer:
 
-<b>[View live website here](https://home-library-app-ci.herokuapp.com/)</b> :computer:
+![Program mockup](docs/img/app_mockup.png)
 
-This is Home Library App created as Portfolio Project #3 (Python Essentials) for Diploma in Full Stack Software Development at [Code Institute](https://www.codeinstitute.net). <br>
+The Home Library App was created as Portfolio Project #3 (Python Essentials) for Diploma in Full Stack Software Development at [Code Institute](https://www.codeinstitute.net). It allows users to manage their personal book libraries, view, add, edit, and remove books.
 
 Project purpose was to build a command-line python application that allows user to manage a common dataset about a particular domain.
 
-I chose to develop an application that can be used in real life. Home Library allows users to manage their personal book libraries. Application contains such functionalities as: viewing book database, adding/editing and removing books. User can display details of every database entry and also sort database in chosen order.
 
 # Table of content
 
@@ -39,30 +38,47 @@ I chose to develop an application that can be used in real life. Home Library al
 #   Project
 ##  Strategy/Scope
 
+I chose to develop an application that can be used in real life. Home Library allows users to manage their personal book libraries. Application contains such functionalities as: viewing book database, adding/editing and removing books. User can display details of every database entry and also sort database in chosen order.
 
-PLACEHOLDER
-
-
+Application should have clean and intuitive user interface and offer easy access and navigation to all functionalities.
 
 To achieve the strategy goals I implemented following features:
 
-PLACEHOLDER
-<br>
+- clean user interface for easy navigation and readability
+- menu with easy acces to all features and possibility to exit program
+- colours in terminal to give user feedback depends on his actions
+- reliable and quick connection with database provided by Google
+- customised terminal display page for better visual experience
 
 ## Site owner goals
 
-PLACEHOLDER
+As a program owner/developer I would like to:
+- create application that has real life usage 
+- create application that is easy to use and intuitive to navigate
+- create application with clean, good looking and accesible interface
+- provide user a feedback to every input and action
+- decide what kind of user input is allowed and valid
+- create bugs free application
 
 ##  External user's goal
 
-- as a user I want to:
-PLACEHOLDER
+- as a user I would like to:
+- be able to clearly understand application's purpose
+- be able to use program with real usability
+- be able to easily navigate the program and access all features
+- be able to receive feedback to actions taken
+- be able to decide what to do next, what features to use
+- be able to quit program at all stages
+- avoid any errors/bugs 
 
 # Logic and features
 
 ## Python Logic
 
-Flow chart diagram:
+A flow diagram of the logic behind the application was created using [Lucid Chart](https://www.lucidchart.com/).
+
+![Flow diagram](docs/img//home_library_app.png)
+![PDF version of diagram](docs/flow_diagram.pdf)
 
 ## Features
 
@@ -70,20 +86,18 @@ Flow chart diagram:
 
 ##  Colour Scheme
 
-Colour palette was selected using <b>coolors.co</b> generator and has been extracted from the backgroud picture used in terminal view HTML page.
-
-PLACEHOLDER
+Colour palette was selected using <b>coolors.co</b> generator and has been extracted from the backgroud picture used in terminal view HTML page. Colour of the "run program" button was adjusted to match the backgroud.
 
 ![Colour Scheme](docs/img/palette.jpg)
 
-PLACEHOLDER
+Terminal outputs are displayed in high-contrast colours over black background for better readability and accesibillity. Standard prompts are yellow, book addition and edit inputs are blue, warnings red. Confirmation messages and menus are green. Bigger chunks of data coming from the database are printed in standard white colour to be non-distractive.
 
 #   Technology
     
 ##  Languages used
 
--   [Python](https://www.python.org/) - high-level, general-purpose programming languate.
--   [Markdown](https://en.wikipedia.org/wiki/Markdown) - markup language used to write this document.
+-   [Python](https://www.python.org/) - high-level, general-purpose programming language.
+-   [Markdown](https://en.wikipedia.org/wiki/Markdown) - markup language used to write README document.
 
 ##  Frameworks, libraries & software used
 
