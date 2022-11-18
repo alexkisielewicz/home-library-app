@@ -45,8 +45,8 @@ def database_check():
             print(Fore.LIGHTRED_EX + "Database is empty, add at least one book to continue." + Style.RESET_ALL)
             menu.show_menu()
             break
-        else:
-            break
+
+        break
 
 
 def wrap_text(text):
@@ -124,7 +124,7 @@ def validate_num_range(user_input, first_val, last_val):  # e. g use in main men
             return True
         else:
             raise ValueError
-    except ValueError as e:
+    except ValueError:
         clear_terminal()
         print(Fore.LIGHTRED_EX +
               f"\nWrong input, please select option from {first_val} to {last_val} "
@@ -144,7 +144,7 @@ def validate_yes_no(user_input):
             return True
         else:
             raise ValueError
-    except ValueError as e:
+    except ValueError:
         clear_terminal()
         print(Fore.LIGHTRED_EX + "\nWong input, please select \"Y\" or \"N\".\n" + Style.RESET_ALL)
 
