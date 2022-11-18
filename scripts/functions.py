@@ -39,28 +39,31 @@ def add_book():
 
     while True:
         # user inputs title, then it's being validated, max 24 char allowed
-        title = validate_string(Fore.LIGHTCYAN_EX + "Please enter book's title: " + Style.RESET_ALL, 24, "title")
+        title = validate_string(Fore.LIGHTCYAN_EX + "Please enter book's title: "
+                                + Style.RESET_ALL, constants.TITLE_MAX_LEN, "title")
         # checks if book title starts with "The" and returns "Title, The"
         title = check_title_prefix(title)
         # user inputs author then it's being validated, max 16 char allowed
-        author = validate_string(Fore.LIGHTCYAN_EX + "Please enter book's author: " + Style.RESET_ALL, 18, "author")
+        author = validate_string(Fore.LIGHTCYAN_EX + "Please enter book's author: "
+                                 + Style.RESET_ALL, constants.AUTHOR_MAX_LEN, "author")
         # user inputs category then it's being validated, max 12 char allowed
         category = validate_string(Fore.LIGHTCYAN_EX + "Please enter book's category: "
-                                   + Style.RESET_ALL, 12, "category")
+                                   + Style.RESET_ALL, constants.CAT_MAX_LEN, "category")
         # user choose book reading status, allowed input is 1 or 2
         while True:
-            status = input(Fore.LIGHTCYAN_EX + "Please select \"1\" if you read that book and \"2\" if you didn't: "
+            status = input(Fore.LIGHTCYAN_EX + "Please select \"1\" if you read that book or \"2\" if you didn't: "
                            + Style.RESET_ALL)
             if validate_num_range(status, 1, 2):  # checks if user input is digit in range 1-2
                 if status == "1":
-                    read_status = "Read"
+                    read_status = constants.READ_YES
                     break
                 elif status == "2":
-                    read_status = "Not read"
+                    read_status = constants.READ_NO
                     break
 
         description = validate_string(
-            Fore.LIGHTCYAN_EX + "Please enter book's description: " + Style.RESET_ALL, 200, "description")
+            Fore.LIGHTCYAN_EX + "Please enter book's description: "
+                              + Style.RESET_ALL, constants.DESC_MAX_LEN, "description")
 
         break
 
@@ -227,8 +230,8 @@ def edit_book():
                 print(constants.LINE)
                 x = PrettyTable()
                 x.field_names = constants.HEADERS_NO_DESC  # assigns table's headers from first row in DB
-                x._max_table_width = 79
-                x._max_width = {"ID": 2, "Title": 24, "Author": 18, "Category": 12, "Status": 8}
+                x._max_table_width = constants.TABLE_MAX_LEN
+                x._max_width = constants.MAX_LEN
                 x.align["Title"] = "l"  # align column to the left
                 x.add_rows([book_no_desc])  # inserts a list with book details to the table
                 print(x)  # prints to the terminal created table
@@ -256,7 +259,7 @@ def edit_book():
                     # if user choose to edit the title, function check_prefix converts
                     # the title given by the user if it contains "The ".
                     title = validate_string(Fore.LIGHTCYAN_EX + "Please update book's title: "
-                                            + Style.RESET_ALL, 24, "title")
+                                            + Style.RESET_ALL, constants.TITLE_MAX_LEN, "title")
                     title = check_title_prefix(title)
                     book_no_desc[1] = title.title()  # allows to display updated title value in the table
                     LIBRARY.update_cell(db_row, 2, title.title())  # push change to database
@@ -268,7 +271,7 @@ def edit_book():
 
                 elif user_choice == "2":
                     author = validate_string(Fore.LIGHTCYAN_EX + "Please update book's author: "
-                                             + Style.RESET_ALL, 18, "author")
+                                             + Style.RESET_ALL, constants.TITLE_MAX_LEN, "author")
                     book_no_desc[2] = author.title()  # allows to display updated author value in the table
                     LIBRARY.update_cell(db_row, 3, author.title())  # push change to database
                     clear_terminal()
@@ -279,7 +282,7 @@ def edit_book():
 
                 elif user_choice == "3":
                     category = validate_string(Fore.LIGHTCYAN_EX + "Please update book's category: "
-                                               + Style.RESET_ALL, 12, "category")
+                                               + Style.RESET_ALL, constants.CAT_MAX_LEN, "category")
                     book_no_desc[3] = category.capitalize()  # allows to display updated category value in the table
                     LIBRARY.update_cell(db_row, 4, category.capitalize())  # push change to database
                     clear_terminal()
@@ -293,11 +296,11 @@ def edit_book():
                     # instead of writing "Read" or "Not read".
                     while True:
                         select_status = input(
-                            Fore.LIGHTCYAN_EX + "Please select \"1\" if you read that book and \"2\" if you didn't: "
+                            Fore.LIGHTCYAN_EX + "Please select \"1\" if you read that book or \"2\" if you didn't: "
                             + Style.RESET_ALL)
                         if validate_num_range(select_status, 1, 2):
                             if select_status == "1":
-                                status = "Read"
+                                status = constants.READ_YES
                                 book_no_desc[4] = status
                                 LIBRARY.update_cell(db_row, 5, status)  # push change to database
                                 clear_terminal()
@@ -308,7 +311,7 @@ def edit_book():
                                       + Style.RESET_ALL)
                                 break
                             elif select_status == "2":
-                                status = "Not read"
+                                status = constants.READ_NO
                                 book_no_desc[4] = status
                                 LIBRARY.update_cell(db_row, 5, status)
                                 clear_terminal()
@@ -321,7 +324,7 @@ def edit_book():
 
                 elif user_choice == "5":
                     description = validate_string(Fore.LIGHTCYAN_EX + "Please update book's description: "
-                                                  + Style.RESET_ALL, 200, "description")
+                                                  + Style.RESET_ALL, constants.DESC_MAX_LEN, "description")
                     LIBRARY.update_cell(db_row, 6, description.capitalize())  # push change to database
                     book_description = description.capitalize()
                     clear_terminal()
@@ -415,8 +418,8 @@ def show_book_details():
             x.field_names = constants.HEADERS_NO_DESC
             # Maximum width of the whole table is set to 79 characters.
             # Each column's maximum width is assigned individually.
-            x._max_table_width = 79
-            x._max_width = {"ID": 2, "Title": 24, "Author": 18, "Category": 12, "Status": 8}
+            x._max_table_width = constants.TABLE_MAX_LEN
+            x._max_width = constants.MAX_LEN
             x.add_rows([book_to_display])
             x.align["ID"] = "r"  # aligns column to the right
             x.align["Title"] = "l"  # aligns column to the left
