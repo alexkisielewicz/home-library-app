@@ -143,13 +143,13 @@ def remove_book():
             clear_terminal()
 
             # below condition is used to print different message depends on book's read status
-            if delete_status == "Read":
+            if delete_status == constants.READ_YES:
                 confirm = f"The book \"{delete_title.title()}\" by {delete_author.title()} will be removed."
                 read_status = Fore.LIGHTGREEN_EX + f"The book is {delete_status.lower()}." + Style.RESET_ALL
                 wrap_text(Fore.LIGHTYELLOW_EX + confirm + Style.RESET_ALL)
                 print(read_status)
 
-            elif delete_status == "Not read":
+            elif delete_status == constants.READ_NO:
                 confirm = f"The book \"{delete_title.title()}\" by {delete_author.title()} will be removed."
                 read_status = Fore.LIGHTRED_EX + f"The book is {delete_status.lower()}." + Style.RESET_ALL
                 wrap_text(Fore.LIGHTYELLOW_EX + confirm + Style.RESET_ALL)
@@ -181,13 +181,13 @@ def remove_book():
             clear_terminal()
             # checks if there is only one book in the database
             # in this specific situation user is asked to select the only possible option
-            if how_many_books() is True:
+            if has_multiple_books():
                 print(Fore.LIGHTRED_EX +
                       """Wrong input!\nNot much of a choice, you have only one book, please select it...\n"""
                       + Style.RESET_ALL)
             # if there's more than one book in the database,
             # user is given specific range of options e.g. 1-10
-            elif how_many_books() is False:
+            elif has_multiple_books() is False:
                 print(Fore.LIGHTRED_EX +
                       f"""Wrong input!\nPlease select #ID from 1 to {utils.utils.last_book_id}.\n"""
                       + Style.RESET_ALL)
@@ -341,11 +341,11 @@ def edit_book():
             # depending on how many books there are in the database.
             # User is asked to select the only possible choice if there's only one book saved.
             # Otherwise, user is given exact number of possible options.
-            if how_many_books() is True:
+            if has_multiple_books():
                 print(Fore.LIGHTRED_EX +
                       "Wrong input!\nNot much of a choice, you have only one book, please select it...\n"
                       + Style.RESET_ALL)
-            elif how_many_books() is False:
+            elif has_multiple_books() is False:
                 print(Fore.LIGHTRED_EX + f"Wrong input\nPlease select #ID from 1 to {utils.utils.last_book_id}.\n"
                                        + Style.RESET_ALL)
 
@@ -438,11 +438,11 @@ def show_book_details():
             # Conditional is used to give user a hint about possible input
             # If there's only one book in the database, user is asked to select it
             # If there's more than one book, user is given exact range of options e.g. 1-10
-            if how_many_books() is True:
+            if has_multiple_books():
                 print(Fore.LIGHTRED_EX +
                       """Wrong input!\nNot much of a choice, you have only one book, please select it...\n"""
                       + Style.RESET_ALL)
-            elif how_many_books() is False:
+            elif has_multiple_books() is False:
                 print(Fore.LIGHTRED_EX +
                       f"""Wrong input!\nPlease select #ID from 1 to {utils.utils.last_book_id}.\n"""
                       + Style.RESET_ALL)

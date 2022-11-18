@@ -61,11 +61,12 @@ def wrap_text(text):
     print(wrapped_text)
 
 
-def how_many_books():
+def has_multiple_books():
     """
     Checks if there is one or more books in the database.
     It's used in edit_book, remove_book, and show_book_details functions
-    to conditionally give user hint on possible input selection.
+    to conditionally give user hint on possible input selection, e.g.
+    "Choose the only book you have" or "Chose book from 1 to 10".
     E.g - "Select the only book" or "Select book 1-10".
     :return: first_book_id
     :return: last_book_id
