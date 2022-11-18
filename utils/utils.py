@@ -337,9 +337,3 @@ def random_quit_msg():
 
     random_msg = random.choice(quit_messages)
     wrap_text(Fore.LIGHTGREEN_EX + random_msg + Style.RESET_ALL)
-
-
-def copy_demo_worksheet():
-    print("test")
-    # get all values from DEMO --> insert to LIBRARY
-    # find last row in library ---- > clear all up to last line ---> insert all from DEMO sheet.
