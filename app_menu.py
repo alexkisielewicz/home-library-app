@@ -22,7 +22,7 @@ def logo():
                                                               __/ |
                                                              |___/                                                                                                                      
     """ + Style.RESET_ALL)
-    print(Fore.LIGHTYELLOW_EX + f"Welcome to {constants.APP} app, you can manage all your books here. "
+    print(Fore.LIGHTYELLOW_EX + f"Welcome to {constants.APP}, you can manage all your books here. "
                                 f"\nPlease use menu below to continue." + Style.RESET_ALL)
 
 
@@ -45,24 +45,17 @@ def show_menu():
         clear_terminal()
         validate_num_range(user_choice, 1, 7)  # validates user input, only values from 1 to 7 are allowed
         if user_choice == "1":
-            clear_terminal()
             fn.add_book()
         elif user_choice == "2":
-            clear_terminal()
             fn.edit_book()
         elif user_choice == "3":
-            clear_terminal()
             fn.remove_book()
         elif user_choice == "4":
-            clear_terminal()
             fn.show_all_books()
         elif user_choice == "5":
-            clear_terminal()
             fn.change_sorting_method()
         elif user_choice == "6":
-            clear_terminal()
             fn.show_book_details()
         elif user_choice == "7":
-            clear_terminal()
             fn.quit_app()
             break
