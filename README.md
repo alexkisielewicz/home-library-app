@@ -62,7 +62,7 @@ As a program owner/developer I would like to:
 
 ##  External user's goal
 
-- as a user I would like to:
+As a user I would like to:
 - be able to clearly understand application's purpose
 - be able to use program with real usability
 - be able to easily navigate the program and access all features
@@ -78,12 +78,27 @@ As a program owner/developer I would like to:
 A flow diagram of the logic behind the application was created using [Lucid Chart](https://www.lucidchart.com/).
 
 ![Flow diagram](docs/img//home_library_app.png)
-![PDF version of diagram](docs/flow_diagram.pdf)
+For PDF version [click here](docs/flow_diagram.pdf)
 
 ## Features
 
-#   User Experience (UX)
+Add book
 
+
+Edit book
+
+Remove book
+
+View all books
+
+Change sorting method
+
+Show book details
+
+Quit
+
+
+#   User Experience (UX)
 ##  Colour Scheme
 
 Colour palette was selected using <b>coolors.co</b> generator and has been extracted from the backgroud picture used in terminal view HTML page. Colour of the "run program" button was adjusted to match the backgroud.
@@ -101,21 +116,28 @@ Terminal outputs are displayed in high-contrast colours over black background fo
 
 ##  Frameworks, libraries & software used
 
-- [Coolors.co](https://coolors.co/) - was used to create colour palette.
+- [Coolors.co](https://coolors.co/) - was used to create colour palette for terminal display page.
 
-- [Font Awesome:](https://fontawesome.com/) - Font Awesome was used on all pages throughout the website to add icons for aesthetic and UX purposes.
+- [Font Awesome:](https://fontawesome.com/) - Font Awesome icons were used for social links in terminal display page.
 
 - [Git](https://git-scm.com/) - Git was used for version control by utilizing the Gitpod terminal to commit to Git and Push to GitHub.
 
 - [GitHub](https://github.com/) - GitHub is used to store the project's code after being pushed from Git.
 
+- [Google Sheets API](https://developers.google.com/sheets/api) - was used to connect with the database made of the spreadsheet.
+
 - [Favicon.io](https://www.favicon.io) - tool used to create favicon.
 
-LUCID FLOWCHART
+- [LucidChart](https://www.lucidchart.com/pages) - was used to create flow diagram.
+
+- [PyCharm](https://www.jetbrains.com/pycharm/) - Python IDE used to write the app.
+
+
 
 #    Testing
 
 ##   Accessibility
+
 
 
 
@@ -127,10 +149,12 @@ LUCID FLOWCHART
 
 ##   Bugs/known issues
 
-- <b>Issue #1:</b>  PLACEHOLDER
+- <b>Issue #1:</b> During the edit I made indentation error and misplaced last "break" instruction of the code presented on screenshot below. That caused infinite loop to work in the backgroud without any terminal output. It was a major issue as all main program features generated an Google Sheets API error code 429 - "To many requests HTTP status code response". I thought that I exceeded Google Sheets Quoata per user/per minute/per project but after checking logs and quotas in Google Cloud Console I knew that something else caused an error. I finally managed to find the mistake. It wasn't obvious as function was meant to work "in the bacground" without any terminal output as long as there are records in database. Database wasn't ampty at that time so the message hasn't been shown.
+
+![bug1](docs/img/bug1.png)
 
 
-<b>Solution:</b> PLACEHOLDER
+<b>Solution:</b> Putting "break" instruction in the correct place, that allows to quit the while loop. 
 
 
 #   Deployment
