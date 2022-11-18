@@ -5,7 +5,7 @@ Google Sheets API connection and its constants
 import gspread
 from google.oauth2.service_account import Credentials
 
-# API connected as per official documentation
+# API connected as per gspread documentation
 # and Love Sandwiches Code Institute Project.
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
