@@ -19,11 +19,13 @@ Project purpose was to build a command-line python application that allows user 
     *   [External user's goal](#external-users-goal)
 *   [Logic and features](#logic-and-features)
     *   [Python logic](#python-logic)
+    *   [Database structure](#database-structure)
     *   [Features](#features)
 *   [User Experience (UX/UI)](#user-experience-ux)
     *   [Colour Scheme](#colour-scheme)
 *   [Technology](#technology)
     *   [Frameworks, libraries & software used](#languages-used)
+    *   [Python libraries/modules](#python-librariesmodules)
 *   [Testing](#testing)
     *   [Accessibility](#accessibility)
     *   [Validation](#validation)
@@ -80,6 +82,8 @@ A flow diagram of the logic behind the application was created using [Lucid Char
 ![Flow diagram](docs/img//home_library_app.png)
 For PDF version [click here](docs/flow_diagram.pdf)
 
+## Database structure
+
 ## Features
 
 Add book
@@ -107,6 +111,8 @@ Colour palette was selected using <b>coolors.co</b> generator and has been extra
 
 Terminal outputs are displayed in high-contrast colours over black background for better readability and accesibillity. Standard prompts are yellow, book addition and edit inputs are blue, warnings red. Confirmation messages and menus are green. Bigger chunks of data coming from the database are printed in standard white colour to be non-distractive.
 
+Screenshots presenting terminal and colour outputs are available in [Features](#features) section.
+
 #   Technology
     
 ##  Languages used
@@ -114,7 +120,7 @@ Terminal outputs are displayed in high-contrast colours over black background fo
 -   [Python](https://www.python.org/) - high-level, general-purpose programming language.
 -   [Markdown](https://en.wikipedia.org/wiki/Markdown) - markup language used to write README document.
 
-##  Frameworks, libraries & software used
+##  Frameworks, software used
 
 - [Coolors.co](https://coolors.co/) - was used to create colour palette for terminal display page.
 
@@ -130,8 +136,27 @@ Terminal outputs are displayed in high-contrast colours over black background fo
 
 - [LucidChart](https://www.lucidchart.com/pages) - was used to create flow diagram.
 
+- [Pexels.com](https://www.pexels.com/) - was used to source bacground picture for terminal display page.
+
 - [PyCharm](https://www.jetbrains.com/pycharm/) - Python IDE used to write the app.
 
+- [Text ASCII Art Generator](http://patorjk.com/software/taag/) - used to create app logo in ASCII format.
+
+##  Python libraries/modules
+
+- [gspread](https://docs.gspread.org/) - python API for Google Sheets.
+
+- [OAuthLib](https://pypi.org/project/oauthlib/) - required to manage HTTP request and authenticate to Google Sheets API.
+
+- [PrettyTable](https://pypi.org/project/prettytable/) - python library for easily displaying tabular data in a visually appealing ASCII table format
+
+- [colorama](https://pypi.org/project/colorama/) - used to color terminal outputs.
+
+- [os](https://docs.python.org/3/library/os.html) - built-in pythod module - used to write clear_terminal function.
+
+- [textwrap](https://docs.python.org/3/library/textwrap.html) - built-in python module - used to wrap lines over 79 char to next line e.g. long book description. 
+
+- [random](https://docs.python.org/3/library/random.html) - built-in python module - used to generate random quote on exit screen.
 
 
 #    Testing
@@ -167,19 +192,24 @@ PLACEHOLDER
 
 ##  Code
 
-PLACEHOLDER
+- Google Sheets API connection method is taken from Love Sandwiches CI Project and gspread documentation - in /api/google_sheets_api.py - [line 10-19](https://github.com/alexkisielewicz/home-library-app/blob/dac2a1c42d48e5b81d5fb6c0788b1f3f116317d2/api/google_sheets_api.py#L10)
+- [Stack Overflow](https://stackoverflow.com/questions/2084508/clear-terminal-in-python) - method used to write clear_terminal function in /utils/utils.py - [line 26-32](https://github.com/alexkisielewicz/home-library-app/blob/dac2a1c42d48e5b81d5fb6c0788b1f3f116317d2/utils/utils.py#L26)
 
 ##  Media
 
-PLACEHOLDER
+
+- [Goodreads.com](https://www.goodreads.com/) - the source of the quotes used on app exit screen.
+- [Pexels.com](https://www.pexels.com) - the source of the terminal page background picture.
+- [Text ASCII Art Generator](http://patorjk.com/software/taag/) - used to create app logo in ASCII format. 
 
 ## Learning resources
 
 - [Code Institute course and learning platform](https://codeinstitute.net/)
-- [The book "JavaScript: The Definitive Guide, 7th Edition](https://www.oreilly.com/library/view/javascript-the-definitive/9781491952016/)
+- [The book "Python Crash Course, 2nd Edition: A Hands-On, Project-Based Introduction To Programming"](https://nostarch.com/pythoncrashcourse2e)
 - [StackOverflow](https://stackoverflow.com/)
-- [W3Schools](https://www.w3schools.com/js/default.asp)
-- [Lage.us](https://lage.us/Javascript-Pass-Variables-to-Another-Page.html) - I learned how to pass variable to another page using local storage.
+- [W3Schools](https://www.w3schools.com/python/default.asp)
+- [Google Sheets API documentation](https://developers.google.com/sheets/api/quickstart/python)
+- [Gspread documentation](https://docs.gspread.org/en/v5.7.0/)
 
 ##  Acknowledgements
 
