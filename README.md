@@ -84,22 +84,25 @@ For PDF version [click here](docs/flow_diagram.pdf)
 
 ## Database structure
 
+![database](docs/img/database.png)
+
+![config](docs/img/config.png)
+
 ## Features
 
-Add book
+### Add book
 
+### Edit book
 
-Edit book
+### Remove book
 
-Remove book
+### View all books
 
-View all books
+### hange sorting method
 
-Change sorting method
+### Show book details
 
-Show book details
-
-Quit
+### Quit
 
 
 #   User Experience (UX)
