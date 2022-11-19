@@ -1,7 +1,10 @@
 # Manual testing of validation and functionalities
 
+Reasonable amount of manual testing was done to check all inputs and features. <br>
+Minor spelling and typo errors were fixed during the development.
 
-## Main menu
+
+# Main menu
 Function used for inputs validation - validate_num_range in utils/utils.py
 
 | What is being tested | Input  | Expected response | Result  |
@@ -20,11 +23,7 @@ Please select a number from 1 to 7 to continue | 4 (database is empty)| Valid in
 Please select a number from 1 to 7 to continue | 5 (database is empty)| Valid input, prompt user to add first book | Pass
 Please select a number from 1 to 7 to continue | 6 (database is empty)| Valid input, prompt user to add first book | Pass
 
-
-
-
-
-## Add book function
+# Add book function
 Function used - validate_string() in utils/utils.py<br>
 The same function is used to validate book's author, category and description.
 
@@ -43,7 +42,7 @@ The same function is used to validate book's author, category and description.
 |  Please select "1" if you read that book or "2 if you didn't | "!"  | Wrong input  | pass
 
 
-## Yes/No question
+# Yes/No question
 Function used for inputs validation - validate_yes_no() in utils/utils.py
 
 |  What is being tested  | Input  | Expected response  | Result
@@ -54,7 +53,7 @@ Function used for inputs validation - validate_yes_no() in utils/utils.py
 
 
 
-## Edit book function
+# Edit book function
 
 |  What is being tested  | Input  | Expected response  | Result
 |---|---|---|---|
@@ -68,7 +67,7 @@ Function used for inputs validation - validate_yes_no() in utils/utils.py
 The same validation method is used for input of author, title, category, status and description for both "add book" and "edit book" features.
 
 
-## Remove book function
+# Remove book function
 
 |  What is being tested  | Input  | Expected response  | Result
 |---|---|---|---|
@@ -79,7 +78,7 @@ The same validation method is used for input of author, title, category, status 
 |  Are you sure you want to delete this book? Y/N | "Y" | Valid input, remove book | pass
 
 
-## Change sorting method function
+# Change sorting method function
 Function used for inputs validation - validate_num_range in utils/utils.py
 
 
@@ -90,7 +89,7 @@ Function used for inputs validation - validate_num_range in utils/utils.py
 |  Select 1 or 2 | "2" (sorting by title is set to default)  | Valid input, return  | pass
 |  Select 1 or 2 | "3", "0", "a", empty (sorting by autor is set to default)  | Wrong input | pass
 
-## Show book details function
+# Show book details function
 Function used for inputs validation - validate_num_range in utils/utils.py
 
 |  What is being tested  | Input  | Expected response  | Result
@@ -98,8 +97,9 @@ Function used for inputs validation - validate_num_range in utils/utils.py
 | Which book details would you like to see? | "6" (5 records exist)  | Wrong input  | pass
 | Which book details would you like to see? | "5"  | Valid input, show book details  | pass
 | Which book details would you like to see? | "asd", "!"  | Wrong input  | pass
+| Which book details would you like to see? | "2", (1 record exists)  | Valid input, prompt user to select the only entry available  | pass
 
-## Quit function
+# Quit function
 
 |  What is being tested  | Input  | Expected response  | Result
 |---|---|---|---|

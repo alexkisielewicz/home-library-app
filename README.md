@@ -339,10 +339,7 @@ I noticed that IDEs (VSC and PyCharm) and PEP8CI linter ask to leave last line o
 
 ## Manual testing
 
-PLACEHOLDER
-PLACEHOLDER
-PLACEHOLDER
-PLACEHOLDER
+Details of manual testing can be found in [TESTING.md file](https://github.com/alexkisielewicz/home-library-app/blob/main/TESTING.md)
 
 ##   Bugs/known issues
 
