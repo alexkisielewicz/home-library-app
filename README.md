@@ -71,8 +71,8 @@ As a program owner/developer I would like to:
 ##  External user's goal
 
 As a user I would like to:
-- be able to clearly understand application's purpose
-- be able to use program with real usability
+- be able to clearly understand application's purpose from the first contact
+- be able to use program in real life
 - be able to easily navigate the program and access all features
 - be able to receive feedback to actions taken
 - be able to decide what to do next, what features to use
@@ -111,9 +111,11 @@ Worksheet "library" is used to store book entries:
 
 ![database](docs/img/database.png)
 
-Main table consists of six colums: ID, title, author, category, status and description.
+Main table consists of six colums: ID, title, author, category, status and description. The ID value works as a ordinal number for database. It's not unique and fix value assigned to a book.
 
 Each column has individually assigned value that represents maximum string length that can be input by user. It's 2, 24, 18, 12, 8 and 200 characters respectively. Exceeding that limit results in error and feedback sent to the user. This limitation is necessary to correctly display the table in the terminal which maximum length is 80 characters.  
+
+The ID column value is assigned automatically when new book is added and also all ID values are renumbered when book is removed.
 
 Worksheet "config" is used to store values for default and optional sorting method:
 
@@ -129,19 +131,21 @@ Start screen of the application consists of logo, welcome message and main menu 
 
 ### Add book
 
-This feature allows user to add new entry to the library. Following details can be added: title, author, category, reading status and description. The ID number is generated for new book automaticaly. <br>
+This feature allows user to add new entry to the library. Following details can be added: title, author, category, reading status and description. The ID number is generated automaticaly for a new record.<br>
 
-If database is empty, user is asked to add his first book in order to be able to use other app features. <br>
+If database is empty, user is asked to add his first book in order to be able to use other app features.
+
+![add_book](docs/img/add_book.png)
 
 There is additional feature implemented here. It checks if title string contains prefix "the". It converts the string to format "Title, The" and shows user converted title.
 
-![add_book](docs/img/add_book.png)
+![add_book_prefix](docs/img/add_book_p.png)
 
 Every input is validated, it should be at least 3 characters long.
 
 ![val_add_book1](docs/img/add_book_val1.png)
 
-Each book detail has individually set maximum length. Max. title length it's 24 characters.
+Each book detail has individually set maximum length. Max. title length is 24 characters.
 
 ![val_add_book2](docs/img/add_book_val2.png)
 
@@ -161,12 +165,12 @@ This field is validated.
 
 ![status2](docs/img/status_invalid.png)
 
-Upon successfull entry of all details user is asked to confirm book addition.
+Similar validation method is applied to other required inputs. Upon successfull entry of all details user is asked to confirm book addition.
 
 ![add_book2](docs/img/add_book2.png)
 
 User receives confirmation when book is added.
-Automatic sorting of the database is applied and all book's are renumbered with ID. The purpose of this operation is to keep ascending numerical order in the database when book is added or removed. ID number in this case is used only as record's ordinal number. I realise that in more complicated database each entry would be assigned to unique, fix number but in my application sorting by title or by author is more useful.
+Automatic sorting of the database is applied and all book's are renumbered with ID. The purpose of this operation is to keep ascending numerical order in the database when book is added or removed. ID number in this case is used only as record's ordinal number. I realise that in more complicated database each entry would be assigned to unique, fix number but I decided that in Home Library app sorting by title or by author is more useful.
 
 ![add_book3](docs/img/add_book3.png)
 
@@ -178,7 +182,7 @@ This function allows user to edit every book's detail. First, user is asked to c
 
 The function works in a similar way as add book function, but it updates exisiting entries.
 
-Also here application check title if prefix "the" was entered. In this case it converts the string to format "Title, The".
+App checks title if prefix "the" was entered. If this happens, it converts the string to format "Title, The".
 
 ![edit_book3](docs/img/edit_book3.png)
 
@@ -223,7 +227,7 @@ This function allows user to view all details of the selected book.
 
 ![show_details1](docs/img/show_book1.png)
 
-Description maximym length is limited to 200 characters, that's why it's displayed under the table. The text is wrapped to 79 characters in line. The input is validated.
+Description maximum length is limited to 200 characters, that's why it's displayed under the table. The text is wrapped to 79 characters in line. The input is validated.
 
 ![show_details2](docs/img/show_book2.png)
 
