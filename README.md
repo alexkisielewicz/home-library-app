@@ -38,6 +38,8 @@ Project purpose was to build a command-line python application that allows user 
     *   [Validation](#validation)
     *   [Manual testing](#manual-testing)
 *   [Deployment](#deployment)
+    *   [Git and GitHub](#git-and-github)
+    *   [Deployment to Heroku](#deployment-to-heroku)
 *   [Credits](#credits)
     *   [Code](#code)
     *   [Media](#media)
@@ -314,8 +316,23 @@ Exit screen is displayed when user confirms exit. It contains the credits, socia
 
 #   Deployment
 
-PLACEHOLDER
+## Git and GitHub
 
+## Deployment to Heroku
+
+![](docs/img/deploy1.png)
+
+![](docs/img/deploy2.png)
+
+![](docs/img/deploy3.png)
+
+![](docs/img/deploy4.png)
+
+![](docs/img/deploy5.png)
+
+![](docs/img/deploy6.png)
+
+![](docs/img/deploy7.png)
 <br>
 
 #   Credits
