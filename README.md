@@ -37,6 +37,7 @@ Project purpose was to build a command-line python application that allows user 
     *   [Accessibility](#accessibility)
     *   [Validation](#validation)
     *   [Manual testing](#manual-testing)
+    *   [Bugs/known issues](#bugsknown-issues)
 *   [Deployment](#deployment)
     *   [Git and GitHub](#git-and-github)
     *   [Deployment to Heroku](#deployment-to-heroku)
@@ -354,10 +355,6 @@ Details of manual testing can be found in [TESTING.md file](https://github.com/a
 - <b>Solution:</b> Line break character was put in correct place. 
 
 ![bug2](docs/img/bug2.png)
-
-
-
-
 
 #   Deployment
 
