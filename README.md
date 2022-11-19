@@ -22,6 +22,7 @@ Project purpose was to build a command-line python application that allows user 
     *   [Python logic](#python-logic)
     *   [Database structure](#database-structure)
     *   [Features](#features)
+        *   [Main menu](#main-menu)
         *   [Add book](#add-book)
         *   [Edit book](#edit-book)
         *   [Remove book](#remove-book)
@@ -35,6 +36,7 @@ Project purpose was to build a command-line python application that allows user 
 *   [Testing](#testing)
     *   [Accessibility](#accessibility)
     *   [Validation](#validation)
+    *   [Manual testing](#manual-testing)
 *   [Deployment](#deployment)
 *   [Credits](#credits)
     *   [Code](#code)
@@ -64,7 +66,7 @@ As a program owner/developer I would like to:
 - create application with clean, good looking and accesible interface
 - provide user a feedback to every input and action
 - decide what kind of user input is allowed and valid
-- create bugs free application
+- create bug free application
 
 ##  External user's goal
 
@@ -74,8 +76,8 @@ As a user I would like to:
 - be able to easily navigate the program and access all features
 - be able to receive feedback to actions taken
 - be able to decide what to do next, what features to use
-- be able to quit program at all stages
-- avoid any errors/bugs
+- be able to quit program
+- avoid any errors/bugs during using the app
 
 #   User Experience (UX)
 ##  Colour Scheme
@@ -252,9 +254,9 @@ Exit screen is displayed when user confirms exit. It contains the credits, socia
 
 - [GitHub](https://github.com/) - GitHub is used to store the project's code after being pushed from Git.
 
-- [Google Sheets API](https://developers.google.com/sheets/api) - was used to connect with the database made of the spreadsheet.
-
 - [Favicon.io](https://www.favicon.io) - tool used to create favicon.
+
+- [Google Sheets API](https://developers.google.com/sheets/api) - was used to connect with the database made of the spreadsheet.
 
 - [LucidChart](https://www.lucidchart.com/pages) - was used to create flow diagram.
 
@@ -290,13 +292,15 @@ Exit screen is displayed when user confirms exit. It contains the credits, socia
 
 ## Validation
 
+## Manual testing
+
 ### PEB8
 
 
 
 ##   Bugs/known issues
 
-- <b>Issue #1:</b> During the edit I made indentation error and misplaced last "break" instruction of the code presented on screenshot below. That caused infinite loop to work in the backgroud without any terminal output. It was a major issue as all main program features generated an Google Sheets API error code 429 - "To many requests HTTP status code response". I thought that I exceeded Google Sheets Quoata per user/per minute/per project but after checking logs and quotas in Google Cloud Console I knew that something else caused an error. I finally managed to find the mistake. It wasn't obvious as function was meant to work "in the bacground" without any terminal output as long as there are records in database. Database wasn't ampty at that time so the message hasn't been shown.
+- <b>Issue #1:</b> During the edit I made indentation error and misplaced last "break" instruction of the code presented on screenshot below. That caused infinite loop to work in the backgroud without any terminal output. It was a major issue as all main program features generated an Google Sheets API error code 429 - "To many requests HTTP status code response". I thought that I exeeded Google Sheets Quoata per user/per minute/per project but after checking logs and quotas in Google Cloud Console I knew that something else caused an error. I finally managed to find the mistake. It wasn't obvious as function was meant to work "in the bacground" without any terminal output as long as there are records in database. Database wasn't ampty at that time so the message hasn't been shown.
 
 ![bug1](docs/img/bug1.png)
 
