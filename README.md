@@ -272,6 +272,8 @@ Exit screen is displayed when user confirms exit. It contains the credits, socia
 
 - [Text ASCII Art Generator](http://patorjk.com/software/taag/) - used to create app logo in ASCII format.
 
+- [WebAIM](https://webaim.org/resources/contrastchecker/) - online tool to check colour contrast/accesibility.
+
 ##  Python libraries/modules
 
 - [gspread](https://docs.gspread.org/) - used for control Google Sheets API by python.
@@ -293,9 +295,15 @@ Exit screen is displayed when user confirms exit. It contains the credits, socia
 
 ##   Accessibility
 
-PLACEHOLDER
-PLACEHOLDER
-PLACEHOLDER
+[WebAIM](https://webaim.org/resources/contrastchecker/) online tool was used to check terminal colour contrast. All used colours passsed the test satisfactory.
+
+![color1](docs/img/contrast1.png)
+
+![color2](docs/img/contrast2.png)
+
+![color3](docs/img/contrast4.png)
+
+![color4](docs/img/contrast5.png)
 
 ## Validation
 
