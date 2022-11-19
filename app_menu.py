@@ -22,8 +22,9 @@ def logo():
                                                               __/ |
                                                              |___/                                                                                                                      
     """ + Style.RESET_ALL)
-    print(Fore.LIGHTYELLOW_EX + f"Welcome to {constants.APP}, you can manage all your books here. "
-                                f"\nPlease use menu below to continue." + Style.RESET_ALL)
+    print(Fore.LIGHTYELLOW_EX
+          + f"Welcome to {constants.APP}, you can manage all your books here."
+            f"\nPlease use menu below to continue." + Style.RESET_ALL)
 
 
 def menu():
@@ -41,9 +42,13 @@ def menu():
 def show_menu():
     while True:
         menu()  # prints menu
-        user_choice = input(Fore.LIGHTYELLOW_EX + "Please select a number from 1 to 7 to continue: " + Style.RESET_ALL)
+        user_choice = input(Fore.LIGHTYELLOW_EX
+                            + "Please select a number from 1 to 7 "
+                              "to continue: "
+                            + Style.RESET_ALL)
         clear_terminal()
-        validate_num_range(user_choice, 1, 7)  # validates user input, only values from 1 to 7 are allowed
+        # validates user input, only values from 1 to 7 are allowed
+        validate_num_range(user_choice, 1, 7)
         if user_choice == "1":
             fn.add_book()
         elif user_choice == "2":

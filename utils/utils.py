@@ -14,8 +14,10 @@ from prettytable import PrettyTable
 from scripts import functions
 from colorama import Fore, Style
 
-default_method = CONFIG.acell('B1').value  # either "by title" or "by author"
-optional_method = CONFIG.acell('B2').value  # is always opposite value to default_method
+# either "by title" or "by author"
+default_method = CONFIG.acell('B1').value
+# is always opposite value to default_method
+optional_method = CONFIG.acell('B2').value
 
 # Initialize two values to store id's of first and las book.
 # They are used later to determine valid input range and DB length.
@@ -39,10 +41,12 @@ def database_check():
     Majority of app functionalities are disabled if DB is empty.
     """
     while True:
-        is_empty = len(LIBRARY.row_values(2))  # checks if there is a record below DB headers
+        # checks if there is a record below DB headers
+        is_empty = len(LIBRARY.row_values(2))
         if is_empty == 0:
             clear_terminal()
-            print(Fore.LIGHTRED_EX + "Database is empty, add at least one book to continue." + Style.RESET_ALL)
+            print(Fore.LIGHTRED_EX + "Database is empty, add at least "
+                                     "one book to continue." + Style.RESET_ALL)
             menu.show_menu()
             break
 
@@ -89,14 +93,16 @@ def has_multiple_books():
 
 def check_title_prefix(text):
     """
-    Checks if title starts with prefix "the" and converts it to format "Title, The"
+    Checks if title starts with prefix "the" and converts it to
+    format "Title, The"
     :return: title
     """
     text = text.lower()
 
     if text.startswith("the "):
         prefix = ", The"
-        rewrite_title = text[4:]  # slice of a string - remove first 4 char "the ".
+        # slice of a string - remove first 4 char "the "
+        rewrite_title = text[4:]
         new_title = rewrite_title + prefix
         title = new_title.title()
         print(Fore.LIGHTYELLOW_EX + "Converted to: ", title + Style.RESET_ALL)
@@ -106,7 +112,7 @@ def check_title_prefix(text):
     return title
 
 
-def validate_num_range(user_input, first_val, last_val):  # e. g use in main menu, allowed options 1-7
+def validate_num_range(user_input, first_val, last_val):
     """
     Checks if user input is withing the range of possible options.
     Any input out of desired range will give user a hint showing
@@ -128,7 +134,8 @@ def validate_num_range(user_input, first_val, last_val):  # e. g use in main men
     except ValueError:
         clear_terminal()
         print(Fore.LIGHTRED_EX +
-              f"\nWrong input, please select option from {first_val} to {last_val} "
+              f"\nWrong input, please select option from "
+              f"{first_val} to {last_val} "
               f"to continue..." + Style.RESET_ALL)
 
 
@@ -147,12 +154,11 @@ def validate_yes_no(user_input):
             raise ValueError
     except ValueError:
         clear_terminal()
-        print(Fore.LIGHTRED_EX + "\nWong input, please select \"Y\" or \"N\".\n" + Style.RESET_ALL)
+        print(Fore.LIGHTRED_EX
+              + "\nWong input, please select \"Y\" or \"N\".\n"
+              + Style.RESET_ALL)
 
 
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-# !This one is to be finished, not working as expected!
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 def validate_string(user_text, max_length, element):
     """
     TO BE CHANGED
@@ -160,28 +166,32 @@ def validate_string(user_text, max_length, element):
     :param user_text contains prompt to enter text
     :param max_length - max characters in string
     """
-    #
-    # NEED TO FIX THIS VALIDATION - IT SHOULD ASK FOR INPUT AGAIN if invalid input given
-    #
+
     while True:
         user_input = input(user_text)
         # checks if input is empty
         if len(user_input) == 0:
             clear_terminal()
-            print(Fore.LIGHTRED_EX + f"{element.capitalize()} can't be empty!" + Style.RESET_ALL)
+            print(Fore.LIGHTRED_EX + f"{element.capitalize()} can't be empty!"
+                                   + Style.RESET_ALL)
         # checks if first character of the string is not special character
         elif not user_input[0].isalnum():
-            print(Fore.LIGHTRED_EX + f"{element.capitalize()} has to start with letter or digit!"
-                                   + Style.RESET_ALL)
+            print(Fore.LIGHTRED_EX
+                  + f"{element.capitalize()} has to start with letter "
+                    f"or digit!"
+                  + Style.RESET_ALL)
         # checks if input is shorter than required 3 characters
         elif len(user_input) <= 2:
             clear_terminal()
-            print(Fore.LIGHTRED_EX + "Please enter at least 3 characters..." + Style.RESET_ALL)
+            print(Fore.LIGHTRED_EX + "Please enter at least 3 characters..."
+                                   + Style.RESET_ALL)
         # checks if input is longer than maximum allowed
         elif len(user_input) > int(max_length):
             clear_terminal()
             print(
-                Fore.LIGHTRED_EX + f"Entered {element} exceeds maximum allowed length of {max_length} characters!"
+                Fore.LIGHTRED_EX
+                + f"Entered {element} exceeds maximum "
+                  f"allowed length of {max_length} characters!"
                 + Style.RESET_ALL)
         else:
             element = user_input.title()
@@ -199,7 +209,8 @@ def print_all_database():
     x = PrettyTable()
     x.field_names = constants.HEADERS_NO_DESC
     x._max_table_width = 79  # max width of whole table
-    x._max_width = {"ID": 2, "Title": 24, "Author": 18, "Category": 12, "Status": 8}  # columns max width
+    x._max_width = {"ID": 2, "Title": 24, "Author": 18,
+                    "Category": 12, "Status": 8}  # columns max width
     x.field_names = constants.HEADERS_NO_DESC
     x.align["ID"] = "r"  # aligns column to the right
     x.align["Title"] = "l"  # aligns column to the left
@@ -207,10 +218,12 @@ def print_all_database():
     x.align["Category"] = "l"
     x.align["Status"] = "l"
     all_values = LIBRARY.get_all_values()  # gets all values from DB
-    all_values_no_headers = all_values[1:]  # all values without the first row (db headers)
+    # all values without the first row (db headers)
+    all_values_no_headers = all_values[1:]
     for i in all_values_no_headers:
         x.add_rows(
-            [i[:-1]]  # each iteration adds a row to the table, skips the headers
+            # each iteration adds a row to the table, skips the headers
+            [i[:-1]]
         )
     print(x)
 
@@ -225,11 +238,13 @@ def renumber_id_column():
     id_val = 1  # allows to start ID values from 1
     row_val = 2  # allows to start iteration from row 2
 
-    for _ in new_col:  # underline used to avoid using variable without later need
-        LIBRARY.update_acell("A" + str(row_val), id_val)  # renumbering ID value to keep order
+    # underline used to avoid using variable without later need
+    for _ in new_col:
+        # renumbering ID value to keep order
+        LIBRARY.update_acell("A" + str(row_val), id_val)
         id_val += 1
         row_val += 1
-    print(Fore.LIGHTYELLOW_EX + "Updating database..." + Style.RESET_ALL)  # feedback to the user
+    print(Fore.LIGHTYELLOW_EX + "Updating database..." + Style.RESET_ALL)
 
 
 def sort_books(col, order):
@@ -259,25 +274,32 @@ def sort(sorting_order):
         pass
     elif sorting_order == optional_method:
         if default_method == "by author":
-            print(Fore.LIGHTYELLOW_EX + "Sorting database by title. Please wait..." + Style.RESET_ALL)
+            print(Fore.LIGHTYELLOW_EX + "Sorting database by title. "
+                                        "Please wait..." + Style.RESET_ALL)
             CONFIG.update_acell("B1", "by title")  # write method to database
             CONFIG.update_acell("B2", "by author")  # write method to database
-            functions.default_sorting_method = "by title"  # changing value so can be updated in functions.py
-            functions.optional_sorting_method = "by author"  # changing value so can be updated in functions.py
+            # changing value so can be updated in functions.py
+            functions.default_sorting_method = "by title"
+            # changing value so can be updated in functions.py
+            functions.optional_sorting_method = "by author"
             default_method = "by title"
             optional_method = "by author"
-            sort_books(2, "asc")  # sorts by column 2 in alphabetical order
-            renumber_id_column()  # reassigns ID values to keep order after sorting
+            # sorts by column 2 in alphabetical order
+            sort_books(2, "asc")
+            # reassigns ID values to keep order after sorting
+            renumber_id_column()
         elif default_method == "by title":
-            print(Fore.LIGHTYELLOW_EX + "Sorting database by author. Please wait..." + Style.RESET_ALL)
-            CONFIG.update_acell("B1", "by author")  # writing method to database
-            CONFIG.update_acell("B2", "by title")  # writing method to database
-            functions.default_sorting_method = "by author"  # changing value so can be updated in functions.py
-            functions.optional_sorting_method = "by title"  # changing value so can be updated in functions.py
+            print(Fore.LIGHTYELLOW_EX
+                  + "Sorting database by author. Please wait..."
+                  + Style.RESET_ALL)
+            CONFIG.update_acell("B1", "by author")
+            CONFIG.update_acell("B2", "by title")
+            functions.default_sorting_method = "by author"
+            functions.optional_sorting_method = "by title"
             default_method = "by author"
             optional_method = "by title"
             sort_books(3, "asc")  # sorts by column 3 in alphabetical order
-            renumber_id_column()  # reassigns ID values to keep order after sorting
+            renumber_id_column()
 
 
 def random_not_read():
@@ -293,10 +315,12 @@ def random_not_read():
     all_books = LIBRARY.get_all_values()[1:]  # all books without db headers
     not_read = []
 
-    # iterates through column 4 - "Status" to find all books that are "Not read"
+    # iterates through column 4 - "Status"
+    # to find all books that are "Not read"
     for book in all_books:
         if "Not read" in book[4]:
-            not_read.append(book)  # creates of all books with status "Not read"
+            # creates of all books with status "Not read"
+            not_read.append(book)
 
     if len(not_read) > 0:
         random_book = random.choice(not_read)  # picks random book
@@ -312,9 +336,11 @@ def random_not_read():
             new_title = prefix + short
             title = new_title
 
-        print(Fore.LIGHTGREEN_EX + "Looking for your next read?" + Style.RESET_ALL)
-        wrap_text(Fore.LIGHTGREEN_EX + f"Why don't you grab \"{title}\" by {random_book[2]}. "
-                                       f"It's still not read." + Style.RESET_ALL)
+        print(Fore.LIGHTGREEN_EX
+              + "Looking for your next read?" + Style.RESET_ALL)
+        wrap_text(Fore.LIGHTGREEN_EX
+                  + f"Why don't you grab \"{title}\" by {random_book[2]}. "
+                    f"It's still not read." + Style.RESET_ALL)
 
 
 def random_quit_msg():
@@ -329,9 +355,12 @@ def random_quit_msg():
         '"A room without books is like a body without a soul" - Cicero',
         '"There is no friend as loyal as a book" - Ernest Hemingway',
         '"A reader lives a thousand lives before he dies, said Jojen.\n'
-        'The man who never reads lives only one" - George R.R. Martin, A Dance with Dragons',
-        '"The best books... are those that tell you what you know already" - George Orwell, 1984',
-        '"Life is too short to read books that I\'m not enjoying" - Melissa Marr',
+        'The man who never reads lives only one" - George R.R. Martin, '
+        'A Dance with Dragons',
+        '"The best books... are those that tell you what you know already" '
+        '- George Orwell, 1984',
+        '"Life is too short to read books that I\'m not enjoying" '
+        '- Melissa Marr',
         '"Books are a uniquely portable magic" - Stephen King'
     ]
 
