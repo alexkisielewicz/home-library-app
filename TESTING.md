@@ -71,7 +71,7 @@ The same validation method is used for input of author, title, category, status 
 
 |  What is being tested  | Input  | Expected response  | Result
 |---|---|---|---|
-|  Please select a book to remove (#ID) | "6" (5 records exist) | Wrong input - unexpected line break in terminal input  | fail
+|  Please select a book to remove (#ID) | "6" (5 records exist) | Wrong input - unexpected line break in terminal output  | fail ![test_fail](docs/img/bug2.png)
 |  Please select a book to remove (#ID) | "0", "k", empty (5 records exist) | Wrong input | pass
 |  Are you sure you want to delete this book? Y/N | "0", "b", empty | Wrong input | pass
 |  Are you sure you want to delete this book? Y/N | "n" | Valid input, return | pass

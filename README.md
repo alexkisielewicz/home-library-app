@@ -345,10 +345,18 @@ Details of manual testing can be found in [TESTING.md file](https://github.com/a
 
 - <b>Issue #1:</b> During the edit I made indentation error and misplaced last "break" instruction of the code presented on screenshot below. That caused infinite loop to work in the backgroud without any terminal output. It was a major issue as all main program features generated an Google Sheets API error code 429 - "To many requests HTTP status code response". I thought that I exeeded Google Sheets Quoata per user/per minute/per project but after checking logs and quotas in Google Cloud Console I knew that something else caused an error. I finally managed to find the mistake. It wasn't obvious as function was meant to work "in the bacground" without any terminal output as long as there are records in database. Database wasn't ampty at that time so the message hasn't been shown.
 
+- <b>Solution:</b> Putting "break" instruction in the correct place, that allows to quit the while loop. 
+
 ![bug1](docs/img/bug1.png)
 
+- <b>Issue #2:</b> During manual testing there was a bug found. Terminal output (red warning message on the screenshot) wasn't displayed as intended. 
 
-<b>Solution:</b> Putting "break" instruction in the correct place, that allows to quit the while loop. 
+- <b>Solution:</b> Line break character was put in correct place. 
+
+![bug2](docs/img/bug2.png)
+
+
+
 
 
 #   Deployment
