@@ -301,15 +301,31 @@ PLACEHOLDER
 
 ### PEP8
 
+[PEP8CI](https://pep8ci.herokuapp.com/) app was used to lint the code. All modules except app_menu.py are clear, no errors found. In app_menu.py linter shows couple of warnings regarding whitespaces and escape character in app logo created in text to ASCII generator. This doesn't affect any functionalities and code is interpreted as intended.
+
+I noticed that IDEs (VSC and PyCharm) and PEP8CI linter ask to leave last line of the code empty, however GitHub ignores that empty line.  
+
+[/api/google_sheets_api.py](https://github.com/alexkisielewicz/home-library-app/blob/main/api/google_sheets_api.py)
+
 ![api](docs/img/valid_api.png)
 
-![constants](docs/img/valid_const.png)
+[run.py](https://github.com/alexkisielewicz/home-library-app/blob/main/run.py)
 
 ![main](docs/img/valid_main.png)
 
+[constants.py](https://github.com/alexkisielewicz/home-library-app/blob/main/constants.py)
+
+![constants](docs/img/valid_const.png)
+
+[app_menu.py](https://github.com/alexkisielewicz/home-library-app/blob/main/app_menu.py)
+
 ![menu](docs/img/valid_menu.png)
 
+[utils/utils.py](https://github.com/alexkisielewicz/home-library-app/blob/main/utils/utils.py)
+
 ![utils](docs/img/valid_utils.png)
+
+[scripts/functions.py](https://github.com/alexkisielewicz/home-library-app/blob/main/scripts/functions.py)
 
 ![functions](docs/img/valid_functions.png)
 
