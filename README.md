@@ -293,16 +293,32 @@ Exit screen is displayed when user confirms exit. It contains the credits, socia
 
 ##   Accessibility
 
-
-
+PLACEHOLDER
+PLACEHOLDER
+PLACEHOLDER
 
 ## Validation
 
+### PEP8
+
+![api](docs/img/valid_api.png)
+
+![constants](docs/img/valid_const.png)
+
+![main](docs/img/valid_main.png)
+
+![menu](docs/img/valid_menu.png)
+
+![utils](docs/img/valid_utils.png)
+
+![functions](docs/img/valid_functions.png)
+
 ## Manual testing
 
-### PEB8
-
-
+PLACEHOLDER
+PLACEHOLDER
+PLACEHOLDER
+PLACEHOLDER
 
 ##   Bugs/known issues
 
@@ -318,21 +334,54 @@ Exit screen is displayed when user confirms exit. It contains the credits, socia
 
 ## Git and GitHub
 
+1. [Code Institute template](https://github.com/Code-Institute-Org/python-essentials-template) was used to create GitHub public repository [home-library-app](https://github.com/alexkisielewicz/home-library-app). In template repository I clicked on "use this template" --> "create new repository", I chose repository name and clicked on the green button "Create repository from template".
+
+2. I cloned repository to my local machine using GitHub Desktop and opened it in PyCharm IDE.
+3. I developed programm, often commiting changes using terminal commands:
+    - git add .
+    - git commit -m "Do something"
+    - git push
+
+4. I made sure that all my libraries adn packages are listed in [requirements.txt](https://github.com/alexkisielewicz/home-library-app/blob/main/requirements.txt).
+
+5. When program was ready for further deployment I visited heroku.com website.
+
 ## Deployment to Heroku
 
-![](docs/img/deploy1.png)
+1. I visited [https://heroku.com/](https://heroku.com/) and opened dashboard. Then I clicked button "New" and selected "Create new app" button.
 
-![](docs/img/deploy2.png)
+2. I entered my app name as "home-library-app-ci", chose region to Europe and clicked on "Create app" button
 
-![](docs/img/deploy3.png)
+![deploy1](docs/img/deploy1.png)
 
-![](docs/img/deploy4.png)
+3. The next step was to go to "Deploy" tab and then to "Deployment method" section to authorize and connect my GitHub account.
 
-![](docs/img/deploy5.png)
+![deploy2](docs/img/deploy2.png)
 
-![](docs/img/deploy6.png)
+4. Upon succesfull connection I selected main branch from "home-library-app" repository.
 
-![](docs/img/deploy7.png)
+![deploy3](docs/img/deploy3.png)
+
+5. Then I went to "Settings" tab...
+
+![deploy4](docs/img/deploy5.png)
+
+6. ... and next to "Buildpacks" section. In the next step I added pyhton and nodejs buildpacks. Order here is very important.
+
+![deploy5](docs/img/deploy6.png)
+
+7. In the next step I went to "Config Vars" section and added KEY "CREDS" - that maches my token name defined in python constant in [api/google_sheets_api.py](https://github.com/alexkisielewicz/home-library-app/blob/main/api/google_sheets_api.py) - with value of my credentials token (copy all and paste).
+
+8. I added key "PORT" with value "8080" and save changes.
+
+![deploy6](docs/img/deploy7.png)
+
+6. In the next step I went back to "Deploy" tab and decided to use automatic deploys, however manual mode is also available to deploy chosen branch.
+
+![deploy7](docs/img/deploy4.png)
+
+7. The link to my deployed app was shown on screen: [https://home-library-app-ci.herokuapp.com/](https://home-library-app-ci.herokuapp.com/)
+
 <br>
 
 #   Credits
