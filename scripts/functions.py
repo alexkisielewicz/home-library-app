@@ -230,15 +230,15 @@ def remove_book():
             # the only possible option
             if has_multiple_books():
                 print(Fore.LIGHTRED_EX +
-                      """Wrong input!\nNot much of a choice,
-                      you have only one book, please select it...\n"""
+                      "Wrong input!\nNot much of a choice, "
+                      "you have only one book, please select it...\n"
                       + Style.RESET_ALL)
             # if there's more than one book in the database,
             # user is given specific range of options e.g. 1-10
             elif has_multiple_books() is False:
                 print(Fore.LIGHTRED_EX +
-                      f"""Wrong input!\nPlease select #ID from 1
-                      to {utils.utils.last_book_id}.\n"""
+                      f"Wrong input!\nPlease select #ID from 1 "
+                      f"to {utils.utils.last_book_id}.\n"
                       + Style.RESET_ALL)
             remove_book()
 
@@ -548,13 +548,13 @@ def show_book_details():
             # range of options e.g. 1-10
             if has_multiple_books():
                 print(Fore.LIGHTRED_EX +
-                      """Wrong input!\nNot much of a choice, you have only
-                      one book, please select it...\n"""
+                      "Wrong input!\nNot much of a choice, you have only "
+                      "one book, please select it...\n"
                       + Style.RESET_ALL)
             elif has_multiple_books() is False:
                 print(Fore.LIGHTRED_EX +
-                      f"""Wrong input!\nPlease select #ID from 1
-                      to {utils.utils.last_book_id}.\n"""
+                      f"Wrong input!\nPlease select #ID from 1 "
+                      f"to {utils.utils.last_book_id}.\n"
                       + Style.RESET_ALL)
             show_book_details()
 
