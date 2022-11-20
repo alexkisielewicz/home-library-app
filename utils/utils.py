@@ -160,10 +160,11 @@ def validate_yes_no(user_input):
 
 def validate_string(user_text, max_length, element):
     """
-    TO BE CHANGED
+    Validates user input, checks if input is too short or too long,
+    if it's empty, or starts with special character.
     :param element: is variable assigned to user input, e.g. title, author
     :param user_text contains prompt to enter text
-    :param max_length - max characters in string
+    :param max_length - max characters allowed in input
     """
 
     while True:
