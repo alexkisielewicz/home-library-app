@@ -7,7 +7,6 @@ validating inputs, generating random output.
 from api.google_sheets_api import LIBRARY, CONFIG
 import os
 import textwrap
-import app_menu as menu
 import constants
 import random
 from prettytable import PrettyTable
@@ -39,6 +38,7 @@ def database_check():
     Checks if database is not empty.
     If it's empty, user is asked to add his first book.
     Majority of app functionalities are disabled if DB is empty.
+    :return True if database is empty
     """
     while True:
         # checks if there is a record below DB headers
@@ -47,8 +47,7 @@ def database_check():
             clear_terminal()
             print(Fore.LIGHTRED_EX + "Database is empty, add at least "
                                      "one book to continue." + Style.RESET_ALL)
-            menu.show_menu()
-            break
+            return True
 
         break
 
