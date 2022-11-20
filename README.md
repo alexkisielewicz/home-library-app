@@ -41,6 +41,7 @@ Project purpose was to build a command-line python application that allows user 
 *   [Deployment](#deployment)
     *   [Git and GitHub](#git-and-github)
     *   [Deployment to Heroku](#deployment-to-heroku)
+*   [Possible future development](#possible-future-development)
 *   [Credits](#credits)
     *   [Code](#code)
     *   [Media](#media)
@@ -249,7 +250,7 @@ Exit screen is displayed when user confirms exit. It contains the credits, socia
 ##  Languages used
 
 -   [Python](https://www.python.org/) - high-level, general-purpose programming language.
--   [Markdown](https://en.wikipedia.org/wiki/Markdown) - markup language used to write README document.
+-   [Markdown](https://en.wikipedia.org/wiki/Markdown) - markup language used to write README and TESTING documents.
 
 ##  Software used
 
@@ -411,6 +412,17 @@ Details of manual testing can be found in [TESTING.md file](https://github.com/a
 7. The link to my deployed app was shown on screen: [https://home-library-app-ci.herokuapp.com/](https://home-library-app-ci.herokuapp.com/)
 
 <br>
+
+# Possible future development
+
+If I had more time or decide to develop app further I would add/improve following functionalities: 
+- adding/editing/removing book categories instead of typing desired name. That would help keep DB entries more consistent and make input easier for the user. 
+- add function to analyze description input by user and save it in database preserving capital letters for e.g. names, new sentences,
+- add user accounts/multiple database,
+- export database to external file in printable version.
+- search database function
+
+
 
 #   Credits
 
