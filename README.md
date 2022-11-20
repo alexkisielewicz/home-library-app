@@ -49,38 +49,38 @@ Project purpose was to build a command-line python application that allows user 
 #   Project
 ##  Strategy/Scope
 
-I chose to develop an application that can be used in real life. Home Library allows users to manage their personal book libraries. Application contains such functionalities as: viewing book database, adding/editing and removing books. User can display details of every database entry and also sort database in chosen order.
+I chose to develop an application that can be used in real life. Home Library allows users to manage their personal book libraries. Application offers such functionalities as: viewing book database, adding/editing and removing books. User can display details of every database entry and also sort database in chosen order.
 
 Application should have clean and intuitive user interface and offer easy access and navigation to all functionalities.
 
 To achieve the strategy goals I implemented following features:
 
-- clean user interface for easy navigation and readability
-- menu with easy acces to all features and possibility to exit program
-- colours in terminal to give user feedback depends on his actions
-- reliable and quick connection with database provided by Google
-- customised terminal display page for better visual experience
+- clean user interface for easy navigation and readability,
+- menu with easy acces to all features and possibility to exit program,
+- colours in terminal to give user feedback depends on his actions,
+- reliable and quick connection with database provided by Google,
+- customised terminal display page for better visual experience,
 
 ## Site owner goals
 
 As a program owner/developer I would like to:
-- create application that has real life usage 
-- create application that is easy to use and intuitive to navigate
-- create application with clean, good looking and accesible interface
-- provide user a feedback to every input and action
-- decide what kind of user input is allowed and valid
-- create bug free application
+- create application that has real life usage,
+- create application that is easy to use and intuitive to navigate,
+- create application with clean, good looking and accesible interface,
+- provide user a feedback to every input and action,
+- decide what kind of user input is allowed and valid,
+- create bug free application.
 
 ##  External user's goal
 
 As a user I would like to:
-- be able to clearly understand application's purpose from the first contact
-- be able to use program in real life
-- be able to easily navigate the program and access all features
-- be able to receive feedback to actions taken
-- be able to decide what to do next, what features to use
-- be able to quit program
-- avoid any errors/bugs during using the app
+- be able to clearly understand application's purpose from the first contact,
+- be able to use program in real life,
+- be able to easily navigate the program and access all features,
+- be able to receive feedback to actions taken,
+- be able to decide what to do next, what features to use,
+- be able to quit program,
+- avoid any errors/bugs during using the app.
 
 #   User Experience (UX)
 ##  Colour Scheme
@@ -89,13 +89,13 @@ Colour palette was selected using <b>coolors.co</b> generator and has been extra
 
 ![Colour Scheme](docs/img/palette.jpg)
 
-Terminal outputs are displayed in high-contrast colours over black background for better readability and accesibillity. Standard prompts are yellow, book addition and edit inputs are blue, warnings red. Confirmation messages and menus are green. Bigger chunks of data coming from the database are printed in standard white colour to be non-distractive.
+Terminal outputs are displayed in high-contrast colours over black background for better readability and accesibillity. Standard prompts are yellow, book addition and edit inputs are blue, warnings red. Confirmation messages and menus are green. Bigger chunks of data coming from the database are printed in standard white colour to be non-distractive for the user.
 
 Screenshots presenting terminal and colour outputs are available in [Features](#features) section.
 
 Starting screen of the app with logo and menu:
 
-![](docs/img/app_terminal.png)
+![terminal](docs/img/app_terminal.png)
 
 # Logic and features
 
@@ -108,7 +108,7 @@ For PDF version [click here](docs/flow_diagram.pdf)
 
 ## Database structure
 
-Google Sheets service is used to store project's database in the spreadsheet. There are two worksheets, one to store book entries and second to store information about sorting method.
+Google Sheets service is used to store project's database in the spreadsheet. There are two worksheets, one to store book entries and second to store information about sorting methods.
 
 Worksheet "library" is used to store book entries:
 
@@ -116,7 +116,7 @@ Worksheet "library" is used to store book entries:
 
 Main table consists of six colums: ID, title, author, category, status and description. The ID value works as a ordinal number for database. It's not unique and fix value assigned to a book.
 
-Each column has individually assigned value that represents maximum string length that can be input by user. It's 2, 24, 18, 12, 8 and 200 characters respectively. Exceeding that limit results in error and feedback sent to the user. This limitation is necessary to correctly display the table in the terminal which maximum length is 80 characters.  
+Each column has individually assigned value that represents maximum length of the string that can be input by user. It's 2, 24, 18, 12, 8 and 200 characters respectively. Exceeding that limit results in error and feedback sent to the user. This limitation is necessary to correctly display the table in the terminal which maximum length is 80 characters.  
 
 The ID column value is assigned automatically when new book is added and also all ID values are renumbered when book is removed.
 
@@ -128,9 +128,9 @@ Worksheet "config" is used to store values for default and optional sorting meth
 
 ### Main menu
 
-Start screen of the application consists of logo, welcome message and main menu with 7 options. User input is validated.
+Start screen of the application consists of ASCII logo, welcome message and main menu with 7 options. User input is validated.
 
-![](docs/img/main_menu.png)
+![main-menu](docs/img/main_menu.png)
 
 ### Add book
 
@@ -140,7 +140,7 @@ If database is empty, user is asked to add his first book in order to be able to
 
 ![add_book](docs/img/add_book.png)
 
-There is additional feature implemented here. It checks if title string contains prefix "the". It converts the string to format "Title, The" and shows user converted title.
+There is additional feature implemented here. It checks if title string entered by user contains prefix "the". It converts the string to format "Title, The" and shows user converted title.
 
 ![add_book_prefix](docs/img/add_book_p.png)
 
@@ -173,13 +173,13 @@ Similar validation method is applied to other required inputs. Upon successfull 
 ![add_book2](docs/img/add_book2.png)
 
 User receives confirmation when book is added.
-Automatic sorting of the database is applied and all book's are renumbered with ID. The purpose of this operation is to keep ascending numerical order in the database when book is added or removed. ID number in this case is used only as record's ordinal number. I realise that in more complicated database each entry would be assigned to unique, fix number but I decided that in Home Library app sorting by title or by author is more useful.
+Automatic sorting of the database is applied and all book's are renumbered with ID. The purpose of this operation is to keep ascending numerical order in the database when book is added or removed. ID number in this case is used only as record's ordinal number. I realise that in more complicated database each entry would be assigned to unique, fix number but I decided that in Home Library app sorting by title or by author is more useful to the user.
 
 ![add_book3](docs/img/add_book3.png)
 
 ### Edit book
 
-This function allows user to edit every book's detail. First, user is asked to choose book to edit and when book's detailed view is presented, user can choose what detail he wants to edit. It is also possible to return to main menu. The input is validated. 
+This function allows user to edit every book's detail. First, user is asked to choose book to edit and when book's detailed view is presented, user can choose what detail he wants to edit. It is also possible to return to main menu. The input is validated.
 
 ![edit_book2](docs/img/edit_book2.png)
 
@@ -189,7 +189,7 @@ App checks title if prefix "the" was entered. If this happens, it converts the s
 
 ![edit_book3](docs/img/edit_book3.png)
 
-User receives confirmation and updated values are shown in the table.
+User receives confirmation and updated value is shown in the table printed to terminal.
 
 ![edit_book4](docs/img/edit_book4.png)
 
@@ -209,14 +209,14 @@ Confirmation is shown when book is deleted.
 
 ### View all books
 
-This function allows user to view all database records. The table max. width is limited to 79 characters to comply with PEB8 and match the terminal mockup.
+This function allows user to view all database records. The table max. width is limited to 79 characters to comply with PEP8 and match the terminal mockup page.
 
 ![view_all](docs/img/view_all.png)
 
 ### Change sorting method
 
 This user allows user to chose database sorting method. Books are always sorted in alphabetical, ascending order but user can chose column to sort by - by title or by author. <br>
-Config worksheet stores values for both default and optional method. User can choose method opposite to currently set. The ID values are automatically renumbered in order to keep ascending order. I used this logic in order to avoid need to sort database each time when program starts or ends. It would take time to load application and there is no guarantee that user properly terminate the application. Default and optional method values are updated in config worksheet each time sorting is done. User can also decide to go back to previous screen. Input is validated.
+Config worksheet stores values for both default and optional method. User can choose method opposite to currently set. The ID values are automatically renumbered in order to keep ascending order. I used this logic in order to avoid need to sort database each time when program starts or ends. It would take time to load application and there is no guarantee that user properly terminate the application allowing app to save changes. Default and optional method values are updated in config worksheet each time sorting is done. User can also decide to go back to previous screen. Input is validated.
 
 ![sort1](docs/img/sort1.png)
 
@@ -255,15 +255,17 @@ Exit screen is displayed when user confirms exit. It contains the credits, socia
 
 - [Coolors.co](https://coolors.co/) - was used to create colour palette for terminal display page.
 
+- [Favicon.io](https://www.favicon.io) - tool used to create favicon.
+
 - [Font Awesome:](https://fontawesome.com/) - Font Awesome icons were used for social links in terminal display page.
 
 - [Git](https://git-scm.com/) - Git was used for version control by utilizing the Gitpod terminal to commit to Git and Push to GitHub.
 
 - [GitHub](https://github.com/) - GitHub is used to store the project's code after being pushed from Git.
 
-- [Favicon.io](https://www.favicon.io) - tool used to create favicon.
-
 - [Google Sheets API](https://developers.google.com/sheets/api) - was used to connect with the database made of the spreadsheet.
+
+- [Heroku](https://heroku.com) - online app used to deploy project.
 
 - [LucidChart](https://www.lucidchart.com/pages) - was used to create flow diagram.
 
@@ -310,7 +312,7 @@ Exit screen is displayed when user confirms exit. It contains the credits, socia
 
 ### PEP8
 
-[PEP8CI](https://pep8ci.herokuapp.com/) app was used to lint the code. All modules except app_menu.py are clear, no errors found. In app_menu.py linter shows couple of warnings regarding whitespaces and escape character in app logo created in text to ASCII generator. This doesn't affect any functionalities and code is interpreted as intended.
+[PEP8CI](https://pep8ci.herokuapp.com/) app was used to lint the code. All modules are clear, no errors found. In app_menu.py linter shows couple of warnings regarding whitespaces and escape character in app logo created in "text to ASCII generator". This doesn't affect any functionalities and code is interpreted as intended, terminal output is displayed as intended.
 
 I noticed that IDEs (VSC and PyCharm) and PEP8CI linter ask to leave last line of the code empty, however GitHub ignores that empty line.  
 
@@ -344,15 +346,15 @@ Details of manual testing can be found in [TESTING.md file](https://github.com/a
 
 ##   Bugs/known issues
 
-- <b>Issue #1:</b> During the edit I made indentation error and misplaced last "break" instruction of the code presented on screenshot below. That caused infinite loop to work in the backgroud without any terminal output. It was a major issue as all main program features generated an Google Sheets API error code 429 - "To many requests HTTP status code response". I thought that I exeeded Google Sheets Quoata per user/per minute/per project but after checking logs and quotas in Google Cloud Console I knew that something else caused an error. I finally managed to find the mistake. It wasn't obvious as function was meant to work "in the bacground" without any terminal output as long as there are records in database. Database wasn't ampty at that time so the message hasn't been shown.
+- <b>Issue #1:</b> During the edit I made indentation error and misplaced last "break" instruction of the code presented on screenshot below. That caused infinite loop to work in the backgroud without any terminal output. It was a major issue as all main program features generated an Google Sheets API error code 429 - "To many requests HTTP status code response". I thought that I exeeded Google Sheets Quoata per user/per minute/per project but after checking logs and quotas in Google Cloud Console I knew that something else caused an error. I finally managed to find the mistake. It wasn't obvious as function was meant to work "in the bacground" without any terminal output as long as there are records in database. Database wasn't empty at that time so the message hasn't been printed in the terminal.
 
-- <b>Solution:</b> Putting "break" instruction in the correct place, that allows to quit the while loop. 
+- <b>Solution:</b> Putting "break" instruction in the correct place, that allows to "escape" from the while loop.
 
 ![bug1](docs/img/bug1.png)
 
-- <b>Issue #2:</b> During manual testing there was a bug found. Terminal output (red warning message on the screenshot) wasn't displayed as intended. 
+- <b>Issue #2:</b> During manual testing there was a bug found. Terminal output (red warning message on the screenshot) wasn't displayed as intended.
 
-- <b>Solution:</b> Line break character was put in correct place. 
+- <b>Solution:</b> Line break character was put in correct place.
 
 ![bug2](docs/img/bug2.png)
 
@@ -368,9 +370,9 @@ Details of manual testing can be found in [TESTING.md file](https://github.com/a
     - git commit -m "Do something"
     - git push
 
-4. I made sure that all my libraries adn packages are listed in [requirements.txt](https://github.com/alexkisielewicz/home-library-app/blob/main/requirements.txt).
+4. I made sure that all my libraries and packages are listed in [requirements.txt](https://github.com/alexkisielewicz/home-library-app/blob/main/requirements.txt).
 
-5. When program was ready for further deployment I visited heroku.com website.
+5. When program was ready for further deployment I visited heroku.com website to deploy on heroku.
 
 ## Deployment to Heroku
 
@@ -432,10 +434,11 @@ Details of manual testing can be found in [TESTING.md file](https://github.com/a
 - [W3Schools](https://www.w3schools.com/python/default.asp)
 - [Google Sheets API documentation](https://developers.google.com/sheets/api/quickstart/python)
 - [Gspread documentation](https://docs.gspread.org/en/v5.7.0/)
+- Documentation of python modules used in the project.
 
 ##  Acknowledgements
 
--   My Mentor Reuben Ferrante for helpful feedback and guidance at all stages of the project. 
+-   My Mentor Reuben Ferrante for helpful feedback and guidance at all stages of the project.
 -   Code Institute Slack Community for being invaluable knowledge base.
 
 ## Disclaimer
