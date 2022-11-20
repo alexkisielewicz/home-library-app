@@ -102,7 +102,7 @@ Function used for inputs validation - validate_num_range in utils/utils.py
 
 |  What is being tested  | Input  | Expected response  | Result
 |---|---|---|---|
-| Correctly display random quote on exit screen? | N/A  | Random quote printed to the terminal  | pass
+| Correctly display random quote on exit screen? | N/A  | Random quote printed to the terminal  | Pass
 | Are you sure you want to quit? | "n"  | Valid input, retur  | Pass
 | Are you sure you want to quit? | "0", "!", empty | Wrong input | Pass
 | Are you sure you want to quit? | "y"  | Valid input, terminate program  | Pass
