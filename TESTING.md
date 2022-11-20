@@ -39,7 +39,6 @@ The same function is used to validate book's author, category and description.
 |  Please select "1" if you read that book or "2 if you didn't | "3"  | Wrong input  | Pass
 |  Please select "1" if you read that book or "2 if you didn't | empty  | Wrong input  | Pass
 |  Please select "1" if you read that book or "2 if you didn't | "!"  | Wrong input  | Pass
-|  Please select "1" if you read that book or "2 if you didn't | "!"  | Wrong input  | Pass
 
 
 # Yes/No question
@@ -48,8 +47,8 @@ Function used for inputs validation - validate_yes_no() in utils/utils.py
 |  What is being tested  | Input  | Expected response  | Result
 |---|---|---|---|
 |  Confirm adding this book. Y/N | "0", "3", "f", empty  | Wrong input  | Pass
-|  Confirm adding this book. Y/N |  "y", "Y" | Valid input, book added  | Pass
-|  Confirm adding this book. Y/N |  "n", "N" | Valid input, adding aborted  | Pass
+|  Confirm adding this book. Y/N |  "y", "Y" | Valid input, proceed | Pass
+|  Confirm adding this book. Y/N |  "n", "N" | Valid input, abort  | Pass
 
 
 
@@ -71,7 +70,7 @@ The same validation method is used for input of author, title, category, status 
 
 |  What is being tested  | Input  | Expected response  | Result
 |---|---|---|---|
-|  Please select a book to remove (#ID) | "6" (5 records exist) | Wrong input - unexpected line break in terminal output  | Fail ![test_fail](docs/img/bug2.png)
+|  Please select a book to remove (#ID) | "6" (5 records exist) | Wrong input - unexpected line break in terminal output  | Fail (issue#2 in README) ![test_fail](docs/img/bug2.png)
 |  Please select a book to remove (#ID) | "0", "k", empty (5 records exist) | Wrong input | Pass
 |  Are you sure you want to delete this book? Y/N | "0", "b", empty | Wrong input | Pass
 |  Are you sure you want to delete this book? Y/N | "n" | Valid input, return | Pass
